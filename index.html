@@ -1,0 +1,48 @@
+<?php
+	$css = "css/style.css?" . filemtime("css/style.css");
+	$js = "js/custom.js?" . filemtime("js/custom.js");
+	$seoulData = "js/seoul_basic.js?" . filemtime("js/seoul_basic.js");
+?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+ 	<link rel="stylesheet" type="text/css" href="<?php echo $css; ?>" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:400,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
+
+	<script type="text/javascript" src="https://www.khan.co.kr/spko/js/plugin/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+  </head>
+  <body>
+	<div class="conts">
+		<h3>서울시 반지하 가구 및 관련 요인 비율 지도</h3>
+		<div class="btn-holder">
+			<ul>
+				<li class="default">반지하가구 비율(기본)</li>
+				<li data-map-type="low-income">기초생활수급가구 비율</li>
+				<li data-map-type="single-parents">한부모가정 비율</li>
+				<li data-map-type="old-low-income">저소득노인 비율</li>
+			</ul>
+		</div>
+		<div id="chart">
+			<svg>
+				<pattern id="Triangle" width="10" height="10" patternUnits="userSpaceOnUse">
+					<path fill="black" d="M5,0 10,10 0,10 Z" />
+				</pattern>
+				 
+			</svg>
+		</div>
+	
+	</div>
+	
+	<script type="text/javascript" src="<?php echo $js; ?>"></script>
+	<script type="text/javascript" src="<?php echo $seoulData; ?>"></script>
+
+  </body>
+</html>

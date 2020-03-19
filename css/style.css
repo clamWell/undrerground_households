@@ -1,0 +1,290 @@
+/********* RESET********/
+* { margin:0;  padding:0; }
+ol,ul { list-style:none; }
+a { outline:0; text-decoration:none; color:#555; }
+img { border:0; vertical-align:bottom; }
+
+/********** FONT *********/
+@font-face {
+    font-family: 'notokr-regular';
+    src: url('notokr-regular.eot');
+    src: url('notokr-regular.eot?#iefix') format('embedded-opentype'),
+         url('notokr-regular.woff') format('woff'),
+         url('notokr-regular.ttf') format('truetype'),
+         url('notokr-regular.svg#notokr-regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*-------------------------------------*/
+/******** 전체 기본 CSS - PC 기준********/
+/************* 2020.01 YJ *************/
+/*-------------------------------------*/
+
+html {}
+body { position: relative; background: #fff; letter-spacing: -0.02em; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕', Malgun Gothic, '돋움', Dotum, Helvetica, AppleGothic, Sans-serif; }
+body.fixed { height:100vh; overflow-y: hidden; }
+
+
+
+/* loading */
+.loading-page { width: 100%; height: 100%; height: 100vh;background:#0e0d0d; 
+position: fixed; z-index: 100; left: 0px; top: 0px; right:0px; bottom: 0px; overflow:hidden; }
+.loading-gif { width: 100%; height: 150px;position: absolute; top: 50%;margin-top: -100px; }
+.loading-gif > p {  text-align: center; color: #fff; margin-top: 20px; font-size: 14px; opacity: 0.5; 
+font-family: sans-serif; font-weight: bold;}
+.spinner {margin: 0px auto;width: 70px; text-align: center; }
+.spinner > div {width: 18px;height: 18px;background-color: #fff;border-radius: 100%;display: inline-block;
+-webkit-animation: sk-bouncedelay 1.4s infinite ase-in-out both; animation: sk-bouncedelay 1.4s infinite ease-in-out both;}
+.spinner .bounce1 {  -webkit-animation-delay: -0.32s; animation-delay: -0.32s;}
+.spinner .bounce2 {  -webkit-animation-delay: -0.16s;animation-delay: -0.16s;}
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+  -webkit-transform: scale(0)
+  }
+  40% {
+  -webkit-transform: scale(1.0)
+  }
+}
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+.loading-ment { text-align: center;  margin-top: 10px; font-weight: normal; color: #fff;letter-spacing: 2px;font-weight: bold;}
+.after-load { display: block;}
+
+::selection { background: #ff9c34; color: #111; text-shadow: none; }
+::-moz-selection {background: #ff9c34; color: #111; text-shadow: none; }
+::-webkit-selection {background: #ff9c34; color: #111; text-shadow: none; }
+
+/*****IE 블락******/
+.ie-block {  z-index: 99999; width:100%; height:100vh; background:#111; background: rgba(21, 21, 21, 0.9);position:fixed; top:0;left:0;bottom:0;right:0;}
+.ie-block .alert-msg { position: absolute; background:#fff; box-sizing: border-box; padding: 25px; border-radius: 5px; 
+box-shadow: 2px 2px 8px rgba(152, 153, 156, 0.2);width: 50%; left:25%; top: 50%; margin-top:-150px; }
+.ie-block .alert-msg p { margin-bottom:8px;  text-align: center; color: #454750;font-size: 20px; }
+.ie-block .alert-msg button {    display: block; width: 80%; margin: 0px auto;margin-top: 20px;
+box-sizing: border-box;  padding: 10px; background: #ececf1;  border-radius: 4px; color: #565661; font-weight: bold; font-size: 14px; cursor: pointer; border: 1px solid #dedee2; letter-spacing: -0.05em; }
+
+
+/* Header */
+.interactive-header {  background: rgba(0,0,0,0.85); position: fixed;padding: 0px 7px;box-sizing: border-box;top: 0px; left: 0px; width: 100%; height:  32px; z-index: 100;}
+.interactive-header .headerWrap { width: 100%; height: 100%; }
+.interactive-header .header_container { margin: 0 auto; width: 100%; height: 100%; position: relative; overflow: hidden; }
+.interactive-header .header_container .toggle-btn{ display:none; } 
+.interactive-header .khan_btn { float: left;  transition:all 0.5s ease 0s; }
+.interactive-header .khan_btn img { width:60px; height: auto; margin-top: 8px; opacity:0.7;}
+.interactive-header .khan_btn:hover { opacity: 1; }
+.interactive-header .share_bx { float: right;position: relative; top: -3px; }
+.interactive-header .share_bx span {pos ition: relative;  width: 22px; height: 40px;  cursor: pointer; }
+.interactive-header .share_bx span img  { transition:all 0.4s ease 0s; opacity: 0.8; filter: alpha(opacity = 80); width: 24px; }
+.interactive-header .share_bx span:hover > a > img { opacity:1; filter: alpha(opacity = 100); }
+.top-title {  position: absolute; left: 50%; margin-left: -60px; width: 120px; height: auto;  }
+.top-title img {  width: 120px; margin-top: 12px; opacity:0.5; }
+.share_bx span .user-count { position: absolute; bottom: 18px; left: -20px; font-size: 13px;  color: #b2b2b2;font-style: normal; letter-spacing: 0px; }
+.share_bx span:hover > img { opacity:1; filter: alpha(opacity = 100); }
+/* Header */
+
+/* common */
+.wrap-psrelative, .wrap_psrelative { width: 100%; height :100%; position: relative; }
+.wrap_mw_1000 { max-width: 1000px; margin: 0 auto; }
+.wrap_mw_1100 { max-width: 1100px; margin: 0 auto; }
+.wrap_mw_1200 { max-width: 1200px; margin: 0 auto; }
+.wrap_mw_650 { max-width: 650px; margin: 0 auto; }
+.wrap_mw_550  { width: 100%; height: 100%; position: relative;  max-width: 550px; margin: 0 auto;}
+.noise { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: url("http://img.khan.co.kr/spko/storytelling/2016/republic/noise2.png") top left repeat; }
+.cover-pattern { width: 100%; height :100%; position: absolute; top: 0px; left: 0px; background: url("http://img.khan.co.kr/spko/storytelling/2017/nohate/overptn.png") repeat; }
+.cover-pattern2 { width: 100%; height :100%; position: absolute; top: 0px; left: 0px; background: url("http://img.khan.co.kr/spko/storytelling/2018/korea/pattern2.png") repeat; }
+.cover-shadow { width: 100%; height :100%; position: absolute; top: 0px; left: 0px; background: url("http://img.khan.co.kr/spko/storytelling/2017/nohate/black50.png") repeat; }
+.cover-shadow2 { width: 100%; height :100%; position: absolute; top: 0px; left: 0px; background: url("http://img.khan.co.kr/spko/storytelling/2017/nohate/black65.png") repeat; }
+.cover-shadow3 { width: 100%; height :100%; position: absolute; top: 0px; left: 0px; background: url("http://img.khan.co.kr/spko/storytelling/2017/nohate/black65.png") repeat; }
+.cover-shadow4 { width: 100%; height :100%; position: absolute; top: 0px; left: 0px; background: rgba(0,0,0,0.85); }
+.cover-shadow5 { width: 100%; height :100%; position: absolute; top: 0px; left: 0px; background: rgba(0,0,0,0.3); }
+/* common */
+
+/* common_header */
+.common_header {  width: 100%;  position: relative;  box-shadow: 0px 0px 20px rgba(102, 103, 107, 0.15); border-bottom: 1px solid #cdd1d6;   z-index: 1;background: #fff;
+display:none;}
+.common_header .top_area_holder{ width: 100%;  height: 30px; background: #f5f5f5; }
+.common_header .top_area {  width: 1050px; margin: 0 auto; height: 30px;  line-height: 29px; overflow: hidden; font-size: 12px;}
+.common_header .top_area .family_site {  float: left;margin: 0;}
+.common_header .top_area .family_site dd a {  color: #898989; font-size: 12px; }
+.common_header .top_area .family_site dd span { color: #dfdfdf; padding: 0 2px; font-size: 12px;}
+.common_header .top_area .membership {  float: right; }
+.common_header .top_area .membership dd { float: left; margin-right: 6px;  padding-right: 4px;}
+.common_header .top_area .membership dd a.log {font-weight: bold;color: #3b57c4; }
+.common_header .top_area .membership dd span {  color: #dfdfdf;padding: 0 1px; font-size: 12px; }
+.common_header .top_area  .membership dd a { color: #898989;font-size: 12px;}
+.common_header .logo_area { width: 1050px;  margin: 0 auto; border-bottom: none; height: 124px;position: relative;}
+.common_header .sec_title {  font-size: 38px;letter-spacing: -2px;line-height: 50px;text-align: center;  padding-top: 30px;}
+.common_header .sec_title a { color:#111; }
+.common_header .sub_logo { position: absolute; top: 21px;  left: 0; z-index: 5;}
+.common_header .sub_logo a {  background: url("http://img.khan.co.kr/spko/sub_2016/sub_logo.png") no-repeat scroll 0 0; width: 134px;height: 31px; display: block;text-indent: -9999px;}
+.common_header  .logo_area .sns_wrap {  position: absolute;top: 84px; right: 0;  z-index: 30;}
+.common_header .logo_area .sns_wrap .social li { float: left;background: url("http://img.khan.co.kr/spko/main_2015/set_common.png?v=20180927") no-repeat scroll 0 0 transparent;
+width: 27px; height: 30px;}
+.common_header  .logo_area .sns_wrap .social li.facebook {  background-position: 0 0; margin-right: 5px;}
+.common_header  .logo_area .sns_wrap .social li.twitter { background-position: -32px 0; margin-right: 6px;}
+.common_header  .logo_area .sns_wrap .social li.instagram {  background-position: -121px 0;margin-right: 4px;}
+.common_header  .logo_area .sns_wrap .social li.youtube {  width: 35px; background: url("http://img.khan.co.kr/spko/main_2015/icon_header_youtube.png") no-repeat scroll 0 0 transparent;
+ background-position: 0 0; margin-right: 14px;}
+.common_header .logo_area .sns_wrap .social li a { display: block; width: 27px;   height: 30px;text-indent: -9999px;}
+/* common_header */
+
+
+body {  font-family: 'Noto Serif KR',  'notokr-regular'; }
+.conts { max-width: 1100px; margin: 0 auto; padding: 50px 0; box-sizing:border-box;}
+h3 { font-size: 30px; text-align: center; }
+svg { display:block; margin: 0 auto;  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; }
+svg text { pointer-events: none;}
+svg .geo-under-house { stroke: #fff; stroke-width: 1; stroke-dasharray: 3;stroke-dashoffset: 10;}
+svg .geo-low-income { stroke: #9c2800; stroke-width: 1; stroke-dasharray: 0; stroke-dashoffset: 0;}
+svg .geo-label { fill: #bbb; font-size: 12px; font-weight: 300; text-anchor: middle; }
+svg #map text { font-size: 14px; text-anchor: middle; fill: #fff; font-weight: bold; font-weight: 500; text-shadow: 1px 1px 1px rgba(0,0,0,0.8); }
+
+.btn-holder { margin: 30px auto; }
+.btn-holder ul { position: relative; text-align: center; }
+.btn-holder ul li { display: inline-block; box-sizing: border-box; padding: 4px 10px;   border-radius: 5px; margin: 0 1px;
+color: #111; border: 1px solid #111; background:#fff; text-align: center; font-size: 16px; cursor: pointer; }
+.btn-holder ul li:hover{box-shadow: 3px 3px 10px rgba(0,0,0,0.2);}
+.btn-holder ul li.default { color:#ff8226; border: 1px solid #ff8226;pointer-events: none; }
+.btn-holder ul li.on { color:#ff8226; border: 1px solid #ff8226;}
+
+/*****footer*****/
+.footer-area {  background:#fff;  margin-top: 100px;  box-shadow: 0px -15px 20px rgba(0,0,0,0.05); border-top: 1px solid #cdd1d6; 
+position: relative; z-index: 2; margin-top: 30px; }
+.footer-area .copyright {}
+.footer-area .copyright p { text-align: center; font-size: 14px; color:#555;line-height: 20px;  margin: 5px 0; }
+
+.rel-article {  padding: 30px 0px; }
+.rel-article .rel-box { width:100%; max-width: 750px; margin: 0 auto;   border: 1px solid #d2d1d6; border-bottom: 4px solid #222;}
+.rel-article .rel-box-2 {   margin: 20px auto;}
+.rel-article .rel-box-2 .rel-art-list { padding: 10px; }
+.rel-article .rel-box .thumb { width:100%; position: relative; height: auto; }
+.rel-article .rel-box .thumb a { width:100%; display:block; }
+.rel-article .rel-box .thumb img { width:100%; }
+.rel-article .rel-box .thumb .project-name { position: absolute; top: 10px; left:10px; background: #222;color:#fff;border-radius: 5px; font-weight: 300; 
+ font-size: 18px; line-height:18px; padding: 8px 15px;text-align:center; color: #ddd; display: inline-block;display:none;  }
+.rel-article .rel-box .rel-art-list { width:100%; box-sizing: border-box; padding: 20px 15px;position: relative;  }
+.rel-article .rel-box .rel-art-list ul { width:100%; }
+.rel-article .rel-box .rel-art-list ul li { margin: 6px 0px; text-align: center; }
+.rel-article .rel-box .rel-art-list ul li a { text-align:left; color: #555; font-size: 17px; line-height:24px; }
+.rel-article .rel-box .rel-art-list ul li a:hover { text-decoration: underline; }
+.rel-article .rel-box .rel-art-list .more-btn { position: absolute; right: 10px; bottom: 10px; font-size: 14px;
+color: #777;  background: url("http://img.khan.co.kr/spko/storytelling/2018/big/outlink.png") no-repeat; 
+background-size: 15px 15px; padding-right: 20px;background-position: right;  cursor: pointer; opacity:0.7; }
+.rel-article .rel-box .rel-art-list .more-btn:hover { opacity:1; }
+.rel-article h4 { font-size: 16px;font-weight: 500;  text-align: center;margin-bottom: 20px;  margin-top: 20px;}
+.rel-article .rel-box-bottom { margin-top: 20px; }
+
+.bottom-byline {   width: 100%; max-width: 1050px;margin: 0 auto; margin-top: 20px;  }
+.bottom-byline ul { font-family: 'Noto Sans KR', 'notokr-regular';   box-sizing: border-box; 
+padding: 30px 0; text-align: center;  max-width: 500px; margin: 0 auto;}
+.bottom-byline ul .team-wrap { width: 50%; float: left; }
+.bottom-byline ul .team-wrap:nth-child(1) { margin-bottom: 15px; }
+.bottom-byline ul::after { clear: both; content:''; display:block; }
+.bottom-byline ul li { opacity:0.9;  font-weight: 300;font-size: 13px; line-height:20px; color:#222; letter-spacing: 0px; }
+.bottom-byline ul li.team { font-weight: bold; font-size: 15px; opacity:1;   letter-spacing: -1px; margin: 5px 0px; }
+.bottom-byline ul li.team span { margin: 0px 5px; font-size: 13px; position: relative; top: -2px; }
+.bottom-byline ul li .roll { font-weight:bold; display: inline-block; margin: 7px 0px; }
+.bottom-byline ul li a { display: inline-block;  color: #111;}
+.bottom-byline ul li a:hover { /* background: rgba(129, 144, 255, 0.5);*/ text-decoration:underline; }
+
+.digital-list-wrap { border-top: 1px solid #dbdbdb; }
+.digital-list { display:none; }
+.common-footer { display:none; }
+.graph-swift-btn-holder { display: none; }
+.tab-toggle-holder { display:none;}
+.archive-bg {opacity:0;}
+.archive-area .float-privacy-holder {  display:none;}
+.hideme { opacity:0; }
+
+
+/******common footer******/
+.common-footer { margin-top: 30px;}
+#footer { position:relative;width: 1050px; margin: 0 auto;}
+#footer:after { clear: both; content: ""; display: block;}
+#footer .foot_info { border-top:1px solid #b9bbbe; padding:25px 0 20px;}
+#footer .foot_info:after { clear: both; content: ""; display: block;}
+#footer .foot_info a { color:#888; font-size:12px; line-height:15px;}
+#footer .foot_info h2 { float:left; margin:2px 70px 0 90px;}
+#footer .foot_info .cnt { float:left; width:755px;}
+#footer .foot_info .cnt .blind {display:block; overflow:hidden; left:-9999px; position:absolute; width:1px; height:1px; line-height:0; text-indent:-9999px; font-size:0;}
+#footer .foot_info .cnt dd.first { margin-bottom:2px;}
+#footer .foot_info .link dd {line-height: 18px;}
+#footer .foot_info .link span { background:url("http://img.khan.co.kr/spko/main_2013/blit_bar.gif") no-repeat scroll 2px 5px transparent; display:inline-block; padding-left:10px;}
+#footer .foot_info .link span.first { background:none repeat scroll 0 0 transparent; padding-left:0;}
+#footer .foot_info .adr { margin-top:4px; color:#888; font-size:12px;}
+#footer .foot_info .adr span { background:url("http://img.khan.co.kr/spko/main_2013/blit_bar.gif") no-repeat scroll 2px 5px transparent; display:inline-block; padding-left:10px;}
+#footer .foot_info .adr span.first { background:none repeat scroll 0 0 transparent; padding-left:0;}
+#footer .foot_info address { color:#aaa; float:left; font-family:Verdana, Sans-serif; font-weight:bold; font-size:11px; margin-top:6px;}
+#footer .foot_info address strong { color:#4d89f7;}
+#footer .foot_info .khRss { float:left; margin-left:5px; margin-top:2px;}
+#footer .foot_info .khRss a { background:url('http://img.khan.co.kr/spko/main_2013/set_common.png') no-repeat scroll 0 -964px transparent; display:block; width:14px; height:17px; overflow:hidden; text-indent:-9999px;}
+.gotomobile {text-align:center;} /* 모바일 화면으로 보기 링크 버튼 */
+
+
+/*-------------------------------------*/
+/***** 전체 기본 CSS - 모바일 기준******/
+/*-------------------------------------*/
+
+/***** 노트북 *****/
+@media screen and (max-width: 1380px) {
+
+}
+
+
+/***** 모바일 Portraits ****/
+@media screen and (max-width: 800px) {
+
+body { background: #0e0d0d;}
+.img-pc { display:none; }
+.img-m { display:block; }
+
+/* #header - GNB */
+#header { display:none;  }
+#header-m { display: block;position: fixed; left: 0; right: 0; width: 100%;  z-index: 30; top: 0;}
+#header-m:after {content:""; position:absolute; left:0; bottom:0px; width:100%; height:1px; background-color:#dbdde0;}
+#header-m.header {transition: All 0.3s ease-in-out;-webkit-transition: All 0.3s ease-in-out;-moz-transition: All 0.3s ease-in-out;-o-transition: All 0.3s ease-in-out;}
+#header-m.header.hidetop {top:-50px;}
+.head_article .common-header-title .tit_svc {  height: 34px; text-align: center;}
+.screen_out {   overflow: hidden;position: absolute;  width: 0;height: 0; line-height: 0; text-indent: -9999px;}
+.head_article {position:fixed; top:-60px; width:100%; min-width:320px; -webkit-transform:translate3d(0,0,0); z-index:100; transition:All 0.3s ease-in-out; -webkit-transition:All 0.3s ease-in-out; -moz-transition:All 0.3s ease-in-out; -o-transition:All 0.3s ease-in-out;}
+.head_article.on {top:0;}
+.head_article .common-header-title {position:relative; height:38px; border-bottom:1px solid #f0f0f0; background-color:#fff;}
+.head_article .common-header-title .tit_svc {height:34px; text-align:center;}
+.head_article .box_menu_left {position:absolute; left:7px; top:0; z-index:20;}
+.head_article .box_menu_left .btn_menu {float:left; width:35px; height:38px;}
+.head_article .box_menu_left .btn_menu .ico_menu {display:block; width:20px; height:20px; margin:10px auto 0; background:url("http://img.khan.co.kr/mobile/images/2018/ico_hr_top_menu.png") no-repeat 0 0; background-size:20px 20px; text-indent:-9999px;}
+.head_article .box_menu_left .btn_gohome {float:left; width:35px; height:38px;}
+.head_article .box_menu_left .btn_gohome .ico_gohome {display:block; width:20px; height:20px; margin:10px auto 0; background:url("http://img.khan.co.kr/mobile/images/2018/ico_hr_top_gohome.png") no-repeat 0 0; background-size:20px 20px; text-indent:-9999px;}
+.head_article .box_menu_right {position:absolute; right:5px; top:0; z-index:20;}
+.box_menu_btn {float:left; width:auto; height:38px; margin:0 7px;}
+.box_menu_btn em {position:relative; top:-3px; margin-left:3px; font-size:12px;}
+.box_menu_right .btn_scrap .ico_scrap {display:inline-block; width:18px; height:21px; margin:11px auto 0; background:url("http://img.khan.co.kr/mobile/images/2018/ico_art_top_scrap.png") no-repeat 0 0; background-size:12px 18px; text-indent:-9999px;}
+.box_menu_right .btn_share .ico_share {display:inline-block; width:20px; height:20px; margin:10px auto 0; background:url("http://img.khan.co.kr/mobile/images/2018/ico_hr_top_share.png") no-repeat 0 0; background-size:20px 20px; text-indent:-9999px;}
+.box_menu_right .btn_reply .ico_reply {display:inline-block; width:20px; height:20px; margin:10px auto 0; background:url("http://img.khan.co.kr/mobile/images/2018/ico_hr_top_reply.png") no-repeat 0 0; background-size:20px 20px; text-indent:-9999px;}
+.pc-share { display:none; }
+.share_bx { float: none; top:0; }
+.share_bx > div {  float: left;  }
+.share_bx > div a { width: 100%; }
+.share_bx > div a img { width:100%; }
+.share_bx > .share_fb {width: 15px; margin: 7px 5px;}
+.share_bx > .share_tw {width: 20px; margin: 5px 5px;}
+
+}
+
+/****** 모바일 Landscape *****/
+@media (max-width: 800px) and (orientation: landscape){
+
+
+
+
+
+
+}
