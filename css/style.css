@@ -136,16 +136,56 @@ width: 27px; height: 30px;}
 .common_header .logo_area .sns_wrap .social li a { display: block; width: 27px;   height: 30px;text-indent: -9999px;}
 /* common_header */
 
+.art_header {display:none; }
 
 body {  font-family: 'Noto Serif KR',  'notokr-regular'; }
+.top-feature {width:100%; height:400px; background:url("../img/top-graphic-sample.jpg") no-repeat; background-size:cover;
+background-position: center center; }
+
+.top-sill { position: relative;  top: -107px;     height: 140px;}
+.top-sill img { width:200px; display:block; margin: 0 auto; }
+
+.top-byline {     margin: 20px auto;}
+.top-byline .top-border p { font-size: 13px; line-height:21px;text-align: center; }
+.top-byline .top-border p strong { margin: 0px 5px; }
+
+.pc-share {  width: 95px; margin: 0 auto; }
+.pc-share .share_bx { }
+.pc-share .share_bx::after { display: block; clear: both; content:''; }
+.pc-share .share_bx { float: none; top:0; }
+.pc-share .share_bx > div { float:left;  cursor: pointer;}
+.pc-share .share_bx > div a { width: 100%; }
+.pc-share .share_bx > div a img { width:100%; }
+.pc-share .share_bx > .share_fb {width: 25px; margin: 7px 7px;}
+.pc-share .share_bx > .share_tw {width: 40px; margin: 7px 7px;}
+
+.intro-des { font-size: 22px;  max-width: 600px;text-align: left; font-weight: 500;color: #222; margin: 80px auto; 
+line-height: 1.7; letter-spacing: -0.3px;/*  word-break: keep-all; */}
+.intro-des p { margin: 30px auto; }
+.intro-des p.quo {font-weight: 400;color: #5d6a6f;font-size: 19px;  line-height: 1.6;font-style:italic; text-align: center; }
+.intro-des p.quo .jump { display:block;  font-size: 18px;  margin-top: 10px;}
+
+
 .conts { max-width: 1100px; margin: 0 auto; padding: 50px 0; box-sizing:border-box;}
-h3 { font-size: 30px; text-align: center; }
+h1 { font-size: 36px;font-size: 3em; text-align: center;  margin-bottom: 30px; } 
+h3 { font-size: 20px; text-align: center; }
+svg { overflow:visible; }
 svg { display:block; margin: 0 auto;  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; }
-svg text { pointer-events: none;}
-svg .geo-under-house { stroke: #fff; stroke-width: 1; stroke-dasharray: 3;stroke-dashoffset: 10;}
-svg .geo-low-income { stroke: #9c2800; stroke-width: 1; stroke-dasharray: 0; stroke-dashoffset: 0;}
-svg .geo-label { fill: #bbb; font-size: 12px; font-weight: 300; text-anchor: middle; }
-svg #map text { font-size: 14px; text-anchor: middle; fill: #fff; font-weight: bold; font-weight: 500; text-shadow: 1px 1px 1px rgba(0,0,0,0.8); }
+#chart {   position: relative; width: 1000px;  margin: 0 auto; }
+.back-map {position: absolute; top: -3.5px; left: -4px; z-index: -1;}
+#SEOUL_MAP text { pointer-events: none;}
+#SEOUL_MAP .geo-basic {fill: transparent; stroke: #796969; stroke-width: 1;stroke-dasharray: 3; }
+#SEOUL_MAP .geo-under-house { stroke: #714222; stroke-opacity: 0.4; stroke-width: 1; stroke-dasharray: 3;stroke-dashoffset: 10;}
+#SEOUL_MAP .geo-low-income { stroke: #9c2800; stroke-width: 0; stroke-dasharray: 0; stroke-dashoffset: 0;}
+#SEOUL_MAP .geo-single-parent { stroke: #9c2800;  stroke: #a96062; stroke-width: 1; stroke-dasharray: 0; stroke-dashoffset: 0;}
+#SEOUL_MAP .geo-label { fill: #bbb; font-size: 12px; font-weight: 300; text-anchor: middle; }
+#SEOUL_MAP #map text { font-size: 14px; text-anchor: middle; fill: #fff; font-weight: bold; font-weight: 500; text-shadow: 1px 1px 1px rgba(0,0,0,0.8); }
+
+#STACK_AREA_CHART .axis .domain {stroke-dasharray: 2; fill: none;stroke: #969696; shape-rendering: crispEdges;}
+#STACK_AREA_CHART path.area { stroke-width:1px;  }
+#STACK_AREA_CHART .axis .tick text {font-size: 12px;fill: #8a8a8a;}
+#STACK_AREA_CHART text.g-label { font-size: 14px; color:#555;  z-index: 3; } 
+#STACK_AREA_CHART .labels { font-size: 14px;  font-weight: bold; }
 
 .btn-holder { margin: 30px auto; }
 .btn-holder ul { position: relative; text-align: center; }
@@ -154,6 +194,12 @@ color: #111; border: 1px solid #111; background:#fff; text-align: center; font-s
 .btn-holder ul li:hover{box-shadow: 3px 3px 10px rgba(0,0,0,0.2);}
 .btn-holder ul li.default { color:#ff8226; border: 1px solid #ff8226;pointer-events: none; }
 .btn-holder ul li.on { color:#ff8226; border: 1px solid #ff8226;}
+
+.stack-area-info {}
+.stack-area-info .name-type {}
+.stack-area-info .each-year {}
+.stack-area-info .each-year ul {}
+.stack-area-info .each-year ul li {}
 
 /*****footer*****/
 .footer-area {  background:#fff;  margin-top: 100px;  box-shadow: 0px -15px 20px rgba(0,0,0,0.05); border-top: 1px solid #cdd1d6; 

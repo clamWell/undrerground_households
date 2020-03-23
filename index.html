@@ -2,6 +2,7 @@
 	$css = "css/style.css?" . filemtime("css/style.css");
 	$js = "js/custom.js?" . filemtime("js/custom.js");
 	$seoulData = "js/seoul_basic.js?" . filemtime("js/seoul_basic.js");
+	$allCityData = "js/all_city.js?" . filemtime("js/all_city.js");
 ?>
 
 <!DOCTYPE html>
@@ -20,29 +21,116 @@
     <script src="http://d3js.org/queue.v1.min.js"></script>
   </head>
   <body>
+
+	<!-- Header(S)-->
+	<div class="interactive-header">
+		<div class="headerWrap">
+			<div class="header_container">
+				<div class="khan_btn">
+					<a href="http://www.khan.co.kr/" target="_blank"><img src="http://img.khan.co.kr/spko/storytelling/2019/genx/kh_logo.png" alt="홈으로" /></a>
+				</div>
+				<div class="share_bx">
+					<span><em class="user-count"></em><a onclick="sendSns('facebook'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2016/anniversary/fb_icon.png" alt="페이스북" /></a></span>
+					<span><a onclick="sendSns('twitter'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/genx/tw_icon.png" alt="트위터" /></a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //Header (E)-->
+
+	<div class="art_header">
+		<!-- 꼭지명 -->
+		<div class="header_tit_serial" style="font-size: 13px;"><a href="//news.khan.co.kr/kh_interactive/index.html">인터랙티브·데이터저널리즘</a></div>
+		<!-- 꼭지명 -->
+		<h3 class="tit_view" style="font-size: 24px;">매일 김용균이 있었다</h3>
+	</div>
+
+	<div class="top-feature">
+		
+	</div>
 	<div class="conts">
-		<h3>서울시 반지하 가구 및 관련 요인 비율 지도</h3>
+		<div class="top-sill"><img src="img/family-sill-2.png" alt=""></div>
+		<h1>보이지 않는 빈곤 반지하<br/>현실의 36만 ‘기택네’엔 누가 사나</h1>
+
+		<div class="top-byline">
+			<div class="top-border">
+				<p><strong>기획·제작</strong>이성희 기자·황경상 기자·김유진 디자이너</p>
+			</div>									
+		</div>
+		<div class="pc-share">
+			<div class="share_bx">
+				<div class="share_fb"><a onclick="sendSns('facebook'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/factory/fb_icon_line.png" alt="페이스북" /></a></div>
+				<div class="share_tw"><a onclick="sendSns('twitter'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/factory/tw_icon_line.png" alt="트위터" /></a></div>
+			</div>
+		</div>
+		<div class="intro-des">
+			<p>영화 &lt;기생충&gt;이 아카데미 4관왕을 차지하면서 극 중 주인공 네의 주거공간이었던 반지하에 세간의 관심이 집중됐다. 남북 분단의 상황에서 방공호로 시작된 반지하는 급격한 도시화를 거치면서 과거 부족한 주택 공급을 메꾸기 위한 서민들의 주거형태로 빠르게 확산됐다.</p>
+			<p>반지하는 옥탑방, 고시원 등과 함께 열악한 주거환경의 대명사로 통하기도 한다. 빈부격차를 극명하게 나타내는 주택유형이나 그간 고시원, 옥탑방, 쪽방 등보다 사회적 관심을 덜 받아왔다. 눈에 잘 띄지 않고, 화재와 같은 대형 인명사고가 없었으며, 상태가 괜찮은 반지하들도 꽤 있었기 때문이다.</p> 
+			<p>반지하는 아이를 키우는 빈곤 가구가 선택할 수 있는 최후의 보루이기도 하다. 지상보다 저렴한 가격으로 넓은 주거면적을 찾아 ‘밑으로’ 내려가는 것. 서울시가 지난해 조사한 ‘아동 주거빈곤 가구 주거실태조사’를 보면 응답자의 61.6%가 반지하에 살고 있었다.</p>
+			<p class="quo">“지상에 있는 옥탑방과 고시원의 열악함은 눈에 쉽게 보이지만, 반지하는 직접 들어가보지 않고는 문제점을 찾기 어렵기 때문이다.” 
+			<p>본지는 한국도시연구소에 의뢰해 ‘전국 반지하 거주 현황’을 살펴봤다. 우리주변에는 얼마나 많은 현실판 기택네가 살고 있을까.</p>
+		</div>
+
+		
+		<div class="all-city-household-chart">
+			<div id="ALL_CITY_HOUSE_POLE">
+				<svg>
+				
+				
+				
+				</svg>
+			</div>
+		
+		</div>
+
+
+
+
+		<h3>서울시 반지하 가구 지도</h3>
 		<div class="btn-holder">
 			<ul>
-				<li class="default">반지하가구 비율(기본)</li>
+				<li data-map-type="under-house">반지하가구 비율(기본)</li>
 				<li data-map-type="low-income">기초생활수급가구 비율</li>
 				<li data-map-type="single-parents">한부모가정 비율</li>
 				<li data-map-type="old-low-income">저소득노인 비율</li>
 			</ul>
 		</div>
 		<div id="chart">
-			<svg>
-				<pattern id="Triangle" width="10" height="10" patternUnits="userSpaceOnUse">
-					<path fill="black" d="M5,0 10,10 0,10 Z" />
-				</pattern>
-				 
+			<div class="back-map"><img src="img/seoul-map-back2.png" alt=""></div>
+			<svg id="SEOUL_MAP">
+
 			</svg>
 		</div>
 	
+
+		<div class="stackArea">
+			<svg id="STACK_AREA_CHART"></svg>
+
+			<div class="stack-area-info">
+				<p class="name-type">지상</p>
+				<div class="each-year">
+					<ul>
+						<li>
+							<p class="year">2005년</p>
+							<p class="house"><span class="value">20541</span>가구</p>
+						</li>
+						<li>
+							<p class="year">2005년</p>
+							<p class="house"><span class="value">20541</span>가구</p>
+						</li>
+						<li>
+							<p class="year">2005년</p>
+							<p class="house"><span class="value">20541</span>가구</p>
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</div>
 	</div>
 	
 	<script type="text/javascript" src="<?php echo $js; ?>"></script>
 	<script type="text/javascript" src="<?php echo $seoulData; ?>"></script>
+	<script type="text/javascript" src="<?php echo $allCityData; ?>"></script>
 
   </body>
 </html>
