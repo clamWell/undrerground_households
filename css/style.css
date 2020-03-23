@@ -166,7 +166,7 @@ line-height: 1.7; letter-spacing: -0.3px;/*  word-break: keep-all; */}
 .intro-des p.quo .jump { display:block;  font-size: 18px;  margin-top: 10px;}
 
 
-.conts { max-width: 1100px; margin: 0 auto; padding: 50px 0; box-sizing:border-box;}
+.conts { max-width: 1400px; margin: 0 auto; padding: 50px 0; box-sizing:border-box;}
 h1 { font-size: 36px;font-size: 3em; text-align: center;  margin-bottom: 30px; } 
 h3 { font-size: 20px; text-align: center; }
 svg { overflow:visible; }
@@ -179,7 +179,8 @@ svg { display:block; margin: 0 auto;  font-family: 'Noto Sans KR', 'notokr-regul
 #SEOUL_MAP .geo-low-income { stroke: #9c2800; stroke-width: 0; stroke-dasharray: 0; stroke-dashoffset: 0;}
 #SEOUL_MAP .geo-single-parent { stroke: #9c2800;  stroke: #a96062; stroke-width: 1; stroke-dasharray: 0; stroke-dashoffset: 0;}
 #SEOUL_MAP .geo-label { fill: #bbb; font-size: 12px; font-weight: 300; text-anchor: middle; }
-#SEOUL_MAP #map text { font-size: 14px; text-anchor: middle; fill: #fff; font-weight: bold; font-weight: 500; text-shadow: 1px 1px 1px rgba(0,0,0,0.8); }
+#SEOUL_MAP #map text { font-size: 14px; text-anchor: middle; fill: #fff; font-weight: bold; 
+font-weight: 500;fill:#111; stroke: white; stroke-width: 1.5px; paint-order: stroke fill;}
 
 #STACK_AREA_CHART .axis .domain {stroke-dasharray: 2; fill: none;stroke: #969696; shape-rendering: crispEdges;}
 #STACK_AREA_CHART path.area { stroke-width:1px;  }
@@ -200,6 +201,19 @@ color: #111; border: 1px solid #111; background:#fff; text-align: center; font-s
 .stack-area-info .each-year {}
 .stack-area-info .each-year ul {}
 .stack-area-info .each-year ul li {}
+
+
+.all-city-household-chart { margin: 100px auto; }
+.all-city-household-chart #ALL_CITY_HOUSE_POLE {}
+#ALL_CITY_HOUSE_POLE .axis .domain {stroke-dasharray: 2; fill: none;stroke: #969696; shape-rendering: crispEdges;stroke-opacity:0;}
+#ALL_CITY_HOUSE_POLE .axis .tick text {font-size: 12px;fill: #8a8a8a;}
+#ALL_CITY_HOUSE_POLE .pole { fill: #dedcdb;}
+#ALL_CITY_HOUSE_POLE .pole-house { fill-opacity:0.7; }
+.pole-label {  font-size: 10px; color:#555;  stroke: white; stroke-width: 1.5px; paint-order: stroke fill;  text-anchor: middle;}
+.all-city-household-chart .tooltip {position: absolute;pointer-events: none; background:#fff; text-align: left; padding:10px; border: 1px solid #ddd; z-index: 2; } 
+.all-city-household-chart .tooltip p {font-size:13px; line-height:1.5; }
+.all-city-household-chart .tooltip .city-name { font-weight:bold; color:#111; }
+.all-city-household-chart .tooltip .under-household-ratio { font-weight:bold; margin-top: 5px; color: #ff6600;}
 
 /*****footer*****/
 .footer-area {  background:#fff;  margin-top: 100px;  box-shadow: 0px -15px 20px rgba(0,0,0,0.05); border-top: 1px solid #cdd1d6; 
