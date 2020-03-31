@@ -74,7 +74,7 @@ $(function(){
 
 		var path = d3.geo.path().projection(projection);
 		 
-		d3.json("seoul_municipalities_topo_simple.json", function(error, data) {
+		d3.json("js/seoul_municipalities_topo_simple.json", function(error, data) {
 			var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
 			var data = data;
 			
@@ -91,7 +91,7 @@ $(function(){
 						features[m].properties["single_parent_house_ratio"] = seoul_basic[i]["single_parent_house_ratio"];
 						features[m].properties["low_income_house_ratio"] = seoul_basic[i]["low_income_house_ratio"];
 
-						console.log( features[m].properties.SIG_KOR_NM +"의 반지하 거주 가구비율은 "+features[m].properties["under_house_ratio"]+"%");
+					//	console.log( features[m].properties.SIG_KOR_NM +"의 반지하 거주 가구비율은 "+features[m].properties["under_house_ratio"]+"%");
 						break;
 					}			
 				}
@@ -412,14 +412,14 @@ $(function(){
 
 	function makePoleChart(){
 		var width = (screenWidth<1400)? screenWidth: 1400,
-			height= 700,
+			height= 400,
 			margin= 10 ;
 		var data = all_city_data;
 		
 		var values = data.map(function(v) {
-		  return Number(v.house);
+		  return Number(v["under_house"]);
 		});
-		console.log(values);
+	//	console.log(values);
 		var maxValue = d3.max(values);
 		var minValue = d3.min(values);
 
@@ -439,10 +439,10 @@ $(function(){
 
 		var yAxis = d3.svg.axis()
 			.scale(y)
-			.orient("left");
+			.orient("left").ticks(5);
 
-	//	var multipleKey = height / maxValue;
-	    var multipleKey = 0.02;
+		var multipleKey = height / maxValue;
+	  //  var multipleKey = 0.02;
 		var poleMargin = 2; 
 		var poleWidth = ((width-margin) / data.length)-poleMargin;
 
@@ -452,24 +452,6 @@ $(function(){
 		  .attr("transform", "translate(-10,0)")
 		  .call(yAxis);
 
-		var pole_house_holder = chart_holder.append("g")
-			.attr("class","pole-house-holder");
-
-		var pole = pole_house_holder.selectAll("rect")
-				.data(data)
-				.enter().append("rect")
-				.attr("width", poleWidth)
-				.attr("class", "pole pole-house")
-				.attr("data-geo", function(d){ return d.geo;  })
-				.style("fill", "url(#poleGrad1)")
-				.attr("height", function(d) {
-					return Number(d.house) * multipleKey;
-				}).attr("x", function(d, i) {
-					return i * (poleWidth  + poleMargin);
-				}).attr("y", function(d) {
-					return height-(Number(d.house) * multipleKey);
-					//return 0;
-				});
 
 		var pole_under_house_holder = chart_holder.append("g")
 			.attr("class","pole-under-house-holder");
@@ -486,31 +468,31 @@ $(function(){
 				.attr("width", poleWidth)
 				.attr("class", "pole pole-under-house")
 				.attr("height", function(d) {
-					return Number(d["under_house"]) * multipleKey;
+					var h = Number(d["under_house"]) * multipleKey;
+					if(h<4){ h = 4;}
+					return h;
 				}).attr("x", function(d, i) {
 				//	return i * (poleWidth  + poleMargin);
 					return 0;
 				}).attr("y", function(d) {
-				  return height-(Number(d["under_house"]) * multipleKey);
+					var h = Number(d["under_house"]) * multipleKey;
+					if(h<4){ h = 4;}
+					return height-h;
 					//return 0;
 				});
 		
 
-		var pole_under_single_house_holder = chart_holder.append("g")
-			.attr("class","pole-under-single-house-holder");
-
-		var pole_under_house_single = pole_under_single_house_holder.selectAll("rect")
-				.data(data)
-				.enter().append("rect")
+		var pole_under_house_single = pole_under_house.append("rect")
 				.style("fill", function(d) {
-				  return "#ffb413";
+				  return "#ff432f";
 				})
 				.attr("width", poleWidth)
 				.attr("class", "pole pole-under-single-house")
 				.attr("height", function(d) {
 					return Number(d["under_house_single"]) * multipleKey;
 				}).attr("x", function(d, i) {
-					return i * (poleWidth  + poleMargin);
+					//return i * (poleWidth  + poleMargin);
+					return 0;
 				}).attr("y", function(d) {
 					return height-(Number(d["under_house_single"]) * multipleKey);
 					//return 0;
@@ -521,23 +503,185 @@ $(function(){
 			.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
 			.text(function(d) { return d.under_house_ratio+"%"; })
 			.attr("transform", function(d, i) { 
-				return "translate(0," + (height-(Number(d["under_house"]) * multipleKey)-5) + ")";
+				return "translate(0," + (height-(Number(d["under_house"]) * multipleKey)-2) + ")";
 			});
-
-		pole.on("mouseenter", function(d) {
-				d3.select(this)
+		
+		var $tooltip = $(".all-city-household-chart .tooltip");
+		$tooltip.css({"opacity":"0"})
+		pole_under_house.on("mouseenter", function(d) {
+				d3.select(this).selectAll(".pole")
 					.style("fill-opacity", "1")
-				d3.select(this)
+					.style("stroke", "#7b0000")
+					.style("stroke-width", "1px")
+				
+				$tooltip.css({"opacity":"1"})
+				$tooltip.find(".city-name").html(d.geo);
+				$tooltip.find(".household .value").html(d.house);
+				$tooltip.find(".under-household .value").html(d["under_house"]);
+				$tooltip.find(".under-household-single .value").html(d["under_house_single"]);
+				$tooltip.find(".under-household-ratio .value").html(d["under_house_ratio"]);
+				$tooltip.css({"left":(d3.mouse(this.parentNode)[0])+"px"});
+			//	$tooltip.css({"top": (d3.mouse(this.parentNode)[1]+20) +"px"});
+				$tooltip.css({"bottom":"-150px"});
 
 			}).on("mouseleave", function(d){
-				d3.selectAll(".pole-house")
+				d3.selectAll(".pole")
 					.style("fill-opacity", null)
+					.style("stroke", null)
+					.style("stroke-width",  null)
+				$tooltip.css({"opacity":"0"})
 			});
 
 	}
 
 	makePoleChart();
 
+
+
+	
+
+	var randomRange = function(n1, n2) {
+		return Math.floor((Math.random() * (n2 - n1 + 1)) + n1);
+	};
+
+	function drawIcon(){
+		var width = 1000,
+			height= 300,
+			margin= 10;
+		var data = seoul_basic[0];
+		var dataNumb = Number(data["under_pop"])/50;
+		var path = person_path;
+		var icon_mg = 1,
+			icon_width = 15,
+			icon_height = 40,
+			lineMaxNum = parseInt($("#ICON_SVG").width() / (icon_width + icon_mg));
+	
+		var icon_svg = d3.select("#ICON_SVG")
+			.attr("width", width +"px" )
+			.attr("height", height +"px")
+
+		var icon_holder = icon_svg.append("g")
+			.attr("class","icon_holder");
+
+		var each_group = icon_holder.append("g")
+			.attr("class", "each-g");
+
+		for(i=0; i<dataNumb; i++){
+			var g = each_group.append("g")
+				.attr("class", "icon")
+				.attr("transform", function() {
+					var x = (i % lineMaxNum) * (icon_width + icon_mg);
+					var y = parseInt(i / lineMaxNum) * (icon_height + icon_mg)
+					return "translate(" + x + "," + y + ")";
+				}).style("width", icon_width)
+				.style("height", icon_height)
+
+			g.append("rect")
+				.attr("class", "iconBack")
+				.style("width", icon_width)
+				.style("height", icon_height)
+				.attr("fill", "rgba(255,255,255,0.05)");
+
+			g.append("path")
+				.attr("d", function(i) {
+					var n = randomRange(0, 17);
+					return path[n].path;
+				}).style("fill", "rgb(131, 138, 148)");
+		}
+
+
+	}
+	//drawIcon();
+
+
+	function spreadIcon(){
+		var width = screenWidth,
+			height= 300,
+			margin= 10;
+		var data = seoul_basic[0];
+		var dataNumb = Number(data["pop"])/100;
+		var underNumb = Number(data["under_pop"]/100); 
+		var path = person_path;
+		var icon_width = 10,
+			icon_height = 27;
+
+		var icon_svg = d3.select("#ICON_SPREADING_HOLDER")
+			.attr("width", width +"px" )
+			.attr("height", height +"px")
+
+		var icon_holder = icon_svg.append("g")
+			.attr("class","icon_holder");
+
+		var each_group = icon_holder.append("g")
+			.attr("class", "each-g");
+
+		for(i=0; i<dataNumb; i++){
+			var g = each_group.append("g")
+				.attr("class", "icon")
+				.attr("transform", function() {
+					var x = randomRange(0, width);
+					var y = randomRange(0, height);
+					return "translate(" + x + "," + y + ")";
+				}).style("width", icon_width)
+				.style("height", icon_height)
+			var iconPath = g.append("path")
+				.attr("class","icon-path")
+				.attr("d", function(i) {
+					var n = randomRange(0, 17);
+					return path[n].path;
+				})
+				.style("fill", "url(#iconGrad1)")
+				.style("fill-opacity", "0.7")
+		}
+		
+	
+		for(u=0;u<underNumb;u++){
+			var un = randomRange(0, dataNumb);
+			$(".icon-path").eq(un).addClass("iconUnder");
+			d3.select(".icon:nth-child("+un+")").select("path").style("fill", "#ff5200")
+									.style("fill-opacity", "1");
+		}
+	
+	}
+	spreadIcon();
+
+
+	$(".loading-page").fadeOut(200, function(){
+		$introItem = $(".intro-fadeTo");
+		for(o=0; o<$introItem.length;o++){
+			$introItem.eq(o).delay(o*700).animate({"opacity":"1"}, 1500);
+		};
+		
+	});
+
+
+	var g_Srch = {};
+		g_Srch.selectGeoWide;
+		g_Srch.selectBase;
+		/*
+		g_Srch.appendOpt = function(geo){
+			$S.find("option").remove();
+			var S_sido = geo;
+			for (i=0; i<geoData.length;i++ ){
+				if( geoData[i]["local_Sido"] == S_sido ){
+					$S.append("<option value='" +  geoData[i]["local_City"] + "'>" +  geoData[i]["local_City"] + "</option>");
+				}					
+			}
+			$S.removeClass("search-btn-block");
+			var Op_lt2 = $S.find('option');
+			Op_lt2.sort(function(a, b){
+				if (a.text > b.text) return 1;
+				else if (a.text < b.text) return -1;
+				else {
+					if (a.value > b.value) return 1;
+					else if (a.value < b.value) return -1;
+					else return 0;
+				}
+			});
+			$S.html(Op_lt2);
+			$S.prepend("<option value='선택'> 선택 </option>");
+			$S.find("option").eq(0).attr("selected", "selected");
+		}*/
 
 
 });

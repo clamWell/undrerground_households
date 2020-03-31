@@ -3,143 +3,497 @@
 	$js = "js/custom.js?" . filemtime("js/custom.js");
 	$seoulData = "js/seoul_basic.js?" . filemtime("js/seoul_basic.js");
 	$allCityData = "js/all_city.js?" . filemtime("js/all_city.js");
+	$personPath = "js/person_path.js?" . filemtime("js/person_path.js");
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
+	<head>
+	<title>보이지 않는 빈곤 반지하 현실의 36만 ‘기택네’엔 누가 사나 - 경향신문</title>
 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+	<meta name="keywords" content="경향신문, 인터랙티브, 스토리텔링, storytelling, interactivenews, 반지하, 기생충, 한국도시연구소,주거환경">
+    <meta name="description" content="보이지 않는 빈곤 반지하 현실의 36만 ‘기택네’엔 누가 사나">
+
+    <!-- SNS 공유 태그-->
+    <meta property="og:url" content="http://news.khan.co.kr/kh_storytelling/2020/underground/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="보이지 않는 빈곤 반지하 현실의 36만 ‘기택네’엔 누가 사나" />
+    <meta property="og:description" content="보이지 않는 빈곤 반지하 현실의 36만 ‘기택네’엔 누가 사나" />
+    <meta property="og:image" content="http://img.khan.co.kr/spko/storytelling/2020/underground/fb_thumb.jpg" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="http://news.khan.co.kr/kh_storytelling/2020/underground/">
+    <meta name="twitter:creator" content="@kyunghyang">
+    <meta name="twitter:title" content="보이지 않는 빈곤 반지하 현실의 36만 ‘기택네’엔 누가 사나">
+    <meta name="twitter:description" content="보이지 않는 빈곤 반지하 현실의 36만 ‘기택네’엔 누가 사나">
+    <meta name="twitter:image" content="http://img.khan.co.kr/spko/storytelling/2020/underground/fb_thumb.jpg">
+
+    <!-- 스타일시트 태그-->
+	<link rel="stylesheet" type="text/css" href="https://img.khan.co.kr/spko/storytelling/recothumb/digiReco.css" />
  	<link rel="stylesheet" type="text/css" href="<?php echo $css; ?>" />
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
 
+    <!-- 스크립트 태그-->
 	<script type="text/javascript" src="https://www.khan.co.kr/spko/js/plugin/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
-  </head>
-  <body>
+	<script type="text/javascript" src="https://news.khan.co.kr/kh_storytelling/digiReco.js"></script>
+	<!-- <script type="text/javascript" src="https://www.khan.co.kr/spko/js/khan_analystics.js"></script>	 -->
 
-	<!-- Header(S)-->
-	<div class="interactive-header">
-		<div class="headerWrap">
-			<div class="header_container">
-				<div class="khan_btn">
-					<a href="http://www.khan.co.kr/" target="_blank"><img src="http://img.khan.co.kr/spko/storytelling/2019/genx/kh_logo.png" alt="홈으로" /></a>
-				</div>
-				<div class="share_bx">
-					<span><em class="user-count"></em><a onclick="sendSns('facebook'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2016/anniversary/fb_icon.png" alt="페이스북" /></a></span>
-					<span><a onclick="sendSns('twitter'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/genx/tw_icon.png" alt="트위터" /></a></span>
-				</div>
-			</div>
+ </head>
+<body>
+
+	<!-- 메타 태그-->
+    <!--[if IE 9]>
+	<div class="ie-block">
+		<div class="alert-msg">
+			<p>불편을 드려 죄송합니다.<br/>현재 이 버전의 인터넷 익스플로어(IE)에서는 페이지가 작동하지 않습니다.</p>
+			<p>보다 정상적인 이용을 위해서는 다른 브라우저를 이용해주십시오.</p>
+			<a href="http://www.khan.co.kr/"><button>경향신문 메인으로 돌아가기</button></a>
+			<a href="http://windows.microsoft.com/ko-kr/internet-explorer/download-ie" target="_blank"><button>IE 업데이트 하러 가기</button></a>
 		</div>
 	</div>
-	<!-- //Header (E)-->
+    <![endif]-->
 
-	<div class="art_header">
-		<!-- 꼭지명 -->
-		<div class="header_tit_serial" style="font-size: 13px;"><a href="//news.khan.co.kr/kh_interactive/index.html">인터랙티브·데이터저널리즘</a></div>
-		<!-- 꼭지명 -->
-		<h3 class="tit_view" style="font-size: 24px;">매일 김용균이 있었다</h3>
-	</div>
+	<!-- 전체 wrap (S)-->
+	<div class="wrap">
 
-	<div class="top-feature">
+		<!-- Loading page (S)-->
+		<div class="loading-page">
+			<div class="loading-gif">
+				<div class="loading-spinner-box">
+					<div class="spinner">
+						  <div class="bounce1"></div>
+						  <div class="bounce2"></div>
+						  <div class="bounce3"></div>
+					</div>
+					<p class="loading-ment">로딩중입니다...</p>
+				</div>
+
+			</div>
+		</div>
+		<!--// Loading page (E)-->
+		<!--After Loading (S)-->
+		<div class="after-load">
+			<!-- Header(S)-->
+			<div class="interactive-header">
+				<div class="headerWrap">
+					<div class="header_container">
+						<div class="khan_btn">
+							<a href="http://www.khan.co.kr/" target="_blank"><img src="http://img.khan.co.kr/spko/storytelling/2019/genx/kh_logo.png" alt="홈으로" /></a>
+						</div>
+						<div class="share_bx">
+							<span><em class="user-count"></em><a onclick="sendSns('facebook'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2016/anniversary/fb_icon.png" alt="페이스북" /></a></span>
+							<span><a onclick="sendSns('twitter'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/genx/tw_icon.png" alt="트위터" /></a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //Header (E)-->
+			<!-- 공통 Header-mobile (S)-->
+			<header id="header-m" class="head_article">
+				<div class="wrap_art_top_header">
+					<div class="wrap_tit common-header-title">
+						<h2 class="tit_svc">
+							<span class="screen_out">경향신문</span>
+						</h2>
+					</div>
+					<div class="wrap_util">
+						<div class="box_menu_left">
+							<a href="http://m.khan.co.kr/" class="btn_gohome">
+								<span class="ico_gohome">홈으로 바로가기</span>
+							</a>
+						</div>
+						<div class="box_menu_right">
+							<div class="share_bx">
+								<div class="share_fb"><a onclick="sendSns('facebook'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/factory/fb_icon_line.png" alt="페이스북" /></a></div>
+								<div class="share_tw"><a onclick="sendSns('twitter'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/factory/tw_icon_line.png" alt="트위터" /></a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!--// 공통 Header-mobile (E)-->
+
+			<div class="art_header">
+				<!-- 꼭지명 -->
+				<div class="header_tit_serial" style="font-size: 13px;"><a href="//news.khan.co.kr/kh_interactive/index.html">인터랙티브</a></div>
+				<!-- 꼭지명 -->
+				<h3 class="tit_view" style="font-size: 24px;">보이지 않는 빈곤 반지하 현실의 36만 ‘기택네’엔 누가 사나</h3>
+			</div>
+
+			<!-- Container (S)-->
+			<div class="container">
+				<div class="top-feature">
+					<div class="top-feature-wrap">
+						<div class="window-holder intro-fadeTo">
+							<div class="sunset"></div>
+							<div class="car"><img src="img/car.png" alt="지나가는 차"></div>
+							<div class="window-frame">
+								<img src="img/window.png" alt="창문틀">
+							</div>
+							<div class="bug">
+								<img src="img/bug.png" alt="벌레">
+							</div>
+						</div>
+
+						<div class="person-back intro-fadeTo"><img src="img/person-back.png" alt="거주민 뒷모습"></div>
+
+						<div class="page-title intro-fadeTo">
+							<img src="img/page-title.png" alt="보이지 않는 빈곤 반지하, 현실의 36만 기택네엔 누가 사나">
+						</div>
+						<div class="going-down intro-fadeTo"><span>스크롤을 내려주세요</span><img src="http://img.khan.co.kr/spko/storytelling/2019/ordinary/goingdown.png" alt="밑으로 스크롤"></div>
+					</div>
+				</div>
+				<div class="story-header">
+					<h1 class="page-title-text">보이지 않는 빈곤 반지하<br/>현실의 36만 ‘기택네’엔 누가 사나</h1>
+					<div class="top-byline">
+						<div class="top-border">
+							<p><strong>기획·제작</strong><a href="http://news.khan.co.kr/reporter_article.html?id=155" target="_blank">이성희 기자</a>, <a href="http://news.khan.co.kr/reporter_article.html?id=302" target="_blank">김유진 디자이너</a></p>
+						</div>									
+					</div>
+					<div class="pc-share">
+						<div class="share_bx">
+							<div class="share_fb"><a onclick="sendSns('facebook'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/factory/fb_icon_line.png" alt="페이스북" /></a></div>
+							<div class="share_tw"><a onclick="sendSns('twitter'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/factory/tw_icon_line.png" alt="트위터" /></a></div>
+						</div>
+					</div>
+				</div>
+				<div class="story-body">
+					<div class="intro">
+						<div class="intro-des">
+							<p>영화 &lt;기생충&gt;이 아카데미 4관왕을 차지하면서 극 중 주인공 네의 주거공간이었던 반지하에 세간의 관심이 집중됐다. 반지하는 남북 분단의 상황에서 방공호로 시작되어 급격한 도시화를 거치면서 부족한 주택 공급을 메꾸기 위한 주거공간으로 빠르게 확산됐다.</p>
+							<p>반지하는 옥탑방, 고시원 등과 함께 열악한 주거환경의 대명사로 통하기도 한다. 빈부격차를 극명하게 나타내는 주택유형이나 그간 고시원, 옥탑방, 쪽방 등보다 사회적 관심을 덜 받아왔다. 눈에 잘 띄지 않고, 화재와 같은 대형 인명사고가 없었으며, 상태가 괜찮은 반지하들도 꽤 있었기 때문이다.</p> 
+							<p>반지하는 아이를 키우는 빈곤 가구가 선택할 수 있는 최후의 보루이기도 하다. 지상보다 저렴한 가격으로 넓은 주거면적을 찾아 ‘밑으로’ 내려가는 것이다.</p>
+							<p>본지는 한국도시연구소에 의뢰해 ‘전국 반지하 거주 현황’을 살펴봤다. 우리 주변에는 얼마나 많은 현실판 기택네가 살고 있을까</p>
+						</div>
+					</div>
+					
+					<div class="each-sec search-area">
+						<div class="sec-title">
+							<p class="numb">1</p>
+							<p class="title">검색</p>
+							<p class="subtitle">우리 동네에는 반지하가 얼마나 있나</p>
+						</div>
+						<div class="searcher-holder">
+							<p class="des-text">거주지역을 입력하시면 해당 지역의 반지하 거주 현황을 알려드립니다.</p>
+							<div class="search-panel-wrapper">
+								<div class="search-panel">
+									<select id="search-01" name="wide-area" class="srch_opt">											
+										<option value="서울시">서울특별시</option><option value="부산시">부산광역시</option><option value="대구시">대구광역시</option><option value="인천시">인천광역시</option><option value="광주시">광주광역시</option><option value="대전시">대전광역시</option><option value="울산시">울산광역시</option><option value="세종시">세종특별자치시</option><option value="경기도">경기도</option><option value="강원도">강원도</option><option value="충청북도">충청북도</option><option value="충청남도">충청남도</option><option value="전라북도">전라북도</option><option value="전라남도">전라남도</option><option value="경상북도">경상북도</option><option value="경상남도">경상남도</option><option value="제주도">제주특별자치도</option>
+									</select>
+								</div>
+								<div class="search-panel">
+									<select id="search-02" name="basic-area" class="srch_opt">
+										<option value="선택"> 선택 </option>
+									</select>
+								</div>
+							</div>								
+						</div>
+						
+						<div class="search-result">
+							<div class="result-back-people">
+								<svg id="ICON_SPREADING_HOLDER">
+									<defs>
+										<linearGradient id="iconGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+										  <stop offset="0%" style="stop-color:rgb(50,50,50);stop-opacity:1" />
+										  <stop offset="100%" style="stop-color:rgb(200,200,200);stop-opacity:0.7" />
+										</linearGradient>
+									</defs>
+								</svg>
+							</div>
+							<div class="search-result-box">
+								<div class="search-result-wrap">
+									<div class="result-text">
+										<p><span class="normal" id="SELECT_CITY_NANME">경기도 고양시</span>를 선택하셨습니다.</p>
+										<p>이 지역에는 <span class="normal" id="SELECT_HOUSE_NUMBER">351495 가구</span>, 총 <span class="normal" id="SELECT_POP">954,696명</span>이 살고 있습니다.</p>
+										<p>그 중 반지하에 사는 이웃은 <span class="strong" id="SELECT_UNDERHOUSE_NUMBER">6,279가구</span><span class="strong" id="SELECT_UNDER_POP">(11,533명)</span>입니다.</p>
+										<p>이는 전체 가구의 <span class="strong" id="SELECT_UNDERHOUSE_RATIO">1.8%</span>에 해당하는 비율입니다.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="para-holder">
+							<p>반지하는 생각보다 우리 주변에 많으며, 허구의 공간이 아닌 실제의 공간임을 다시 복기.</p>
+							<p>총선이슈 연결하는 텍스트 필요....각 지자체별 주민들의 주거 환경 문제는 해당 지역구 의원들의 몫이다. 20대 국회에서는 어떤 의원들이 반지하, 저소득층 거주의 문제에 대해서 언급했고 어떤 의정활동을 하였는지. 또 이번 21대 국회의원 후보로 나온 후보들 중 어떤 후보가 이와 관련하여 언급을 하였는지 간단하게 적어준다. </p>
+						</div>
+
+						
+					</div>
+					
+					<div class="each-sec all-city-area">
+						<div class="sec-title">
+							<p class="numb">2</p>
+							<p class="title">전국</p>
+							<p class="subtitle">수도권에만 34만 가구가 산다</p>
+						</div>
+						<div class="para-holder">
+							<p>전국으로 보면 36만 가구, 68만 8천명<span class="semi">(2015년, 한국도시연구소)</span>이 반지하에 거주하고 있다. 지자체별 반지하 거주 현황 그래프는 다음과 같다.</p>
+						</div>
+						<div class="all-city-household-chart">
+							<div id="ALL_CITY_HOUSE_POLE">
+								<svg>
+									<defs>
+										<linearGradient id="poleGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+										  <stop offset="0%" style="stop-color:rgb(244,244,244);stop-opacity:1" />
+										  <stop offset="100%" style="stop-color:rgb(195,184,184);stop-opacity:1" />
+										</linearGradient>
+									</defs>
+								</svg>
+							</div>
+							<div class="tooltip">
+								<div class="tooltip-con">
+									<p class="city-name">고양시</p>
+									<p class="household">전체 가구 <span class="value">135</span>가구</p>
+									<p class="under-household">반지하 가구 <span class="value">135</span>가구</p>
+									<p class="under-household-single">반지하 1인 가구 <span class="value">135</span>가구</p>
+									<p class="under-household-ratio">반지하 가구 비율 <span class="value">135</span>%</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="para-holder">
+							<p>전국 반지하 가구의 대부분인 <b>95.8%<span class="semi">(34만8782가구)</span>가 수도권</b>에 밀집돼 있다. 이 중 서울이 22만8467가구로 전체의 62.8%를 차지한다. 경기 지역은 9만9291가구, 인천은 2만1024가구가 반지하 거주 가구로 집계됐다.</p>
+							<p>가구가 아닌 인구 수 개념으로 따지면 전국에서는 68만8999명, 서울에서만 <b>42만6919명</b>이 반지하에 살고 있다.</p>
+							<p>전국 229개 지자체별로 보면  <b>경기 성남시가 2만5683가구로 반지하 거주 가구 수가 가장 많았다.</b> 이어 서울 관악구<span class="semi">(1만9121가구)</span>, 중랑구<span class="semi">(1만7839가구)</span>, 광진구<span class="semi">(1만5630가구)</span> 등의 순으로 반지하에 사는 가구 수가 많았다.</p>	
+							<p>비율로 따져보면 서울 중랑구가 11.3%로 가장 높았다. 사실상 주민 100명 중 11명이 반지하에 산다는 의미다. 이어 서울 광진구(10.6%), 경기 과천시(10.0%), 서울 강북구(9.5%)와 관악구(8.4%) 등도 반지하 거주 비율이 높았다.</p>
+						</div>
+					</div>
+
+
+						
+					<div class="each-sec all-city-area">
+						<div class="sec-title">
+							<p class="numb">3</p>
+							<p class="title">반지하 지도</p>
+							<p class="subtitle">100가구 중 6가구 반지하 사는 수도권<br/>반지하는 어떤 지역에 많을까</p>
+						</div>
+					</div>
+
+					<div class="btn-holder">
+						<ul>
+							<li data-map-type="under-house">반지하가구 비율(기본)</li>
+							<li data-map-type="low-income">기초생활수급가구 비율</li>
+							<li data-map-type="single-parents">한부모가정 비율</li>
+							<li data-map-type="old-low-income">저소득노인 비율</li>
+						</ul>
+					</div>
+					<div id="chart">
+						<div class="back-map"><img src="img/seoul-map-back2.png" alt=""></div>
+						<svg id="SEOUL_MAP">
+
+						</svg>
+					</div>
 		
-	</div>
-	<div class="conts">
-		<div class="top-sill"><img src="img/family-sill-2.png" alt=""></div>
-		<h1>보이지 않는 빈곤 반지하<br/>현실의 36만 ‘기택네’엔 누가 사나</h1>
+					<div class="para-holder">
+						<p>서울시 지도에 지하 가구 비율 색으로 1차 표시, 다른 요인들을 서울 구별 지도에 뿌려봤다. </p>
+						<p>기초생활수급비율 높은 강북구, 중랑구, 은평구, 금천구 등의 지역(지도에서 색이 진한 지역)은 반지하 가구 비율도 높다.</p>
+					</div>
 
-		<div class="top-byline">
-			<div class="top-border">
-				<p><strong>기획·제작</strong>이성희 기자·황경상 기자·김유진 디자이너</p>
-			</div>									
-		</div>
-		<div class="pc-share">
-			<div class="share_bx">
-				<div class="share_fb"><a onclick="sendSns('facebook'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/factory/fb_icon_line.png" alt="페이스북" /></a></div>
-				<div class="share_tw"><a onclick="sendSns('twitter'); return false;"><img src="http://img.khan.co.kr/spko/storytelling/2019/factory/tw_icon_line.png" alt="트위터" /></a></div>
-			</div>
-		</div>
-		<div class="all-city-household-chart">
-			<div id="ALL_CITY_HOUSE_POLE">
-				<svg>
-					<defs>
-						<linearGradient id="poleGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
-						  <stop offset="0%" style="stop-color:rgb(244,244,244);stop-opacity:1" />
-						  <stop offset="100%" style="stop-color:rgb(195,184,184);stop-opacity:1" />
-						</linearGradient>
-					</defs>
-				</svg>
-			</div>
-			<div class="tooltip">
-				<div class="tooltip-con">
-					<p class="city-name">고양시</p>
-					<p class="household">전체 가구 <span class="value">135</span></p>
-					<p class="under-household">반지하 가구 <span class="value">135</span></p>
-					<p class="under-household-single">반지하 1인 가구 <span class="value">135</span></p>
-					<p class="under-household-ratio">반지하 가구 비율 <span class="value">135</span></p>
+
 				</div>
+
+
+					<div class="stackArea">
+						<svg id="STACK_AREA_CHART"></svg>
+
+						<div class="stack-area-info">
+							<p class="name-type">지상</p>
+							<div class="each-year">
+								<ul>
+									<li>
+										<p class="year">2005년</p>
+										<p class="house"><span class="value">20541</span>가구</p>
+									</li>
+									<li>
+										<p class="year">2005년</p>
+										<p class="house"><span class="value">20541</span>가구</p>
+									</li>
+									<li>
+										<p class="year">2005년</p>
+										<p class="house"><span class="value">20541</span>가구</p>
+									</li>
+								</ul>
+							</div>	
+						</div>
+					</div>
+
+					<div class="svg-icon-test">
+						<div class="legend">
+							<p><span class="person"><img src="img/person-sil.png" alt=""></span><span> = 50명</span></p>
+						</div>
+						<svg id="ICON_SVG">
+							
+						</svg>
+					</div>
+
+
+				<!-- 하단 공통영역 (S) -->
+				<div class="footer-area">
+					<div class="bottom-byline">
+						<ul class="wrap-psrelative">
+							<div class="team-wrap">
+								<li class="team">뉴콘텐츠팀</li>
+								<li><a href="http://news.khan.co.kr/reporter_article.html?id=74" target="_blank">황경상 기자 yellowpig@khan.kr</a></li>
+								<li><a href="http://news.khan.co.kr/reporter_article.html?id=302" target="_blank">김유진 디자이너 yjdigital@khan.kr</a></li>
+							</div>
+						</ul>
+					</div>
+
+				</div>
+				<!-- 하단 공통영역 (E) -->
+
+				<!--디지털 콘텐츠 추천 영역 (S) -->
+				<div class="digital-list digital-list-bg">
+					<div class="digital-list-wrap wrap_mw_800">
+						<h4>디지털 콘텐츠</h4>
+						<div class="list-holder">
+							<ul>
+								<li class="each_item">
+									<a href="http://news.khan.co.kr/kh_storytelling/2018/wonder/index.html" target="_blank">
+										<div class="wrap_psrelative each_item_wrap">
+											<div class="thumb">
+												<img src="http://img.khan.co.kr/spko/storytelling/recothumb/thumb-wonder.jpg" alt="이상한 나라의 학교" />
+											</div>
+											<div class="item_info">
+												<ul class="info">
+													<li>인터랙티브</li>
+													<li class="span_border"></li>
+													<li>#교육 #그림책 #전세계_10개_학교</li>
+												</ul>
+												<p class="item-title">이상한 나라의 학교</p>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="each_item">
+									<a href="http://news.khan.co.kr/kh_storytelling/2018/noodle" target="_blank">
+										<div class="wrap_psrelative each_item_wrap">
+											<div class="thumb">
+												<img src="http://img.khan.co.kr/spko/storytelling/recothumb/thumb-noodle2.jpg" alt="냉면의취향" />
+											</div>
+											<div class="item_info">
+												<ul class="info">
+													<li>인터랙티브</li>
+													<li class="span_border"></li>
+													<li>#내취향_냉면집_찾기</li>
+												</ul>
+												<p class="item-title">냉면의 취향</p>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="each_item">
+									<a href="http://news.khan.co.kr/kh_storytelling/2018/ourvote" target="_blank">
+										<div class="wrap_psrelative each_item_wrap">
+											<div class="thumb">
+												<img src="http://img.khan.co.kr/spko/storytelling/recothumb/thumb-ourvote.jpg" alt="우리동네승자는" />
+											</div>
+											<div class="item_info">
+												<ul class="info">
+													<li>데이터</li>
+													<li class="span_border"></li>
+													<li>#내_지역구_역대승자 #지방선거전도</li>
+												</ul>
+												<p class="item-title">역대 우리동네 승자는?</p>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="each_item">
+									<a href="http://news.khan.co.kr/kh_storytelling/2018/korea" target="_blank">
+										<div class="wrap_psrelative each_item_wrap">
+											<div class="thumb">
+												<img src="http://img.khan.co.kr/spko/storytelling/recothumb/thumb-korea.jpg" alt="남북 70년" />
+											</div>
+											<div class="item_info">
+												<ul class="info">
+													<li>히스토그라피</li>
+													<li class="span_border"></li>
+													<li>#움직이는_역사 #남북정상회담</li>
+												</ul>
+												<p class="item-title">남북 70년, 300여개의 사건들</p>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="digi-more"><a onclick="javascript:go_digital_list();"><p>더 보러 가보실래요?</p></a></div>
+						<script>
+							function go_digital_list(){
+								if($(window).width()<=710){
+									  window.open("http://m.khan.co.kr/list.html?type=storytelling");
+								}else{
+									 window.open("http://news.khan.co.kr/kh_interactive/index.html");
+								}
+							}
+						</script>
+
+					</div>
+				</div>
+				<!--// 디지털 콘텐츠 추천 영역 (E) -->
+
+
+				<!-- commonfooter -->
+				<div class="common-footer">
+					<div id="footer">
+						<div class="foot_info">
+							<h2>
+								<a title="경향닷컴 홈으로 이동" target="_top" href="http://www.khan.co.kr"><img alt="경향신문" src="http://img.khan.co.kr/spko/main_2011/logo_footer.png" width="58" height="59"></a>
+							</h2>
+							<div class="cnt">
+								<dl class="link">
+									<dt class="blind">경향 정책, 약관, 단축메뉴</dt>
+									<dd class="first">
+										<span class="first"><a href="http://www.khan.co.kr/aboutkh" target="_blank">회사소개</a></span>
+										<span><a href=" http://www.khan.co.kr/aboutkh/service_01.html" target="_blank">경향미디어 소개</a></span>
+										<span><a href="http://www.khan.co.kr/aboutkh/business_01.html" target="_blank">경향사업</a></span>
+										<span><a href="http://jebo.khan.co.kr/" target="_blank">기사제보</a></span>
+										<span><a href="http://recruit.khan.co.kr" target="_blank">인재채용</a></span>
+										<span><a href="http://www.khan.co.kr/help/sitemap.html" target="_blank">사이트맵</a></span>
+										<span><a href="http://news.khan.co.kr/kh_news/khan_art_view.html?artid=200509211710302&amp;code=990403" target="_blank">고충처리</a></span>
+										<span><a href="http://www.khan.co.kr/help/help_main.html" target="_blank">HELP</a></span>
+									</dd>
+									<dd>
+										<span class="first"><a href="http://www.khan.co.kr/help/help_agreement.html" target="_blank">회원약관·정책</a></span>
+										<span><a href="http://www.khan.co.kr/help/help_privately.html" target="_blank"><strong>개인정보처리방침</strong></a></span>
+										<span><a href="http://www.khan.co.kr/help/help_privately2.html" target="_blank">청소년 보호정책 (책임자 : 김희연)</a></span>
+										<span><a href="http://www.khan.co.kr/help/help_digital.html" target="_blank">저작권·콘텐츠 사용</a></span>
+										<span><a href="http://www.khan.co.kr/company/sub02_1.html" target="_blank">온라인 광고안내</a></span>
+										<span><a href="http://www.khan.co.kr/company/sub04_1.html" target="_blank">사업제휴 문의</a></span>
+									</dd>
+								</dl>
+								<p class="adr">
+									<span class="first">서울시 중구 정동길 3 경향신문사</span>
+									<span>인터넷신문등록번호: 서울 아02041</span>
+									<span>등록일자: 2012.03.22</span>
+									<span>발행·편집인 이동현</span>
+									<span class="tel">Tel. 02-3701-1114 </span>
+								</p>
+								<address>Copyright<a href="http://news.khan.co.kr/kh_news/khan_art_view.html?artid=201902251631002&amp;code=610103">ⓒ</a><strong>The Kyunghyang Shinmun</strong>, All rights reserved.</address>
+								<p class="khRss"><a title="경향RSS" target="_blank" href="http://www.khan.co.kr/help/help_rss.html">경향RSS</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- commonfooter -->
 			</div>
-		
+			<!--// Container (E)-->
 		</div>
-		<div class="intro-des">
-			<p>영화 &lt;기생충&gt;이 아카데미 4관왕을 차지하면서 극 중 주인공 네의 주거공간이었던 반지하에 세간의 관심이 집중됐다. 남북 분단의 상황에서 방공호로 시작된 반지하는 급격한 도시화를 거치면서 과거 부족한 주택 공급을 메꾸기 위한 서민들의 주거형태로 빠르게 확산됐다.</p>
-			<p>반지하는 옥탑방, 고시원 등과 함께 열악한 주거환경의 대명사로 통하기도 한다. 빈부격차를 극명하게 나타내는 주택유형이나 그간 고시원, 옥탑방, 쪽방 등보다 사회적 관심을 덜 받아왔다. 눈에 잘 띄지 않고, 화재와 같은 대형 인명사고가 없었으며, 상태가 괜찮은 반지하들도 꽤 있었기 때문이다.</p> 
-			<p>반지하는 아이를 키우는 빈곤 가구가 선택할 수 있는 최후의 보루이기도 하다. 지상보다 저렴한 가격으로 넓은 주거면적을 찾아 ‘밑으로’ 내려가는 것. 서울시가 지난해 조사한 ‘아동 주거빈곤 가구 주거실태조사’를 보면 응답자의 61.6%가 반지하에 살고 있었다.</p>
-			<p class="quo">“지상에 있는 옥탑방과 고시원의 열악함은 눈에 쉽게 보이지만, 반지하는 직접 들어가보지 않고는 문제점을 찾기 어렵기 때문이다.” 
-			<p>본지는 한국도시연구소에 의뢰해 ‘전국 반지하 거주 현황’을 살펴봤다. 우리주변에는 얼마나 많은 현실판 기택네가 살고 있을까.</p>
-		</div>
-
-	
-
-		<h3>서울시 반지하 가구 지도</h3>
-		<div class="btn-holder">
-			<ul>
-				<li data-map-type="under-house">반지하가구 비율(기본)</li>
-				<li data-map-type="low-income">기초생활수급가구 비율</li>
-				<li data-map-type="single-parents">한부모가정 비율</li>
-				<li data-map-type="old-low-income">저소득노인 비율</li>
-			</ul>
-		</div>
-		<div id="chart">
-			<div class="back-map"><img src="img/seoul-map-back2.png" alt=""></div>
-			<svg id="SEOUL_MAP">
-
-			</svg>
-		</div>
-	
-
-		<div class="stackArea">
-			<svg id="STACK_AREA_CHART"></svg>
-
-			<div class="stack-area-info">
-				<p class="name-type">지상</p>
-				<div class="each-year">
-					<ul>
-						<li>
-							<p class="year">2005년</p>
-							<p class="house"><span class="value">20541</span>가구</p>
-						</li>
-						<li>
-							<p class="year">2005년</p>
-							<p class="house"><span class="value">20541</span>가구</p>
-						</li>
-						<li>
-							<p class="year">2005년</p>
-							<p class="house"><span class="value">20541</span>가구</p>
-						</li>
-					</ul>
-				</div>	
-			</div>
-		</div>
+		<!--// After Loading (E)-->
 	</div>
-	
 	<script type="text/javascript" src="<?php echo $js; ?>"></script>
 	<script type="text/javascript" src="<?php echo $seoulData; ?>"></script>
 	<script type="text/javascript" src="<?php echo $allCityData; ?>"></script>
+	<script type="text/javascript" src="<?php echo $personPath; ?>"></script>
+
 
   </body>
-</html>
+</html> 
