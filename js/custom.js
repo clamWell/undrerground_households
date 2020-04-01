@@ -104,7 +104,7 @@ $(function(){
 			var colorFn = d3.scale.category10();
 
 			var color_under_house = d3.scale.linear().domain([2.2, 11.3])
-						  .range(["rgba(255,130,38,0.05)", "rgba(255,130,38,0.4)"]);
+						  .range(["rgba(255,130,38,0.05)", "rgba(255,130,38,0.8)"]);
 
 			var color_old = d3.scale.linear().domain([0.2, 1.23])
 						  .range(["rgba(255,62,38,0.05)", "rgba(255,62,38,0.4)"]);
@@ -214,7 +214,7 @@ $(function(){
 	}
 	setMapDefault();
 
-	$(".btn-holder ul").find("li").on("click", function() {
+	$(".seoul-map .btn-holder ul").find("li").on("click", function() {
 		var button_index = $(this).index();
 		var button_type = $(this).attr("data-map-type");
 		var checkOn = $(this).hasClass("on");
@@ -410,8 +410,10 @@ $(function(){
 	}
 	makeStackedAreaChart();
 
+	var poleWidth, poleWidthC, poleHeight, poleMargin;
+
 	function makePoleChart(){
-		var width = (screenWidth<1400)? screenWidth: 1400,
+		var width = (screenWidth<1300)? screenWidth: 1300,
 			height= 400,
 			margin= 10 ;
 		var data = all_city_data;
@@ -419,13 +421,23 @@ $(function(){
 		var values = data.map(function(v) {
 		  return Number(v["under_house"]);
 		});
-	//	console.log(values);
 		var maxValue = d3.max(values);
 		var minValue = d3.min(values);
 
 		var pole_chart_svg = d3.select("#ALL_CITY_HOUSE_POLE").select("svg")
 			.attr("width", width +"px" )
 			.attr("height", height +"px")
+
+		var def_stripe = pole_chart_svg.append("pattern")
+			.attr("id", "diagonalHatchArea")
+			.attr("patternUnits", "userSpaceOnUse")
+			.attr("width", 4)
+			.attr("height", 4)
+		  .append("path")
+			.attr("d", 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
+			//.attr("stroke", "#ff5200")
+			.attr("stroke", "#333")
+			.attr("stroke-width", 1);
 
 		var chart_holder = pole_chart_svg.append("g")
 			.attr("class","chart-holder");
@@ -443,8 +455,8 @@ $(function(){
 
 		var multipleKey = height / maxValue;
 	  //  var multipleKey = 0.02;
-		var poleMargin = 2; 
-		var poleWidth = ((width-margin) / data.length)-poleMargin;
+		poleMargin = 2; 
+		poleWidth = ((width-margin) / data.length)-poleMargin;
 
 
 		var yAxis = chart_holder.append("g")
@@ -452,18 +464,54 @@ $(function(){
 		  .attr("transform", "translate(-10,0)")
 		  .call(yAxis);
 
+		var centre_area = chart_holder.append("g")
+			.attr("class","area-box centre-area");
 
+		var centre_area_rect = centre_area.append("rect")
+			.style("fill", function(d) {
+				  return "url(#diagonalHatchArea)";
+			})
+			.attr("width", (poleWidth  + poleMargin)*66)
+			.attr("height", height )
+			.attr("class", "area-rect centre-area-rect")
+			.style("fill-opacity", "0.15");
+		centre_area.append("text")
+			.text("수도권")
+			.attr("class","area-label")
+			.attr("transform", "translate("+(poleWidth  + poleMargin)*33+",20)")
+
+
+		var seoul_area = chart_holder.append("g")
+			.attr("class","area-box seoul-area");
+
+		var seoul_area_rect = seoul_area.append("rect")
+			.style("fill", function(d) {
+				  return "rgb(255, 183, 183)";
+			})
+			.attr("width", (poleWidth  + poleMargin)*25)
+			.attr("height", height*0.8 )
+			.attr("x", "0")
+			.attr("y", height*0.2 )
+			.attr("class", "area-rect seoul-area-rect")
+			.style("fill-opacity", "0");
+		seoul_area.append("text")
+			.text("서울")
+			.attr("class","area-label")
+			.attr("transform", "translate("+(poleWidth  + poleMargin)*12+","+ height*0.2+")")
+			
+		
 		var pole_under_house_holder = chart_holder.append("g")
 			.attr("class","pole-under-house-holder");
 
 		var pole_under_house = pole_under_house_holder.selectAll("g")
 				.data(data)
 				.enter().append("g")
-				.attr("transform", function(d, i) { return "translate("+ ( i * (poleWidth  + poleMargin) ) +"0)";});
+				.attr("class","pole-g")
+				.attr("transform", function(d, i) { return "translate("+ ( i * (poleWidth  + poleMargin) ) +",0)";});
 		
 		pole_under_house.append("rect")
 				.style("fill", function(d) {
-				  return "#ff7112";
+				  return "#ffae12";
 				})
 				.attr("width", poleWidth)
 				.attr("class", "pole pole-under-house")
@@ -500,29 +548,30 @@ $(function(){
 
 		pole_under_house.append("text")
 			.attr("class","pole-label")
-			.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
+		//	.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
 			.text(function(d) { return d.under_house_ratio+"%"; })
 			.attr("transform", function(d, i) { 
-				return "translate(0," + (height-(Number(d["under_house"]) * multipleKey)-2) + ")";
-			});
+				return "translate(8," + (height-(Number(d["under_house"]) * multipleKey)-2) + ")";
+			}).style("display", "none");
 		
 		var $tooltip = $(".all-city-household-chart .tooltip");
 		$tooltip.css({"opacity":"0"})
 		pole_under_house.on("mouseenter", function(d) {
+				d3.selectAll(".pole").style("fill-opacity", "0.4")
 				d3.select(this).selectAll(".pole")
 					.style("fill-opacity", "1")
 					.style("stroke", "#7b0000")
 					.style("stroke-width", "1px")
 				
 				$tooltip.css({"opacity":"1"})
-				$tooltip.find(".city-name").html(d.geo);
+				$tooltip.find(".city-name").html(d["geoWide"]+" "+d.geo);
 				$tooltip.find(".household .value").html(d.house);
 				$tooltip.find(".under-household .value").html(d["under_house"]);
 				$tooltip.find(".under-household-single .value").html(d["under_house_single"]);
 				$tooltip.find(".under-household-ratio .value").html(d["under_house_ratio"]);
 				$tooltip.css({"left":(d3.mouse(this.parentNode)[0])+"px"});
 			//	$tooltip.css({"top": (d3.mouse(this.parentNode)[1]+20) +"px"});
-				$tooltip.css({"bottom":"-150px"});
+				$tooltip.css({"bottom":"-50px"});
 
 			}).on("mouseleave", function(d){
 				d3.selectAll(".pole")
@@ -536,8 +585,53 @@ $(function(){
 
 	makePoleChart();
 
+	function swiftingPoleChart(t){
+		var swiftType = t; 
+		if(t=="all_city"){
+			d3.selectAll(".pole").transition()
+			  .duration(500).style("display",null).style("opacity","1").attr("width", poleWidth);
+			d3.selectAll(".pole-g").transition()
+			  .duration(500).attr("transform", function(d, i) { return "translate("+ ( i * (poleWidth  + poleMargin) ) +",0)";});
+			d3.selectAll(".area-box").style("opacity","1");
+			d3.selectAll(".pole-label").style("display", "none");
 
+		}else if(t=="only_centre"){
 
+			d3.selectAll(".pole").filter(function(d){ 
+				return !( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"));
+			}).style("display","none").style("opacity","0");
+			d3.selectAll(".area-box").style("opacity","0");
+
+			var width = (screenWidth<1300)? screenWidth: 1300,
+				margin= 10;
+		
+			poleMargin = 2; 
+			poleWidthC = ((width-margin)/ 66)-poleMargin;
+			
+			d3.selectAll(".pole-g").filter(function(d){ 
+				return ( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"));
+			}).transition()
+			  .duration(500).attr("transform", function(d, i) { return "translate("+ ( i * (poleWidthC  + poleMargin) ) +", 0)";});
+
+			d3.selectAll(".pole").filter(function(d){ 
+				return ( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"));
+			}).transition()
+			  .duration(500)
+			  .attr("width", poleWidthC);
+			
+			d3.selectAll(".pole-label").filter(function(d){ 
+				return ( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"))&&(Number(d["under_house_ratio"])>1) ;
+			}).style("display", "inline");
+		
+		}
+	};
+
+	$("#POLE_CHART_SWIFT ul").find("li").on("click", function() {
+		$("#POLE_CHART_SWIFT ul li").removeClass("on");
+		$(this).addClass("on");
+		var type = $(this).attr("data-chart-type");
+		swiftingPoleChart(type);
+	});
 	
 
 	var randomRange = function(n1, n2) {
@@ -593,14 +687,14 @@ $(function(){
 	}
 	//drawIcon();
 
-
-	function spreadIcon(){
+	function spreadIcon(dataObj){
+		removeIcon();
 		var width = screenWidth,
 			height= 300,
 			margin= 10;
-		var data = seoul_basic[0];
+		var data = dataObj;
 		var dataNumb = Number(data["pop"])/100;
-		var underNumb = Number(data["under_pop"]/100); 
+		var underNumb =  (dataNumb*data["under_house_ratio"])/100;
 		var path = person_path;
 		var icon_width = 10,
 			icon_height = 27;
@@ -614,6 +708,12 @@ $(function(){
 
 		var each_group = icon_holder.append("g")
 			.attr("class", "each-g");
+		
+		if(dataNumb>2000){ 
+			dataNumb = 2000;
+			underNumb = (2000*data["under_house_ratio"])/100; 
+		}
+		console.log( dataNumb, underNumb);
 
 		for(i=0; i<dataNumb; i++){
 			var g = each_group.append("g")
@@ -624,6 +724,7 @@ $(function(){
 					return "translate(" + x + "," + y + ")";
 				}).style("width", icon_width)
 				.style("height", icon_height)
+				.style("opacity","0");
 			var iconPath = g.append("path")
 				.attr("class","icon-path")
 				.attr("d", function(i) {
@@ -634,16 +735,162 @@ $(function(){
 				.style("fill-opacity", "0.7")
 		}
 		
-	
 		for(u=0;u<underNumb;u++){
 			var un = randomRange(0, dataNumb);
 			$(".icon-path").eq(un).addClass("iconUnder");
 			d3.select(".icon:nth-child("+un+")").select("path").style("fill", "#ff5200")
 									.style("fill-opacity", "1");
 		}
+
+		var gg = d3.selectAll(".icon");
+		gg.transition()
+		  .duration(function() {
+			return Math.floor(Math.random() * 3000)
+		  })
+		  .style("opacity", "1");
 	
 	}
-	spreadIcon();
+	
+	function removeIcon(){
+		d3.select("#ICON_SPREADING_HOLDER").select(".icon_holder").remove();
+	}	
+
+	var $S = $("#search-02"),
+		$S_W = $("#search-01"),
+		$S_D = $("#search-03"),
+		Op_lt =  $S_W.find("option");
+	
+	Op_lt.sort(function(a, b){
+		if (a.text > b.text) return 1;
+		else if (a.text < b.text) return -1;
+		else {
+			if (a.value > b.value) return 1;
+			else if (a.value < b.value) return -1;
+			else return 0;
+		}
+	});
+
+	$S_W.html(Op_lt);
+	$S_W.prepend("<option value='선택'> 선택 </option>");
+	$S_W.find("option").eq(0).attr("selected", "selected");
+
+
+	var g_Srch = {};
+	g_Srch.selectGeoWide;
+	g_Srch.selectBase;
+	g_Srch.selectDong;
+
+	g_Srch.appendOpt = function(geo){
+		$S.find("option").remove();
+		var S_sido = geo;
+		for (i=0; i<all_city_data.length;i++ ){
+			if( all_city_data[i]["geoWide"] == S_sido ){
+				$S.append("<option value='" +  all_city_data[i]["geo"] + "'>" +  all_city_data[i]["geo"] + "</option>");
+			}					
+		}
+		$S.removeClass("search-btn-block");
+		var Op_lt2 = $S.find("option");
+		Op_lt2.sort(function(a, b){
+			if (a.text > b.text) return 1;
+			else if (a.text < b.text) return -1;
+			else {
+				if (a.value > b.value) return 1;
+				else if (a.value < b.value) return -1;
+				else return 0;
+			}
+		});
+		$S.html(Op_lt2);
+		$S.prepend("<option value='선택'> 선택 </option>");
+		$S.find("option").eq(0).attr("selected", "selected");
+	}
+
+	g_Srch.appendOptDong = function(geo){
+		$S_D.find("option").remove();
+		var gu = geo;
+		for (i=0; i<all_dong_data.length;i++ ){
+			if( all_dong_data[i]["geoWide"] == this.selectGeoWide && all_dong_data[i]["geo"] == gu ){
+				$S_D.append("<option value='" +  all_dong_data[i]["geoD"] + "'>" +  all_dong_data[i]["geoD"] + "</option>");
+			}					
+		}
+		$S_D.removeClass("search-btn-block");
+		var Op_lt3 = $S_D.find("option");
+		Op_lt3.sort(function(a, b){
+			if (a.text > b.text) return 1;
+			else if (a.text < b.text) return -1;
+			else {
+				if (a.value > b.value) return 1;
+				else if (a.value < b.value) return -1;
+				else return 0;
+			}
+		});
+		$S_D.html(Op_lt3);
+		$S_D.prepend("<option value='선택'> 선택 </option>");
+		$S_D.find("option").eq(0).attr("selected", "selected");
+	}	
+
+	g_Srch.fillResult = function (geo1, geo2, geo3){
+		var userSelectG;
+		for (i=0; i<all_city_data.length;i++ ){
+			if( all_city_data[i]["geoWide"] == geo1 && all_city_data[i]["geo"] == geo2){
+				userSelectG = all_city_data[i];
+				break;
+			}					
+		}
+		if(geo1 == "세종시"){
+			$("#SELECT_CITY_NAME").html("세종특별시");
+		}else{
+			$("#SELECT_CITY_NAME").html(userSelectG["geoWide"]+" "+userSelectG["geo"]);
+		}
+		$("#SELECT_HOUSE_NUMBER").html(userSelectG["house"]+" 가구");
+		$("#SELECT_POP").html(userSelectG["pop"]+" 명");
+		$("#SELECT_UNDERHOUSE_NUMBER").html(userSelectG["under_house"]+" 가구");
+		$("#SELECT_UNDER_POP").html("("+userSelectG["under_pop"]+"명)");
+		$("#SELECT_UNDERHOUSE_RATIO").html(userSelectG["under_house_ratio"]+"%");
+		$(".result-text-before").hide();
+		$(".result-text").slideDown();
+
+		spreadIcon(userSelectG);
+	};
+
+	$S_W.on("change", function(){
+		g_Srch.selectBase = null;
+		g_Srch.selectGeoWide = null;
+		g_Srch.selectDong = null;
+		if ( $(this).children("option:selected").index() == 0 ){ 
+			$S.addClass("search-btn-block");
+			$("#search-02 option").remove();
+			$S.append("<option value='선택'> 선택 </option>");
+			return;
+		}else {
+			g_Srch.appendOpt($(this).val());
+			g_Srch.selectGeoWide = $(this).val(); 
+		}				
+	});
+
+	$S.on("change", function(){
+		g_Srch.selectBase = null;
+		g_Srch.selectDong = null;
+		if ($(this).children("option:selected").index() == 0){ 
+			$S_D.addClass("search-btn-block");
+			$("#search-03 option").remove();
+			$S_D.append("<option value='선택'> 선택 </option>");
+			return;
+		}else {
+			g_Srch.selectBase = $(this).val();
+			g_Srch.appendOptDong($(this).val());
+		}					
+		//g_Srch.fillResult(g_Srch.selectGeoWide, g_Srch.selectBase);
+	});
+
+	$S_D.on("change", function(){
+		g_Srch.selectDong = null;
+		if ($(this).children("option:selected").index() == 0){ 
+			return;
+		}else {
+			g_Srch.selectDong = $(this).val();
+		}					
+		g_Srch.fillResult(g_Srch.selectGeoWide, g_Srch.selectBase, g_Srch.selectDong);
+	});
 
 
 	$(".loading-page").fadeOut(200, function(){
@@ -654,34 +901,6 @@ $(function(){
 		
 	});
 
-
-	var g_Srch = {};
-		g_Srch.selectGeoWide;
-		g_Srch.selectBase;
-		/*
-		g_Srch.appendOpt = function(geo){
-			$S.find("option").remove();
-			var S_sido = geo;
-			for (i=0; i<geoData.length;i++ ){
-				if( geoData[i]["local_Sido"] == S_sido ){
-					$S.append("<option value='" +  geoData[i]["local_City"] + "'>" +  geoData[i]["local_City"] + "</option>");
-				}					
-			}
-			$S.removeClass("search-btn-block");
-			var Op_lt2 = $S.find('option');
-			Op_lt2.sort(function(a, b){
-				if (a.text > b.text) return 1;
-				else if (a.text < b.text) return -1;
-				else {
-					if (a.value > b.value) return 1;
-					else if (a.value < b.value) return -1;
-					else return 0;
-				}
-			});
-			$S.html(Op_lt2);
-			$S.prepend("<option value='선택'> 선택 </option>");
-			$S.find("option").eq(0).attr("selected", "selected");
-		}*/
 
 
 });

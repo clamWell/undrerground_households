@@ -205,16 +205,20 @@ color: #fff; text-shadow: 1px 1px 0px rgba(49, 49, 49, 0.7);opacity: 0.8; font-f
 .wrap { width:100%;  position: relative;  }
 .container {  width:100%; position: relative;  background: #eaeae8;overflow-x:hidden;  } 
 .story-header {  width: 100%; box-sizing: border-box; padding-top: 100px; background: linear-gradient(180deg,#000000 16%,#eaeae8);}
-.intro-des { font-size: 22px;  max-width: 600px;text-align: left; color: #222; margin: 80px auto; 
-line-height: 1.7; letter-spacing: -0.3px; word-break: keep-all; }
+.intro-des { font-size: 22px;  max-width: 600px;text-align: left; color: #222; margin: 100px auto; 
+line-height: 1.7; letter-spacing: -0.3px; /* word-break: keep-all; */ }
 .intro-des p { margin: 30px auto; }
 .intro-des p.quo {font-weight: 400;color: #5d6a6f;font-size: 19px;  line-height: 1.6;font-style:italic; text-align: center; }
 .intro-des p.quo .jump { display:block;  font-size: 18px;  margin-top: 10px;}
 .page-title-text { display:none; }
 
+svg { overflow:visible;  display:block; margin: 0 auto;  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';}
+
 .search-area {  width:100%;   box-sizing: border-box; padding: 50px 0;}
 .searcher-holder { width:100%; }
-.searcher-holder .des-text {  text-align: center; }
+.searcher-holder .des-text {  text-align: center;   max-width: 500px; margin: 0 auto;  font-size: 18px;font-weight: bold;}
+.searcher-holder .info {  text-align: center;   max-width: 500px; margin: 20px auto;
+ font-size: 14px;line-height: 1.5;opacity: 0.85;}
 .searcher-holder .search-panel-wrapper {  max-width: 420px; margin: 0 auto; display: block; margin-top: 20px;}
 .searcher-holder .search-panel-wrapper .search-panel {   width: 200px;  float: left; margin: 0px 5px;}
 .srch_opt { cursor:pointer;box-sizing: border-box; width: 200px; background: #fff; border-radius: 5px; border: 1px solid #222; 
@@ -225,11 +229,15 @@ font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕', Malgun Gothi
 .button-block {  pointer-events: none;opacity: 0.8;}
 .search-btn-block {   cursor: default;pointer-events: none; opacity: 0.8;}
 .searcher-holder .search-panel-wrapper::after { clear: both; content:''; display: block; } 
-.search-result { width: 100%; position: relative;  padding-bottom: 100px;}
-.result-back-people { position: absolute;   width: 100%; min-height: 400px;  top: 40px;}
+.search-result { width: 100%; position: relative;  padding-bottom: 200px;}
+.result-back-people { position: absolute;   width: 100%; min-height: 400px;  top: 100px;}
 .result-back-people > svg { width:100%; height:100%; display:block; } 
 #ICON_SPREADING_HOLDER { }
 .iconUnder > path { fill:#ff5200; fill-opactiy:1; }
+
+.searcher-holder .search-panel-deep  {  max-width: 490px; margin: 0 auto; display: block; margin-top: 20px;}
+.searcher-holder .search-panel-deep .search-panel {  width: 150px;  float: left; margin: 0px 5px;}
+.searcher-holder .search-panel-deep .srch_opt { width: 150px; font-size: 14px; line-height: 16px;}
 
 .each-sec { margin-top: 50px; box-sizing:border-box; padding: 50px 0; }
 .each-sec .sec-title .numb {font-family: 'Noto Serif KR', 'notokr-regular', serif;  width: 100%;text-align: center; 
@@ -237,12 +245,15 @@ font-size: 50px;  line-height: 55px; color: #111; font-weight: 600; }
 .each-sec .sec-title .title { display: none; width: 100%; font-size: 15px; line-height: 24px;color: #111;text-align: center;  }
 .each-sec .sec-title .subtitle {font-family: 'Noto Serif KR', 'notokr-regular', serif;color: #111; text-align: center;font-size: 20px;font-weight:bold;}
 .each-sec .sec-title {  position: relative;margin-bottom: 50px;}
+.all-city-area { background:#fff; }
 
 .search-result-box { position: relative; box-sizing: border-box; padding: 50px 0px;  max-width: 600px; 
 border-top: 1px solid #232323; border-bottom: 1px solid #232323; margin: 50px auto;   background: #ffffff;}
 .search-result-wrap {}
-.result-text {}
-.result-text p {text-align: center; font-size: 20px; font-weight: bold;line-height: 1.7;}
+.result-text-before { display:block; }
+.result-text-before p {text-align: center; font-size: 18px; font-weight: bold;line-height: 1.7;} 
+.result-text { display:none;}
+.result-text p { text-align: center; font-size: 20px; font-weight: bold;line-height: 1.7;}
 .result-text p span { }
 .result-text p span.strong { color: #ff5200; /*background: #fff; box-sizing: border-box; padding: 0px 5px; border-radius: 2px;*/}
 
@@ -262,15 +273,28 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .all-city-household-chart .tooltip p {font-size:15px; line-height:1.5; }
 .all-city-household-chart .tooltip .city-name { font-weight:bold; color:#111; }
 .all-city-household-chart .tooltip .under-household-ratio { font-weight:bold; margin-top: 5px; color: #ff6600;}
+.seoul-area-rect {stroke: #333; stroke-width: 1px; shape-rendering: crispEdges;stroke-opacity: 0.5; }
+.area-label { font-size: 14px;font-weight: bold; color: #555;stroke: white;stroke-width: 1.5px;paint-order: stroke fill; text-anchor: middle;}
+.all-city-household-chart .graph-des {   text-align: center;   max-width: 500px;  margin: 20px auto; font-size: 14px; line-height: 1.5; opacity: 0.85; }
+.pole-legend {margin: 15px auto; max-width: 500px; }
+.pole-legend p { text-align: center;font-size: 14px; line-height: 1.5; }
+.pole-legend p span { display: inline;vertical-align: bottom;}
+.pole-legend p .block-yellow { width: 30px; height: 15px; display: inline-block;  background:rgb(255, 174, 18); }
+.pole-legend p .block-orange { width: 30px; height: 15px; display: inline-block;  background: rgb(255, 67, 47);margin-left: 20px; }
+.pole-legend p .txt { color:#111;  margin-left: 5px;font-weight: bold;opacity: 0.8; }
 
+.interviewee-holder { max-width: 550px; margin: 50px auto; position: relative;}
+.interviewee-holder .thumb { position: absolute;  left: -300px; top: 0; }
+.interviewee-holder .thumb img {  width: 400px;}
+.interviewee-holder .interview-text { position: relative;}
+.interviewee-holder .interview-text p {  font-weight: bold;font-size: 20px; text-align: left;color: #111;line-height: 1.7; letter-spacing: -0.3px; font-style: italic; }
+.interviewee-holder .interview-text .name { text-align: right; font-size: 16px; font-weight: normal; margin-top: 15px; }
 
-svg { overflow:visible; }
-svg { display:block; margin: 0 auto;  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; }
 #chart {   position: relative; width: 1000px;  margin: 0 auto; }
 .back-map {position: absolute; top: -3.5px; left: -4px; z-index:0; opacity:0.5;}
 #SEOUL_MAP {z-index:1;  position: relative;} 
 #SEOUL_MAP text { pointer-events: none;}
-#SEOUL_MAP .geo-basic {fill: transparent; stroke: #796969; stroke-width: 1;stroke-dasharray: 3; }
+#SEOUL_MAP .geo-basic {fill: transparent; stroke: #796969; stroke:#222; stroke-width: 1;  stroke-dasharray: 3; }
 #SEOUL_MAP .geo-under-house { stroke: #714222; stroke-opacity: 0.4; stroke-width: 1; stroke-dasharray: 3;stroke-dashoffset: 10;}
 #SEOUL_MAP .geo-low-income { stroke: #9c2800; stroke-width: 0; stroke-dasharray: 0; stroke-dashoffset: 0;}
 #SEOUL_MAP .geo-single-parent { stroke: #9c2800;  stroke: #a96062; stroke-width: 1; stroke-dasharray: 0; stroke-dashoffset: 0;}
@@ -284,13 +308,16 @@ font-weight: 500;fill:#111; stroke: white; stroke-width: 1.5px; paint-order: str
 #STACK_AREA_CHART text.g-label { font-size: 14px; color:#555;  z-index: 3; } 
 #STACK_AREA_CHART .labels { font-size: 14px;  font-weight: bold; }
 
-.btn-holder { margin: 30px autso; }
+.btn-holder { margin: 0px auto;  margin-bottom: 40px; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; }
 .btn-holder ul { position: relative; text-align: center; }
 .btn-holder ul li { display: inline-block; box-sizing: border-box; padding: 4px 10px;   border-radius: 5px; margin: 0 1px;
 color: #111; border: 1px solid #111; background:#fff; text-align: center; font-size: 16px; cursor: pointer; }
 .btn-holder ul li:hover{box-shadow: 3px 3px 10px rgba(0,0,0,0.2);}
-.btn-holder ul li.default { color:#ff8226; border: 1px solid #ff8226;pointer-events: none; }
+.btn-holder ul li.default { color:#ff8226; border: 1px solid #ff8226; pointer-events: none; }
 .btn-holder ul li.on { color:#ff8226; border: 1px solid #ff8226;}
+
+#POLE_CHART_SWIFT ul li.on { pointer-events: none;}
+
 
 .stack-area-info {}
 .stack-area-info .name-type {}

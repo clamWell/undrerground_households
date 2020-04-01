@@ -1,6 +1,7 @@
 var all_city_data = [
   {
     "code": "11010",
+    "geoWide": "서울시",
     "geo": "종로구",
     "house": "61638",
     "under_house": "2427",
@@ -12,6 +13,7 @@ var all_city_data = [
   },
   {
     "code": "11020",
+    "geoWide": "서울시",
     "geo": "중구",
     "house": "51239",
     "under_house": "1771",
@@ -23,6 +25,7 @@ var all_city_data = [
   },
   {
     "code": "11030",
+    "geoWide": "서울시",
     "geo": "용산구",
     "house": "90336",
     "under_house": "5662",
@@ -34,6 +37,7 @@ var all_city_data = [
   },
   {
     "code": "11040",
+    "geoWide": "서울시",
     "geo": "성동구",
     "house": "114738",
     "under_house": "6609",
@@ -45,6 +49,7 @@ var all_city_data = [
   },
   {
     "code": "11050",
+    "geoWide": "서울시",
     "geo": "광진구",
     "house": "147673",
     "under_house": "15630",
@@ -56,6 +61,7 @@ var all_city_data = [
   },
   {
     "code": "11060",
+    "geoWide": "서울시",
     "geo": "동대문구",
     "house": "146763",
     "under_house": "9978",
@@ -67,6 +73,7 @@ var all_city_data = [
   },
   {
     "code": "11070",
+    "geoWide": "서울시",
     "geo": "중랑구",
     "house": "157568",
     "under_house": "17839",
@@ -78,6 +85,7 @@ var all_city_data = [
   },
   {
     "code": "11080",
+    "geoWide": "서울시",
     "geo": "성북구",
     "house": "174343",
     "under_house": "10400",
@@ -89,6 +97,7 @@ var all_city_data = [
   },
   {
     "code": "11090",
+    "geoWide": "서울시",
     "geo": "강북구",
     "house": "125712",
     "under_house": "12000",
@@ -100,6 +109,7 @@ var all_city_data = [
   },
   {
     "code": "11100",
+    "geoWide": "서울시",
     "geo": "도봉구",
     "house": "125004",
     "under_house": "7120",
@@ -111,6 +121,7 @@ var all_city_data = [
   },
   {
     "code": "11110",
+    "geoWide": "서울시",
     "geo": "노원구",
     "house": "204890",
     "under_house": "4483",
@@ -122,6 +133,7 @@ var all_city_data = [
   },
   {
     "code": "11120",
+    "geoWide": "서울시",
     "geo": "은평구",
     "house": "179794",
     "under_house": "14059",
@@ -133,6 +145,7 @@ var all_city_data = [
   },
   {
     "code": "11130",
+    "geoWide": "서울시",
     "geo": "서대문구",
     "house": "121043",
     "under_house": "6708",
@@ -144,6 +157,7 @@ var all_city_data = [
   },
   {
     "code": "11140",
+    "geoWide": "서울시",
     "geo": "마포구",
     "house": "155031",
     "under_house": "8466",
@@ -155,6 +169,7 @@ var all_city_data = [
   },
   {
     "code": "11150",
+    "geoWide": "서울시",
     "geo": "양천구",
     "house": "163862",
     "under_house": "8684",
@@ -166,6 +181,7 @@ var all_city_data = [
   },
   {
     "code": "11160",
+    "geoWide": "서울시",
     "geo": "강서구",
     "house": "217651",
     "under_house": "9388",
@@ -177,6 +193,7 @@ var all_city_data = [
   },
   {
     "code": "11170",
+    "geoWide": "서울시",
     "geo": "구로구",
     "house": "156543",
     "under_house": "4045",
@@ -188,6 +205,7 @@ var all_city_data = [
   },
   {
     "code": "11180",
+    "geoWide": "서울시",
     "geo": "금천구",
     "house": "93461",
     "under_house": "5768",
@@ -199,6 +217,7 @@ var all_city_data = [
   },
   {
     "code": "11190",
+    "geoWide": "서울시",
     "geo": "영등포구",
     "house": "147791",
     "under_house": "6269",
@@ -210,6 +229,7 @@ var all_city_data = [
   },
   {
     "code": "11200",
+    "geoWide": "서울시",
     "geo": "동작구",
     "house": "161049",
     "under_house": "11128",
@@ -221,6 +241,7 @@ var all_city_data = [
   },
   {
     "code": "11210",
+    "geoWide": "서울시",
     "geo": "관악구",
     "house": "228719",
     "under_house": "19121",
@@ -232,6 +253,7 @@ var all_city_data = [
   },
   {
     "code": "11220",
+    "geoWide": "서울시",
     "geo": "서초구",
     "house": "154082",
     "under_house": "7005",
@@ -243,6 +265,7 @@ var all_city_data = [
   },
   {
     "code": "11230",
+    "geoWide": "서울시",
     "geo": "강남구",
     "house": "211387",
     "under_house": "7893",
@@ -254,6 +277,7 @@ var all_city_data = [
   },
   {
     "code": "11240",
+    "geoWide": "서울시",
     "geo": "송파구",
     "house": "230986",
     "under_house": "12869",
@@ -265,6 +289,7 @@ var all_city_data = [
   },
   {
     "code": "11250",
+    "geoWide": "서울시",
     "geo": "강동구",
     "house": "164130",
     "under_house": "13145",
@@ -275,557 +300,8 @@ var all_city_data = [
     "under_house_single_ratio": "50.6"
   },
   {
-    "code": "21010",
-    "geo": "중구",
-    "house": "20644",
-    "under_house": "152",
-    "under_house_single": "62",
-    "pop": "43028",
-    "under_pop": "299",
-    "under_house_ratio": "0.7",
-    "under_house_single_ratio": "40.8"
-  },
-  {
-    "code": "21020",
-    "geo": "서구",
-    "house": "46855",
-    "under_house": "290",
-    "under_house_single": "131",
-    "pop": "107127",
-    "under_pop": "688",
-    "under_house_ratio": "0.6",
-    "under_house_single_ratio": "45.2"
-  },
-  {
-    "code": "21030",
-    "geo": "동구",
-    "house": "37873",
-    "under_house": "296",
-    "under_house_single": "126",
-    "pop": "85783",
-    "under_pop": "623",
-    "under_house_ratio": "0.8",
-    "under_house_single_ratio": "42.6"
-  },
-  {
-    "code": "21040",
-    "geo": "영도구",
-    "house": "52456",
-    "under_house": "185",
-    "under_house_single": "64",
-    "pop": "122232",
-    "under_pop": "447",
-    "under_house_ratio": "0.4",
-    "under_house_single_ratio": "34.6"
-  },
-  {
-    "code": "21050",
-    "geo": "부산진구",
-    "house": "153571",
-    "under_house": "453",
-    "under_house_single": "282",
-    "pop": "365712",
-    "under_pop": "808",
-    "under_house_ratio": "0.3",
-    "under_house_single_ratio": "62.3"
-  },
-  {
-    "code": "21060",
-    "geo": "동래구",
-    "house": "99035",
-    "under_house": "222",
-    "under_house_single": "70",
-    "pop": "256542",
-    "under_pop": "507",
-    "under_house_ratio": "0.2",
-    "under_house_single_ratio": "31.5"
-  },
-  {
-    "code": "21070",
-    "geo": "남구",
-    "house": "109361",
-    "under_house": "190",
-    "under_house_single": "103",
-    "pop": "271585",
-    "under_pop": "327",
-    "under_house_ratio": "0.2",
-    "under_house_single_ratio": "54.2"
-  },
-  {
-    "code": "21080",
-    "geo": "북구",
-    "house": "111121",
-    "under_house": "654",
-    "under_house_single": "322",
-    "pop": "293135",
-    "under_pop": "1305",
-    "under_house_ratio": "0.6",
-    "under_house_single_ratio": "49.2"
-  },
-  {
-    "code": "21090",
-    "geo": "해운대구",
-    "house": "153280",
-    "under_house": "224",
-    "under_house_single": "101",
-    "pop": "397149",
-    "under_pop": "418",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "45.1"
-  },
-  {
-    "code": "21100",
-    "geo": "사하구",
-    "house": "127149",
-    "under_house": "490",
-    "under_house_single": "270",
-    "pop": "322486",
-    "under_pop": "857",
-    "under_house_ratio": "0.4",
-    "under_house_single_ratio": "55.1"
-  },
-  {
-    "code": "21110",
-    "geo": "금정구",
-    "house": "97978",
-    "under_house": "247",
-    "under_house_single": "162",
-    "pop": "236207",
-    "under_pop": "418",
-    "under_house_ratio": "0.3",
-    "under_house_single_ratio": "65.6"
-  },
-  {
-    "code": "21120",
-    "geo": "강서구",
-    "house": "32763",
-    "under_house": "20",
-    "under_house_single": "12",
-    "pop": "84256",
-    "under_pop": "34",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "60"
-  },
-  {
-    "code": "21130",
-    "geo": "연제구",
-    "house": "78111",
-    "under_house": "137",
-    "under_house_single": "93",
-    "pop": "198566",
-    "under_pop": "201",
-    "under_house_ratio": "0.2",
-    "under_house_single_ratio": "67.9"
-  },
-  {
-    "code": "21140",
-    "geo": "수영구",
-    "house": "70074",
-    "under_house": "59",
-    "under_house_single": "36",
-    "pop": "168686",
-    "under_pop": "114",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "61"
-  },
-  {
-    "code": "21150",
-    "geo": "사상구",
-    "house": "91726",
-    "under_house": "51",
-    "under_house_single": "35",
-    "pop": "228540",
-    "under_pop": "83",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "68.6"
-  },
-  {
-    "code": "21310",
-    "geo": "기장군",
-    "house": "53986",
-    "under_house": "5",
-    "under_house_single": null,
-    "pop": "141910",
-    "under_pop": "15",
-    "under_house_ratio": "0",
-    "under_house_single_ratio": "0"
-  },
-  {
-    "code": "22010",
-    "geo": "중구",
-    "house": "33472",
-    "under_house": "33",
-    "under_house_single": "15",
-    "pop": "74578",
-    "under_pop": "77",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "45.5"
-  },
-  {
-    "code": "22020",
-    "geo": "동구",
-    "house": "131415",
-    "under_house": "234",
-    "under_house_single": "153",
-    "pop": "330669",
-    "under_pop": "354",
-    "under_house_ratio": "0.2",
-    "under_house_single_ratio": "65.4"
-  },
-  {
-    "code": "22030",
-    "geo": "서구",
-    "house": "81010",
-    "under_house": "278",
-    "under_house_single": "134",
-    "pop": "196314",
-    "under_pop": "507",
-    "under_house_ratio": "0.3",
-    "under_house_single_ratio": "48.2"
-  },
-  {
-    "code": "22040",
-    "geo": "남구",
-    "house": "69476",
-    "under_house": "221",
-    "under_house_single": "144",
-    "pop": "154010",
-    "under_pop": "318",
-    "under_house_ratio": "0.3",
-    "under_house_single_ratio": "65.2"
-  },
-  {
-    "code": "22050",
-    "geo": "북구",
-    "house": "166563",
-    "under_house": "150",
-    "under_house_single": "70",
-    "pop": "431162",
-    "under_pop": "279",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "46.7"
-  },
-  {
-    "code": "22060",
-    "geo": "수성구",
-    "house": "157915",
-    "under_house": "286",
-    "under_house_single": "140",
-    "pop": "427033",
-    "under_pop": "571",
-    "under_house_ratio": "0.2",
-    "under_house_single_ratio": "49"
-  },
-  {
-    "code": "22070",
-    "geo": "달서구",
-    "house": "222244",
-    "under_house": "173",
-    "under_house_single": "70",
-    "pop": "583977",
-    "under_pop": "336",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "40.5"
-  },
-  {
-    "code": "22310",
-    "geo": "달성군",
-    "house": "66453",
-    "under_house": "37",
-    "under_house_single": "11",
-    "pop": "177501",
-    "under_pop": "98",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "29.7"
-  },
-  {
-    "code": "23010",
-    "geo": "중구",
-    "house": "43255",
-    "under_house": "393",
-    "under_house_single": "174",
-    "pop": "104695",
-    "under_pop": "876",
-    "under_house_ratio": "0.9",
-    "under_house_single_ratio": "44.3"
-  },
-  {
-    "code": "23020",
-    "geo": "동구",
-    "house": "26955",
-    "under_house": "274",
-    "under_house_single": "125",
-    "pop": "68858",
-    "under_pop": "530",
-    "under_house_ratio": "1",
-    "under_house_single_ratio": "45.6"
-  },
-  {
-    "code": "23030",
-    "geo": "미추홀구",
-    "house": "156791",
-    "under_house": "3491",
-    "under_house_single": "1892",
-    "pop": "388966",
-    "under_pop": "6279",
-    "under_house_ratio": "2.2",
-    "under_house_single_ratio": "54.2"
-  },
-  {
-    "code": "23040",
-    "geo": "연수구",
-    "house": "107382",
-    "under_house": "2030",
-    "under_house_single": "1278",
-    "pop": "300630",
-    "under_pop": "3277",
-    "under_house_ratio": "1.9",
-    "under_house_single_ratio": "63"
-  },
-  {
-    "code": "23050",
-    "geo": "남동구",
-    "house": "190094",
-    "under_house": "4364",
-    "under_house_single": "2144",
-    "pop": "505763",
-    "under_pop": "8465",
-    "under_house_ratio": "2.3",
-    "under_house_single_ratio": "49.1"
-  },
-  {
-    "code": "23060",
-    "geo": "부평구",
-    "house": "198983",
-    "under_house": "4953",
-    "under_house_single": "2431",
-    "pop": "527691",
-    "under_pop": "9601",
-    "under_house_ratio": "2.5",
-    "under_house_single_ratio": "49.1"
-  },
-  {
-    "code": "23070",
-    "geo": "계양구",
-    "house": "116426",
-    "under_house": "2135",
-    "under_house_single": "1005",
-    "pop": "317723",
-    "under_pop": "4464",
-    "under_house_ratio": "1.8",
-    "under_house_single_ratio": "47.1"
-  },
-  {
-    "code": "23080",
-    "geo": "서구",
-    "house": "171422",
-    "under_house": "3219",
-    "under_house_single": "1591",
-    "pop": "476540",
-    "under_pop": "6297",
-    "under_house_ratio": "1.9",
-    "under_house_single_ratio": "49.4"
-  },
-  {
-    "code": "23310",
-    "geo": "강화군",
-    "house": "25137",
-    "under_house": "158",
-    "under_house_single": "65",
-    "pop": "58386",
-    "under_pop": "322",
-    "under_house_ratio": "0.6",
-    "under_house_single_ratio": "41.1"
-  },
-  {
-    "code": "23320",
-    "geo": "옹진군",
-    "house": "9014",
-    "under_house": "7",
-    "under_house_single": "4",
-    "pop": "17825",
-    "under_pop": "13",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "57.1"
-  },
-  {
-    "code": "24010",
-    "geo": "동구",
-    "house": "43871",
-    "under_house": "87",
-    "under_house_single": "38",
-    "pop": "97446",
-    "under_pop": "168",
-    "under_house_ratio": "0.2",
-    "under_house_single_ratio": "43.7"
-  },
-  {
-    "code": "24020",
-    "geo": "서구",
-    "house": "118236",
-    "under_house": "77",
-    "under_house_single": "40",
-    "pop": "298098",
-    "under_pop": "138",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "51.9"
-  },
-  {
-    "code": "24030",
-    "geo": "남구",
-    "house": "83498",
-    "under_house": "78",
-    "under_house_single": "36",
-    "pop": "213439",
-    "under_pop": "192",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "46.2"
-  },
-  {
-    "code": "24040",
-    "geo": "북구",
-    "house": "177103",
-    "under_house": "49",
-    "under_house_single": "37",
-    "pop": "439561",
-    "under_pop": "77",
-    "under_house_ratio": "0",
-    "under_house_single_ratio": "75.5"
-  },
-  {
-    "code": "24050",
-    "geo": "광산구",
-    "house": "144563",
-    "under_house": "22",
-    "under_house_single": null,
-    "pop": "388488",
-    "under_pop": "120",
-    "under_house_ratio": "0",
-    "under_house_single_ratio": "0"
-  },
-  {
-    "code": "25010",
-    "geo": "동구",
-    "house": "100151",
-    "under_house": "597",
-    "under_house_single": "436",
-    "pop": "236445",
-    "under_pop": "878",
-    "under_house_ratio": "0.6",
-    "under_house_single_ratio": "73"
-  },
-  {
-    "code": "25020",
-    "geo": "중구",
-    "house": "94924",
-    "under_house": "326",
-    "under_house_single": "164",
-    "pop": "243518",
-    "under_pop": "636",
-    "under_house_ratio": "0.3",
-    "under_house_single_ratio": "50.3"
-  },
-  {
-    "code": "25030",
-    "geo": "서구",
-    "house": "186553",
-    "under_house": "1153",
-    "under_house_single": "758",
-    "pop": "475221",
-    "under_pop": "1874",
-    "under_house_ratio": "0.6",
-    "under_house_single_ratio": "65.7"
-  },
-  {
-    "code": "25040",
-    "geo": "유성구",
-    "house": "126278",
-    "under_house": "328",
-    "under_house_single": "233",
-    "pop": "321345",
-    "under_pop": "501",
-    "under_house_ratio": "0.3",
-    "under_house_single_ratio": "71"
-  },
-  {
-    "code": "25050",
-    "geo": "대덕구",
-    "house": "74747",
-    "under_house": "393",
-    "under_house_single": "283",
-    "pop": "190896",
-    "under_pop": "592",
-    "under_house_ratio": "0.5",
-    "under_house_single_ratio": "72"
-  },
-  {
-    "code": "26010",
-    "geo": "중구",
-    "house": "89083",
-    "under_house": "86",
-    "under_house_single": "28",
-    "pop": "228817",
-    "under_pop": "173",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "32.6"
-  },
-  {
-    "code": "26020",
-    "geo": "남구",
-    "house": "128759",
-    "under_house": "116",
-    "under_house_single": "47",
-    "pop": "327226",
-    "under_pop": "265",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "40.5"
-  },
-  {
-    "code": "26030",
-    "geo": "동구",
-    "house": "63491",
-    "under_house": "34",
-    "under_house_single": "24",
-    "pop": "165202",
-    "under_pop": "54",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "70.6"
-  },
-  {
-    "code": "26040",
-    "geo": "북구",
-    "house": "64033",
-    "under_house": "22",
-    "under_house_single": "4",
-    "pop": "181559",
-    "under_pop": "59",
-    "under_house_ratio": "0",
-    "under_house_single_ratio": "18.2"
-  },
-  {
-    "code": "26310",
-    "geo": "울주군",
-    "house": "78036",
-    "under_house": "48",
-    "under_house_single": "13",
-    "pop": "202782",
-    "under_pop": "115",
-    "under_house_ratio": "0.1",
-    "under_house_single_ratio": "27.1"
-  },
-  {
-    "code": "29010",
-    "geo": "세종시",
-    "house": "75217",
-    "under_house": "118",
-    "under_house_single": "81",
-    "pop": "190923",
-    "under_pop": "187",
-    "under_house_ratio": "0.2",
-    "under_house_single_ratio": "68.6"
-  },
-  {
     "code": "31010",
+    "geoWide": "경기도",
     "geo": "수원시",
     "house": "427582",
     "under_house": "11780",
@@ -837,6 +313,7 @@ var all_city_data = [
   },
   {
     "code": "31020",
+    "geoWide": "경기도",
     "geo": "성남시",
     "house": "355518",
     "under_house": "25683",
@@ -848,6 +325,7 @@ var all_city_data = [
   },
   {
     "code": "31030",
+    "geoWide": "경기도",
     "geo": "의정부시",
     "house": "154592",
     "under_house": "2389",
@@ -859,6 +337,7 @@ var all_city_data = [
   },
   {
     "code": "31040",
+    "geoWide": "경기도",
     "geo": "안양시",
     "house": "205521",
     "under_house": "8589",
@@ -870,6 +349,7 @@ var all_city_data = [
   },
   {
     "code": "31050",
+    "geoWide": "경기도",
     "geo": "부천시",
     "house": "301582",
     "under_house": "6776",
@@ -881,6 +361,7 @@ var all_city_data = [
   },
   {
     "code": "31060",
+    "geoWide": "경기도",
     "geo": "광명시",
     "house": "117674",
     "under_house": "5394",
@@ -892,6 +373,7 @@ var all_city_data = [
   },
   {
     "code": "31070",
+    "geoWide": "경기도",
     "geo": "평택시",
     "house": "164078",
     "under_house": "1037",
@@ -903,6 +385,7 @@ var all_city_data = [
   },
   {
     "code": "31080",
+    "geoWide": "경기도",
     "geo": "동두천시",
     "house": "36222",
     "under_house": "107",
@@ -914,6 +397,7 @@ var all_city_data = [
   },
   {
     "code": "31090",
+    "geoWide": "경기도",
     "geo": "안산시",
     "house": "258620",
     "under_house": "9290",
@@ -925,6 +409,7 @@ var all_city_data = [
   },
   {
     "code": "31100",
+    "geoWide": "경기도",
     "geo": "고양시",
     "house": "351495",
     "under_house": "6279",
@@ -936,6 +421,7 @@ var all_city_data = [
   },
   {
     "code": "31110",
+    "geoWide": "경기도",
     "geo": "과천시",
     "house": "22544",
     "under_house": "2263",
@@ -947,6 +433,7 @@ var all_city_data = [
   },
   {
     "code": "31120",
+    "geoWide": "경기도",
     "geo": "구리시",
     "house": "63957",
     "under_house": "3485",
@@ -958,6 +445,7 @@ var all_city_data = [
   },
   {
     "code": "31130",
+    "geoWide": "경기도",
     "geo": "남양주시",
     "house": "214771",
     "under_house": "1479",
@@ -969,6 +457,7 @@ var all_city_data = [
   },
   {
     "code": "31140",
+    "geoWide": "경기도",
     "geo": "오산시",
     "house": "76673",
     "under_house": "380",
@@ -980,6 +469,7 @@ var all_city_data = [
   },
   {
     "code": "31150",
+    "geoWide": "경기도",
     "geo": "시흥시",
     "house": "144509",
     "under_house": "1396",
@@ -991,6 +481,7 @@ var all_city_data = [
   },
   {
     "code": "31160",
+    "geoWide": "경기도",
     "geo": "군포시",
     "house": "98138",
     "under_house": "2405",
@@ -1002,6 +493,7 @@ var all_city_data = [
   },
   {
     "code": "31170",
+    "geoWide": "경기도",
     "geo": "의왕시",
     "house": "53414",
     "under_house": "1402",
@@ -1013,6 +505,7 @@ var all_city_data = [
   },
   {
     "code": "31180",
+    "geoWide": "경기도",
     "geo": "하남시",
     "house": "55684",
     "under_house": "2401",
@@ -1024,6 +517,7 @@ var all_city_data = [
   },
   {
     "code": "31190",
+    "geoWide": "경기도",
     "geo": "용인시",
     "house": "324256",
     "under_house": "2903",
@@ -1035,6 +529,7 @@ var all_city_data = [
   },
   {
     "code": "31200",
+    "geoWide": "경기도",
     "geo": "파주시",
     "house": "142648",
     "under_house": "652",
@@ -1046,6 +541,7 @@ var all_city_data = [
   },
   {
     "code": "31210",
+    "geoWide": "경기도",
     "geo": "이천시",
     "house": "71657",
     "under_house": "358",
@@ -1057,6 +553,7 @@ var all_city_data = [
   },
   {
     "code": "31220",
+    "geoWide": "경기도",
     "geo": "안성시",
     "house": "68584",
     "under_house": "217",
@@ -1068,6 +565,7 @@ var all_city_data = [
   },
   {
     "code": "31230",
+    "geoWide": "경기도",
     "geo": "김포시",
     "house": "118152",
     "under_house": "359",
@@ -1079,6 +577,7 @@ var all_city_data = [
   },
   {
     "code": "31240",
+    "geoWide": "경기도",
     "geo": "화성시",
     "house": "201810",
     "under_house": "504",
@@ -1090,6 +589,7 @@ var all_city_data = [
   },
   {
     "code": "31250",
+    "geoWide": "경기도",
     "geo": "광주시",
     "house": "107685",
     "under_house": "1311",
@@ -1101,6 +601,7 @@ var all_city_data = [
   },
   {
     "code": "31260",
+    "geoWide": "경기도",
     "geo": "양주시",
     "house": "70443",
     "under_house": "110",
@@ -1112,6 +613,7 @@ var all_city_data = [
   },
   {
     "code": "31270",
+    "geoWide": "경기도",
     "geo": "포천시",
     "house": "56579",
     "under_house": "150",
@@ -1123,6 +625,7 @@ var all_city_data = [
   },
   {
     "code": "31280",
+    "geoWide": "경기도",
     "geo": "여주시",
     "house": "39931",
     "under_house": "28",
@@ -1134,6 +637,7 @@ var all_city_data = [
   },
   {
     "code": "31350",
+    "geoWide": "경기도",
     "geo": "연천군",
     "house": "17536",
     "under_house": "60",
@@ -1145,6 +649,7 @@ var all_city_data = [
   },
   {
     "code": "31370",
+    "geoWide": "경기도",
     "geo": "가평군",
     "house": "22906",
     "under_house": "43",
@@ -1156,6 +661,7 @@ var all_city_data = [
   },
   {
     "code": "31380",
+    "geoWide": "경기도",
     "geo": "양평군",
     "house": "39544",
     "under_house": "61",
@@ -1166,7 +672,608 @@ var all_city_data = [
     "under_house_single_ratio": "49.2"
   },
   {
+    "code": "23010",
+    "geoWide": "인천시",
+    "geo": "중구",
+    "house": "43255",
+    "under_house": "393",
+    "under_house_single": "174",
+    "pop": "104695",
+    "under_pop": "876",
+    "under_house_ratio": "0.9",
+    "under_house_single_ratio": "44.3"
+  },
+  {
+    "code": "23020",
+    "geoWide": "인천시",
+    "geo": "동구",
+    "house": "26955",
+    "under_house": "274",
+    "under_house_single": "125",
+    "pop": "68858",
+    "under_pop": "530",
+    "under_house_ratio": "1",
+    "under_house_single_ratio": "45.6"
+  },
+  {
+    "code": "23030",
+    "geoWide": "인천시",
+    "geo": "미추홀구",
+    "house": "156791",
+    "under_house": "3491",
+    "under_house_single": "1892",
+    "pop": "388966",
+    "under_pop": "6279",
+    "under_house_ratio": "2.2",
+    "under_house_single_ratio": "54.2"
+  },
+  {
+    "code": "23040",
+    "geoWide": "인천시",
+    "geo": "연수구",
+    "house": "107382",
+    "under_house": "2030",
+    "under_house_single": "1278",
+    "pop": "300630",
+    "under_pop": "3277",
+    "under_house_ratio": "1.9",
+    "under_house_single_ratio": "63"
+  },
+  {
+    "code": "23050",
+    "geoWide": "인천시",
+    "geo": "남동구",
+    "house": "190094",
+    "under_house": "4364",
+    "under_house_single": "2144",
+    "pop": "505763",
+    "under_pop": "8465",
+    "under_house_ratio": "2.3",
+    "under_house_single_ratio": "49.1"
+  },
+  {
+    "code": "23060",
+    "geoWide": "인천시",
+    "geo": "부평구",
+    "house": "198983",
+    "under_house": "4953",
+    "under_house_single": "2431",
+    "pop": "527691",
+    "under_pop": "9601",
+    "under_house_ratio": "2.5",
+    "under_house_single_ratio": "49.1"
+  },
+  {
+    "code": "23070",
+    "geoWide": "인천시",
+    "geo": "계양구",
+    "house": "116426",
+    "under_house": "2135",
+    "under_house_single": "1005",
+    "pop": "317723",
+    "under_pop": "4464",
+    "under_house_ratio": "1.8",
+    "under_house_single_ratio": "47.1"
+  },
+  {
+    "code": "23080",
+    "geoWide": "인천시",
+    "geo": "서구",
+    "house": "171422",
+    "under_house": "3219",
+    "under_house_single": "1591",
+    "pop": "476540",
+    "under_pop": "6297",
+    "under_house_ratio": "1.9",
+    "under_house_single_ratio": "49.4"
+  },
+  {
+    "code": "23310",
+    "geoWide": "인천시",
+    "geo": "강화군",
+    "house": "25137",
+    "under_house": "158",
+    "under_house_single": "65",
+    "pop": "58386",
+    "under_pop": "322",
+    "under_house_ratio": "0.6",
+    "under_house_single_ratio": "41.1"
+  },
+  {
+    "code": "23320",
+    "geoWide": "인천시",
+    "geo": "옹진군",
+    "house": "9014",
+    "under_house": "7",
+    "under_house_single": "4",
+    "pop": "17825",
+    "under_pop": "13",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "57.1"
+  },
+  {
+    "code": "21010",
+    "geoWide": "부산시",
+    "geo": "중구",
+    "house": "20644",
+    "under_house": "152",
+    "under_house_single": "62",
+    "pop": "43028",
+    "under_pop": "299",
+    "under_house_ratio": "0.7",
+    "under_house_single_ratio": "40.8"
+  },
+  {
+    "code": "21020",
+    "geoWide": "부산시",
+    "geo": "서구",
+    "house": "46855",
+    "under_house": "290",
+    "under_house_single": "131",
+    "pop": "107127",
+    "under_pop": "688",
+    "under_house_ratio": "0.6",
+    "under_house_single_ratio": "45.2"
+  },
+  {
+    "code": "21030",
+    "geoWide": "부산시",
+    "geo": "동구",
+    "house": "37873",
+    "under_house": "296",
+    "under_house_single": "126",
+    "pop": "85783",
+    "under_pop": "623",
+    "under_house_ratio": "0.8",
+    "under_house_single_ratio": "42.6"
+  },
+  {
+    "code": "21040",
+    "geoWide": "부산시",
+    "geo": "영도구",
+    "house": "52456",
+    "under_house": "185",
+    "under_house_single": "64",
+    "pop": "122232",
+    "under_pop": "447",
+    "under_house_ratio": "0.4",
+    "under_house_single_ratio": "34.6"
+  },
+  {
+    "code": "21050",
+    "geoWide": "부산시",
+    "geo": "부산진구",
+    "house": "153571",
+    "under_house": "453",
+    "under_house_single": "282",
+    "pop": "365712",
+    "under_pop": "808",
+    "under_house_ratio": "0.3",
+    "under_house_single_ratio": "62.3"
+  },
+  {
+    "code": "21060",
+    "geoWide": "부산시",
+    "geo": "동래구",
+    "house": "99035",
+    "under_house": "222",
+    "under_house_single": "70",
+    "pop": "256542",
+    "under_pop": "507",
+    "under_house_ratio": "0.2",
+    "under_house_single_ratio": "31.5"
+  },
+  {
+    "code": "21070",
+    "geoWide": "부산시",
+    "geo": "남구",
+    "house": "109361",
+    "under_house": "190",
+    "under_house_single": "103",
+    "pop": "271585",
+    "under_pop": "327",
+    "under_house_ratio": "0.2",
+    "under_house_single_ratio": "54.2"
+  },
+  {
+    "code": "21080",
+    "geoWide": "부산시",
+    "geo": "북구",
+    "house": "111121",
+    "under_house": "654",
+    "under_house_single": "322",
+    "pop": "293135",
+    "under_pop": "1305",
+    "under_house_ratio": "0.6",
+    "under_house_single_ratio": "49.2"
+  },
+  {
+    "code": "21090",
+    "geoWide": "부산시",
+    "geo": "해운대구",
+    "house": "153280",
+    "under_house": "224",
+    "under_house_single": "101",
+    "pop": "397149",
+    "under_pop": "418",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "45.1"
+  },
+  {
+    "code": "21100",
+    "geoWide": "부산시",
+    "geo": "사하구",
+    "house": "127149",
+    "under_house": "490",
+    "under_house_single": "270",
+    "pop": "322486",
+    "under_pop": "857",
+    "under_house_ratio": "0.4",
+    "under_house_single_ratio": "55.1"
+  },
+  {
+    "code": "21110",
+    "geoWide": "부산시",
+    "geo": "금정구",
+    "house": "97978",
+    "under_house": "247",
+    "under_house_single": "162",
+    "pop": "236207",
+    "under_pop": "418",
+    "under_house_ratio": "0.3",
+    "under_house_single_ratio": "65.6"
+  },
+  {
+    "code": "21120",
+    "geoWide": "부산시",
+    "geo": "강서구",
+    "house": "32763",
+    "under_house": "20",
+    "under_house_single": "12",
+    "pop": "84256",
+    "under_pop": "34",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "60"
+  },
+  {
+    "code": "21130",
+    "geoWide": "부산시",
+    "geo": "연제구",
+    "house": "78111",
+    "under_house": "137",
+    "under_house_single": "93",
+    "pop": "198566",
+    "under_pop": "201",
+    "under_house_ratio": "0.2",
+    "under_house_single_ratio": "67.9"
+  },
+  {
+    "code": "21140",
+    "geoWide": "부산시",
+    "geo": "수영구",
+    "house": "70074",
+    "under_house": "59",
+    "under_house_single": "36",
+    "pop": "168686",
+    "under_pop": "114",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "61"
+  },
+  {
+    "code": "21150",
+    "geoWide": "부산시",
+    "geo": "사상구",
+    "house": "91726",
+    "under_house": "51",
+    "under_house_single": "35",
+    "pop": "228540",
+    "under_pop": "83",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "68.6"
+  },
+  {
+    "code": "21310",
+    "geoWide": "부산시",
+    "geo": "기장군",
+    "house": "53986",
+    "under_house": "5",
+    "under_house_single": null,
+    "pop": "141910",
+    "under_pop": "15",
+    "under_house_ratio": "0",
+    "under_house_single_ratio": "0"
+  },
+  {
+    "code": "22010",
+    "geoWide": "대구시",
+    "geo": "중구",
+    "house": "33472",
+    "under_house": "33",
+    "under_house_single": "15",
+    "pop": "74578",
+    "under_pop": "77",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "45.5"
+  },
+  {
+    "code": "22020",
+    "geoWide": "대구시",
+    "geo": "동구",
+    "house": "131415",
+    "under_house": "234",
+    "under_house_single": "153",
+    "pop": "330669",
+    "under_pop": "354",
+    "under_house_ratio": "0.2",
+    "under_house_single_ratio": "65.4"
+  },
+  {
+    "code": "22030",
+    "geoWide": "대구시",
+    "geo": "서구",
+    "house": "81010",
+    "under_house": "278",
+    "under_house_single": "134",
+    "pop": "196314",
+    "under_pop": "507",
+    "under_house_ratio": "0.3",
+    "under_house_single_ratio": "48.2"
+  },
+  {
+    "code": "22040",
+    "geoWide": "대구시",
+    "geo": "남구",
+    "house": "69476",
+    "under_house": "221",
+    "under_house_single": "144",
+    "pop": "154010",
+    "under_pop": "318",
+    "under_house_ratio": "0.3",
+    "under_house_single_ratio": "65.2"
+  },
+  {
+    "code": "22050",
+    "geoWide": "대구시",
+    "geo": "북구",
+    "house": "166563",
+    "under_house": "150",
+    "under_house_single": "70",
+    "pop": "431162",
+    "under_pop": "279",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "46.7"
+  },
+  {
+    "code": "22060",
+    "geoWide": "대구시",
+    "geo": "수성구",
+    "house": "157915",
+    "under_house": "286",
+    "under_house_single": "140",
+    "pop": "427033",
+    "under_pop": "571",
+    "under_house_ratio": "0.2",
+    "under_house_single_ratio": "49"
+  },
+  {
+    "code": "22070",
+    "geoWide": "대구시",
+    "geo": "달서구",
+    "house": "222244",
+    "under_house": "173",
+    "under_house_single": "70",
+    "pop": "583977",
+    "under_pop": "336",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "40.5"
+  },
+  {
+    "code": "22310",
+    "geoWide": "대구시",
+    "geo": "달성군",
+    "house": "66453",
+    "under_house": "37",
+    "under_house_single": "11",
+    "pop": "177501",
+    "under_pop": "98",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "29.7"
+  },
+  {
+    "code": "24010",
+    "geoWide": "광주시",
+    "geo": "동구",
+    "house": "43871",
+    "under_house": "87",
+    "under_house_single": "38",
+    "pop": "97446",
+    "under_pop": "168",
+    "under_house_ratio": "0.2",
+    "under_house_single_ratio": "43.7"
+  },
+  {
+    "code": "24020",
+    "geoWide": "광주시",
+    "geo": "서구",
+    "house": "118236",
+    "under_house": "77",
+    "under_house_single": "40",
+    "pop": "298098",
+    "under_pop": "138",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "51.9"
+  },
+  {
+    "code": "24030",
+    "geoWide": "광주시",
+    "geo": "남구",
+    "house": "83498",
+    "under_house": "78",
+    "under_house_single": "36",
+    "pop": "213439",
+    "under_pop": "192",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "46.2"
+  },
+  {
+    "code": "24040",
+    "geoWide": "광주시",
+    "geo": "북구",
+    "house": "177103",
+    "under_house": "49",
+    "under_house_single": "37",
+    "pop": "439561",
+    "under_pop": "77",
+    "under_house_ratio": "0",
+    "under_house_single_ratio": "75.5"
+  },
+  {
+    "code": "24050",
+    "geoWide": "광주시",
+    "geo": "광산구",
+    "house": "144563",
+    "under_house": "22",
+    "under_house_single": null,
+    "pop": "388488",
+    "under_pop": "120",
+    "under_house_ratio": "0",
+    "under_house_single_ratio": "0"
+  },
+  {
+    "code": "25010",
+    "geoWide": "대전시",
+    "geo": "동구",
+    "house": "100151",
+    "under_house": "597",
+    "under_house_single": "436",
+    "pop": "236445",
+    "under_pop": "878",
+    "under_house_ratio": "0.6",
+    "under_house_single_ratio": "73"
+  },
+  {
+    "code": "25020",
+    "geoWide": "대전시",
+    "geo": "중구",
+    "house": "94924",
+    "under_house": "326",
+    "under_house_single": "164",
+    "pop": "243518",
+    "under_pop": "636",
+    "under_house_ratio": "0.3",
+    "under_house_single_ratio": "50.3"
+  },
+  {
+    "code": "25030",
+    "geoWide": "대전시",
+    "geo": "서구",
+    "house": "186553",
+    "under_house": "1153",
+    "under_house_single": "758",
+    "pop": "475221",
+    "under_pop": "1874",
+    "under_house_ratio": "0.6",
+    "under_house_single_ratio": "65.7"
+  },
+  {
+    "code": "25040",
+    "geoWide": "대전시",
+    "geo": "유성구",
+    "house": "126278",
+    "under_house": "328",
+    "under_house_single": "233",
+    "pop": "321345",
+    "under_pop": "501",
+    "under_house_ratio": "0.3",
+    "under_house_single_ratio": "71"
+  },
+  {
+    "code": "25050",
+    "geoWide": "대전시",
+    "geo": "대덕구",
+    "house": "74747",
+    "under_house": "393",
+    "under_house_single": "283",
+    "pop": "190896",
+    "under_pop": "592",
+    "under_house_ratio": "0.5",
+    "under_house_single_ratio": "72"
+  },
+  {
+    "code": "26010",
+    "geoWide": "울산시",
+    "geo": "중구",
+    "house": "89083",
+    "under_house": "86",
+    "under_house_single": "28",
+    "pop": "228817",
+    "under_pop": "173",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "32.6"
+  },
+  {
+    "code": "26020",
+    "geoWide": "울산시",
+    "geo": "남구",
+    "house": "128759",
+    "under_house": "116",
+    "under_house_single": "47",
+    "pop": "327226",
+    "under_pop": "265",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "40.5"
+  },
+  {
+    "code": "26030",
+    "geoWide": "울산시",
+    "geo": "동구",
+    "house": "63491",
+    "under_house": "34",
+    "under_house_single": "24",
+    "pop": "165202",
+    "under_pop": "54",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "70.6"
+  },
+  {
+    "code": "26040",
+    "geoWide": "울산시",
+    "geo": "북구",
+    "house": "64033",
+    "under_house": "22",
+    "under_house_single": "4",
+    "pop": "181559",
+    "under_pop": "59",
+    "under_house_ratio": "0",
+    "under_house_single_ratio": "18.2"
+  },
+  {
+    "code": "26310",
+    "geoWide": "울산시",
+    "geo": "울주군",
+    "house": "78036",
+    "under_house": "48",
+    "under_house_single": "13",
+    "pop": "202782",
+    "under_pop": "115",
+    "under_house_ratio": "0.1",
+    "under_house_single_ratio": "27.1"
+  },
+  {
+    "code": "29010",
+    "geoWide": "세종시",
+    "geo": "세종시",
+    "house": "75217",
+    "under_house": "118",
+    "under_house_single": "81",
+    "pop": "190923",
+    "under_pop": "187",
+    "under_house_ratio": "0.2",
+    "under_house_single_ratio": "68.6"
+  },
+  {
     "code": "32010",
+    "geoWide": "강원도",
     "geo": "춘천시",
     "house": "108058",
     "under_house": "372",
@@ -1178,6 +1285,7 @@ var all_city_data = [
   },
   {
     "code": "32020",
+    "geoWide": "강원도",
     "geo": "원주시",
     "house": "127037",
     "under_house": "148",
@@ -1189,6 +1297,7 @@ var all_city_data = [
   },
   {
     "code": "32030",
+    "geoWide": "강원도",
     "geo": "강릉시",
     "house": "86904",
     "under_house": "326",
@@ -1200,6 +1309,7 @@ var all_city_data = [
   },
   {
     "code": "32040",
+    "geoWide": "강원도",
     "geo": "동해시",
     "house": "35749",
     "under_house": "15",
@@ -1211,6 +1321,7 @@ var all_city_data = [
   },
   {
     "code": "32050",
+    "geoWide": "강원도",
     "geo": "태백시",
     "house": "19206",
     "under_house": "11",
@@ -1222,6 +1333,7 @@ var all_city_data = [
   },
   {
     "code": "32060",
+    "geoWide": "강원도",
     "geo": "속초시",
     "house": "32666",
     "under_house": "66",
@@ -1233,6 +1345,7 @@ var all_city_data = [
   },
   {
     "code": "32070",
+    "geoWide": "강원도",
     "geo": "삼척시",
     "house": "28882",
     "under_house": "6",
@@ -1244,6 +1357,7 @@ var all_city_data = [
   },
   {
     "code": "32310",
+    "geoWide": "강원도",
     "geo": "홍천군",
     "house": "26826",
     "under_house": "64",
@@ -1255,6 +1369,7 @@ var all_city_data = [
   },
   {
     "code": "32320",
+    "geoWide": "강원도",
     "geo": "횡성군",
     "house": "17106",
     "under_house": "27",
@@ -1266,6 +1381,7 @@ var all_city_data = [
   },
   {
     "code": "32330",
+    "geoWide": "강원도",
     "geo": "영월군",
     "house": "15918",
     "under_house": "5",
@@ -1277,6 +1393,7 @@ var all_city_data = [
   },
   {
     "code": "32340",
+    "geoWide": "강원도",
     "geo": "평창군",
     "house": "17098",
     "under_house": "14",
@@ -1288,6 +1405,7 @@ var all_city_data = [
   },
   {
     "code": "32350",
+    "geoWide": "강원도",
     "geo": "정선군",
     "house": "15352",
     "under_house": "7",
@@ -1299,6 +1417,7 @@ var all_city_data = [
   },
   {
     "code": "32360",
+    "geoWide": "강원도",
     "geo": "철원군",
     "house": "18667",
     "under_house": "18",
@@ -1310,6 +1429,7 @@ var all_city_data = [
   },
   {
     "code": "32370",
+    "geoWide": "강원도",
     "geo": "화천군",
     "house": "11217",
     "under_house": "26",
@@ -1321,6 +1441,7 @@ var all_city_data = [
   },
   {
     "code": "32390",
+    "geoWide": "강원도",
     "geo": "인제군",
     "house": "12866",
     "under_house": "27",
@@ -1332,6 +1453,7 @@ var all_city_data = [
   },
   {
     "code": "32400",
+    "geoWide": "강원도",
     "geo": "고성군",
     "house": "12317",
     "under_house": "12",
@@ -1343,6 +1465,7 @@ var all_city_data = [
   },
   {
     "code": "32410",
+    "geoWide": "강원도",
     "geo": "양양군",
     "house": "11108",
     "under_house": "44",
@@ -1354,6 +1477,7 @@ var all_city_data = [
   },
   {
     "code": "33020",
+    "geoWide": "강원도",
     "geo": "충주시",
     "house": "83590",
     "under_house": "47",
@@ -1365,6 +1489,7 @@ var all_city_data = [
   },
   {
     "code": "33030",
+    "geoWide": "충청북도",
     "geo": "제천시",
     "house": "53551",
     "under_house": "68",
@@ -1376,6 +1501,7 @@ var all_city_data = [
   },
   {
     "code": "33040",
+    "geoWide": "충청북도",
     "geo": "청주시",
     "house": "306015",
     "under_house": "862",
@@ -1387,6 +1513,7 @@ var all_city_data = [
   },
   {
     "code": "33320",
+    "geoWide": "충청북도",
     "geo": "보은군",
     "house": "13627",
     "under_house": "3",
@@ -1398,6 +1525,7 @@ var all_city_data = [
   },
   {
     "code": "33330",
+    "geoWide": "충청북도",
     "geo": "옥천군",
     "house": "19787",
     "under_house": "2",
@@ -1409,6 +1537,7 @@ var all_city_data = [
   },
   {
     "code": "33340",
+    "geoWide": "충청북도",
     "geo": "영동군",
     "house": "20825",
     "under_house": "36",
@@ -1420,6 +1549,7 @@ var all_city_data = [
   },
   {
     "code": "33360",
+    "geoWide": "충청북도",
     "geo": "괴산군",
     "house": "15614",
     "under_house": "9",
@@ -1431,6 +1561,7 @@ var all_city_data = [
   },
   {
     "code": "33370",
+    "geoWide": "충청북도",
     "geo": "음성군",
     "house": "36689",
     "under_house": "3",
@@ -1442,6 +1573,7 @@ var all_city_data = [
   },
   {
     "code": "33380",
+    "geoWide": "충청북도",
     "geo": "단양군",
     "house": "12212",
     "under_house": "7",
@@ -1453,6 +1585,7 @@ var all_city_data = [
   },
   {
     "code": "34010",
+    "geoWide": "충청남도",
     "geo": "천안시",
     "house": "233511",
     "under_house": "696",
@@ -1464,6 +1597,7 @@ var all_city_data = [
   },
   {
     "code": "34020",
+    "geoWide": "충청남도",
     "geo": "공주시",
     "house": "42447",
     "under_house": "63",
@@ -1475,6 +1609,7 @@ var all_city_data = [
   },
   {
     "code": "34030",
+    "geoWide": "충청남도",
     "geo": "보령시",
     "house": "40687",
     "under_house": "25",
@@ -1486,6 +1621,7 @@ var all_city_data = [
   },
   {
     "code": "34040",
+    "geoWide": "충청남도",
     "geo": "아산시",
     "house": "110547",
     "under_house": "142",
@@ -1497,6 +1633,7 @@ var all_city_data = [
   },
   {
     "code": "34050",
+    "geoWide": "충청남도",
     "geo": "서산시",
     "house": "63441",
     "under_house": "17",
@@ -1508,6 +1645,7 @@ var all_city_data = [
   },
   {
     "code": "34060",
+    "geoWide": "충청남도",
     "geo": "논산시",
     "house": "48004",
     "under_house": "32",
@@ -1519,6 +1657,7 @@ var all_city_data = [
   },
   {
     "code": "34070",
+    "geoWide": "충청남도",
     "geo": "계룡시",
     "house": "13550",
     "under_house": "11",
@@ -1530,6 +1669,7 @@ var all_city_data = [
   },
   {
     "code": "34080",
+    "geoWide": "충청남도",
     "geo": "당진시",
     "house": "62654",
     "under_house": "37",
@@ -1541,6 +1681,7 @@ var all_city_data = [
   },
   {
     "code": "34310",
+    "geoWide": "충청남도",
     "geo": "금산군",
     "house": "22808",
     "under_house": "62",
@@ -1552,6 +1693,7 @@ var all_city_data = [
   },
   {
     "code": "34330",
+    "geoWide": "충청남도",
     "geo": "부여군",
     "house": "27840",
     "under_house": "10",
@@ -1563,6 +1705,7 @@ var all_city_data = [
   },
   {
     "code": "34340",
+    "geoWide": "충청남도",
     "geo": "서천군",
     "house": "23150",
     "under_house": "6",
@@ -1574,6 +1717,7 @@ var all_city_data = [
   },
   {
     "code": "34350",
+    "geoWide": "충청남도",
     "geo": "청양군",
     "house": "13009",
     "under_house": "5",
@@ -1585,6 +1729,7 @@ var all_city_data = [
   },
   {
     "code": "34360",
+    "geoWide": "충청남도",
     "geo": "홍성군",
     "house": "36910",
     "under_house": "29",
@@ -1596,6 +1741,7 @@ var all_city_data = [
   },
   {
     "code": "34370",
+    "geoWide": "충청남도",
     "geo": "예산군",
     "house": "32705",
     "under_house": "47",
@@ -1607,6 +1753,7 @@ var all_city_data = [
   },
   {
     "code": "34380",
+    "geoWide": "충청남도",
     "geo": "태안군",
     "house": "24846",
     "under_house": "38",
@@ -1618,6 +1765,7 @@ var all_city_data = [
   },
   {
     "code": "35010",
+    "geoWide": "전라북도",
     "geo": "전주시",
     "house": "247258",
     "under_house": "237",
@@ -1629,6 +1777,7 @@ var all_city_data = [
   },
   {
     "code": "35020",
+    "geoWide": "전라북도",
     "geo": "군산시",
     "house": "106161",
     "under_house": "26",
@@ -1640,6 +1789,7 @@ var all_city_data = [
   },
   {
     "code": "35030",
+    "geoWide": "전라북도",
     "geo": "익산시",
     "house": "117543",
     "under_house": "75",
@@ -1651,6 +1801,7 @@ var all_city_data = [
   },
   {
     "code": "35050",
+    "geoWide": "전라북도",
     "geo": "남원시",
     "house": "33153",
     "under_house": "4",
@@ -1662,6 +1813,7 @@ var all_city_data = [
   },
   {
     "code": "35310",
+    "geoWide": "전라북도",
     "geo": "완주군",
     "house": "35911",
     "under_house": "15",
@@ -1673,6 +1825,7 @@ var all_city_data = [
   },
   {
     "code": "35320",
+    "geoWide": "전라북도",
     "geo": "진안군",
     "house": "9933",
     "under_house": "4",
@@ -1684,6 +1837,7 @@ var all_city_data = [
   },
   {
     "code": "35330",
+    "geoWide": "전라북도",
     "geo": "무주군",
     "house": "9954",
     "under_house": "9",
@@ -1695,6 +1849,7 @@ var all_city_data = [
   },
   {
     "code": "35340",
+    "geoWide": "전라북도",
     "geo": "장수군",
     "house": "8981",
     "under_house": "4",
@@ -1706,6 +1861,7 @@ var all_city_data = [
   },
   {
     "code": "35360",
+    "geoWide": "전라북도",
     "geo": "순창군",
     "house": "11444",
     "under_house": "14",
@@ -1717,6 +1873,7 @@ var all_city_data = [
   },
   {
     "code": "35370",
+    "geoWide": "전라북도",
     "geo": "고창군",
     "house": "23474",
     "under_house": "2",
@@ -1728,6 +1885,7 @@ var all_city_data = [
   },
   {
     "code": "35380",
+    "geoWide": "전라북도",
     "geo": "부안군",
     "house": "22499",
     "under_house": "2",
@@ -1739,6 +1897,7 @@ var all_city_data = [
   },
   {
     "code": "36010",
+    "geoWide": "전라남도",
     "geo": "목포시",
     "house": "92802",
     "under_house": "29",
@@ -1750,6 +1909,7 @@ var all_city_data = [
   },
   {
     "code": "36020",
+    "geoWide": "전라남도",
     "geo": "여수시",
     "house": "106368",
     "under_house": "32",
@@ -1761,6 +1921,7 @@ var all_city_data = [
   },
   {
     "code": "36030",
+    "geoWide": "전라남도",
     "geo": "순천시",
     "house": "99927",
     "under_house": "22",
@@ -1772,6 +1933,7 @@ var all_city_data = [
   },
   {
     "code": "36040",
+    "geoWide": "전라남도",
     "geo": "나주시",
     "house": "38082",
     "under_house": "203",
@@ -1783,6 +1945,7 @@ var all_city_data = [
   },
   {
     "code": "36060",
+    "geoWide": "전라남도",
     "geo": "광양시",
     "house": "54038",
     "under_house": "20",
@@ -1794,6 +1957,7 @@ var all_city_data = [
   },
   {
     "code": "36310",
+    "geoWide": "전라남도",
     "geo": "담양군",
     "house": "17137",
     "under_house": "3",
@@ -1805,6 +1969,7 @@ var all_city_data = [
   },
   {
     "code": "36320",
+    "geoWide": "전라남도",
     "geo": "곡성군",
     "house": "12343",
     "under_house": "4",
@@ -1816,6 +1981,7 @@ var all_city_data = [
   },
   {
     "code": "36330",
+    "geoWide": "전라남도",
     "geo": "구례군",
     "house": "10482",
     "under_house": "6",
@@ -1827,6 +1993,7 @@ var all_city_data = [
   },
   {
     "code": "36350",
+    "geoWide": "전라남도",
     "geo": "고흥군",
     "house": "29143",
     "under_house": "24",
@@ -1838,6 +2005,7 @@ var all_city_data = [
   },
   {
     "code": "36370",
+    "geoWide": "전라남도",
     "geo": "화순군",
     "house": "25023",
     "under_house": "5",
@@ -1849,6 +2017,7 @@ var all_city_data = [
   },
   {
     "code": "36380",
+    "geoWide": "전라남도",
     "geo": "장흥군",
     "house": "16330",
     "under_house": "7",
@@ -1860,6 +2029,7 @@ var all_city_data = [
   },
   {
     "code": "36410",
+    "geoWide": "전라남도",
     "geo": "영암군",
     "house": "23319",
     "under_house": "7",
@@ -1871,6 +2041,7 @@ var all_city_data = [
   },
   {
     "code": "36420",
+    "geoWide": "전라남도",
     "geo": "무안군",
     "house": "30766",
     "under_house": "14",
@@ -1882,6 +2053,7 @@ var all_city_data = [
   },
   {
     "code": "36430",
+    "geoWide": "전라남도",
     "geo": "함평군",
     "house": "13547",
     "under_house": "5",
@@ -1893,6 +2065,7 @@ var all_city_data = [
   },
   {
     "code": "36440",
+    "geoWide": "전라남도",
     "geo": "영광군",
     "house": "21422",
     "under_house": "1",
@@ -1904,6 +2077,7 @@ var all_city_data = [
   },
   {
     "code": "36450",
+    "geoWide": "전라남도",
     "geo": "장성군",
     "house": "16780",
     "under_house": "2",
@@ -1915,6 +2089,7 @@ var all_city_data = [
   },
   {
     "code": "36460",
+    "geoWide": "전라남도",
     "geo": "완도군",
     "house": "20837",
     "under_house": "10",
@@ -1926,6 +2101,7 @@ var all_city_data = [
   },
   {
     "code": "36470",
+    "geoWide": "전라남도",
     "geo": "진도군",
     "house": "13222",
     "under_house": "4",
@@ -1937,6 +2113,7 @@ var all_city_data = [
   },
   {
     "code": "36480",
+    "geoWide": "전라남도",
     "geo": "신안군",
     "house": "16636",
     "under_house": "9",
@@ -1948,6 +2125,7 @@ var all_city_data = [
   },
   {
     "code": "37010",
+    "geoWide": "경상북도",
     "geo": "포항시",
     "house": "197075",
     "under_house": "24",
@@ -1959,6 +2137,7 @@ var all_city_data = [
   },
   {
     "code": "37020",
+    "geoWide": "경상북도",
     "geo": "경주시",
     "house": "103689",
     "under_house": "88",
@@ -1970,6 +2149,7 @@ var all_city_data = [
   },
   {
     "code": "37030",
+    "geoWide": "경상북도",
     "geo": "김천시",
     "house": "53725",
     "under_house": "44",
@@ -1981,6 +2161,7 @@ var all_city_data = [
   },
   {
     "code": "37040",
+    "geoWide": "경상북도",
     "geo": "안동시",
     "house": "67702",
     "under_house": "40",
@@ -1992,6 +2173,7 @@ var all_city_data = [
   },
   {
     "code": "37050",
+    "geoWide": "경상북도",
     "geo": "구미시",
     "house": "157786",
     "under_house": "73",
@@ -2003,6 +2185,7 @@ var all_city_data = [
   },
   {
     "code": "37060",
+    "geoWide": "경상북도",
     "geo": "영주시",
     "house": "43693",
     "under_house": "22",
@@ -2014,6 +2197,7 @@ var all_city_data = [
   },
   {
     "code": "37070",
+    "geoWide": "경상북도",
     "geo": "영천시",
     "house": "40241",
     "under_house": "11",
@@ -2025,6 +2209,7 @@ var all_city_data = [
   },
   {
     "code": "37080",
+    "geoWide": "경상북도",
     "geo": "상주시",
     "house": "41053",
     "under_house": "6",
@@ -2036,6 +2221,7 @@ var all_city_data = [
   },
   {
     "code": "37090",
+    "geoWide": "경상북도",
     "geo": "문경시",
     "house": "29816",
     "under_house": "12",
@@ -2047,6 +2233,7 @@ var all_city_data = [
   },
   {
     "code": "37100",
+    "geoWide": "경상북도",
     "geo": "경산시",
     "house": "105485",
     "under_house": "102",
@@ -2058,6 +2245,7 @@ var all_city_data = [
   },
   {
     "code": "37310",
+    "geoWide": "경상북도",
     "geo": "군위군",
     "house": "10030",
     "under_house": "2",
@@ -2069,6 +2257,7 @@ var all_city_data = [
   },
   {
     "code": "37320",
+    "geoWide": "경상북도",
     "geo": "의성군",
     "house": "23669",
     "under_house": "19",
@@ -2080,6 +2269,7 @@ var all_city_data = [
   },
   {
     "code": "37350",
+    "geoWide": "경상북도",
     "geo": "영덕군",
     "house": "16813",
     "under_house": "13",
@@ -2091,6 +2281,7 @@ var all_city_data = [
   },
   {
     "code": "37370",
+    "geoWide": "경상북도",
     "geo": "고령군",
     "house": "13622",
     "under_house": "4",
@@ -2102,6 +2293,7 @@ var all_city_data = [
   },
   {
     "code": "37380",
+    "geoWide": "경상북도",
     "geo": "성주군",
     "house": "17020",
     "under_house": "16",
@@ -2113,6 +2305,7 @@ var all_city_data = [
   },
   {
     "code": "37390",
+    "geoWide": "경상북도",
     "geo": "칠곡군",
     "house": "46171",
     "under_house": "3",
@@ -2124,6 +2317,7 @@ var all_city_data = [
   },
   {
     "code": "37400",
+    "geoWide": "경상북도",
     "geo": "예천군",
     "house": "18805",
     "under_house": "14",
@@ -2135,6 +2329,7 @@ var all_city_data = [
   },
   {
     "code": "37410",
+    "geoWide": "경상북도",
     "geo": "봉화군",
     "house": "13886",
     "under_house": "8",
@@ -2146,6 +2341,7 @@ var all_city_data = [
   },
   {
     "code": "37420",
+    "geoWide": "경상북도",
     "geo": "울진군",
     "house": "21468",
     "under_house": "10",
@@ -2157,6 +2353,7 @@ var all_city_data = [
   },
   {
     "code": "37430",
+    "geoWide": "경상북도",
     "geo": "울릉군",
     "house": "4037",
     "under_house": "3",
@@ -2168,6 +2365,7 @@ var all_city_data = [
   },
   {
     "code": "38030",
+    "geoWide": "경상남도",
     "geo": "진주시",
     "house": "133507",
     "under_house": "122",
@@ -2179,6 +2377,7 @@ var all_city_data = [
   },
   {
     "code": "38050",
+    "geoWide": "경상남도",
     "geo": "통영시",
     "house": "53244",
     "under_house": "25",
@@ -2190,6 +2389,7 @@ var all_city_data = [
   },
   {
     "code": "38060",
+    "geoWide": "경상남도",
     "geo": "사천시",
     "house": "44503",
     "under_house": "9",
@@ -2201,6 +2401,7 @@ var all_city_data = [
   },
   {
     "code": "38070",
+    "geoWide": "경상남도",
     "geo": "김해시",
     "house": "186473",
     "under_house": "44",
@@ -2212,6 +2413,7 @@ var all_city_data = [
   },
   {
     "code": "38080",
+    "geoWide": "경상남도",
     "geo": "밀양시",
     "house": "43124",
     "under_house": "8",
@@ -2223,6 +2425,7 @@ var all_city_data = [
   },
   {
     "code": "38090",
+    "geoWide": "경상남도",
     "geo": "거제시",
     "house": "93977",
     "under_house": "101",
@@ -2234,6 +2437,7 @@ var all_city_data = [
   },
   {
     "code": "38100",
+    "geoWide": "경상남도",
     "geo": "양산시",
     "house": "109213",
     "under_house": "14",
@@ -2245,6 +2449,7 @@ var all_city_data = [
   },
   {
     "code": "38110",
+    "geoWide": "경상남도",
     "geo": "창원시",
     "house": "391279",
     "under_house": "733",
@@ -2256,6 +2461,7 @@ var all_city_data = [
   },
   {
     "code": "38310",
+    "geoWide": "경상남도",
     "geo": "의령군",
     "house": "12173",
     "under_house": "3",
@@ -2267,6 +2473,7 @@ var all_city_data = [
   },
   {
     "code": "38320",
+    "geoWide": "경상남도",
     "geo": "함안군",
     "house": "26729",
     "under_house": "7",
@@ -2278,6 +2485,7 @@ var all_city_data = [
   },
   {
     "code": "38330",
+    "geoWide": "경상남도",
     "geo": "창녕군",
     "house": "25984",
     "under_house": "20",
@@ -2289,6 +2497,7 @@ var all_city_data = [
   },
   {
     "code": "38340",
+    "geoWide": "경상남도",
     "geo": "고성군",
     "house": "22241",
     "under_house": "53",
@@ -2300,6 +2509,7 @@ var all_city_data = [
   },
   {
     "code": "38350",
+    "geoWide": "경상남도",
     "geo": "남해군",
     "house": "19672",
     "under_house": "6",
@@ -2311,6 +2521,7 @@ var all_city_data = [
   },
   {
     "code": "38360",
+    "geoWide": "경상남도",
     "geo": "하동군",
     "house": "19313",
     "under_house": "21",
@@ -2322,6 +2533,7 @@ var all_city_data = [
   },
   {
     "code": "38370",
+    "geoWide": "경상남도",
     "geo": "산청군",
     "house": "14997",
     "under_house": "10",
@@ -2333,6 +2545,7 @@ var all_city_data = [
   },
   {
     "code": "38380",
+    "geoWide": "경상남도",
     "geo": "함양군",
     "house": "16676",
     "under_house": "7",
@@ -2344,6 +2557,7 @@ var all_city_data = [
   },
   {
     "code": "38390",
+    "geoWide": "경상남도",
     "geo": "거창군",
     "house": "24719",
     "under_house": "16",
@@ -2355,6 +2569,7 @@ var all_city_data = [
   },
   {
     "code": "38400",
+    "geoWide": "경상남도",
     "geo": "합천군",
     "house": "20419",
     "under_house": "15",
@@ -2366,6 +2581,7 @@ var all_city_data = [
   },
   {
     "code": "39010",
+    "geoWide": "제주도",
     "geo": "제주시",
     "house": "163454",
     "under_house": "385",
@@ -2377,6 +2593,7 @@ var all_city_data = [
   },
   {
     "code": "39020",
+    "geoWide": "제주도",
     "geo": "서귀포시",
     "house": "56890",
     "under_house": "136",
@@ -2386,5 +2603,4 @@ var all_city_data = [
     "under_house_ratio": "0.2",
     "under_house_single_ratio": "16.2"
   }
-
-]
+];

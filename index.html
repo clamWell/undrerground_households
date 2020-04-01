@@ -4,6 +4,7 @@
 	$seoulData = "js/seoul_basic.js?" . filemtime("js/seoul_basic.js");
 	$allCityData = "js/all_city.js?" . filemtime("js/all_city.js");
 	$personPath = "js/person_path.js?" . filemtime("js/person_path.js");
+	$allDongData = "js/all_dong_data.js?" . filemtime("js/all_dong_data.js");
 ?>
 
 <!doctype html>
@@ -168,10 +169,12 @@
 				<div class="story-body">
 					<div class="intro">
 						<div class="intro-des">
-							<p>영화 &lt;기생충&gt;이 아카데미 4관왕을 차지하면서 극 중 주인공 네의 주거공간이었던 반지하에 세간의 관심이 집중됐다. 반지하는 남북 분단의 상황에서 방공호로 시작되어 급격한 도시화를 거치면서 부족한 주택 공급을 메꾸기 위한 주거공간으로 빠르게 확산됐다.</p>
-							<p>반지하는 옥탑방, 고시원 등과 함께 열악한 주거환경의 대명사로 통하기도 한다. 빈부격차를 극명하게 나타내는 주택유형이나 그간 고시원, 옥탑방, 쪽방 등보다 사회적 관심을 덜 받아왔다. 눈에 잘 띄지 않고, 화재와 같은 대형 인명사고가 없었으며, 상태가 괜찮은 반지하들도 꽤 있었기 때문이다.</p> 
+							<p>반지하는 옥탑방, 고시원과 함께 한국 사회의 열악한 주거환경을 대표한다. 햇볕이 들지 않아 집 안은 한낮에도 어두컴컴하다. 습기로 벽지는 얼룩지고 눅눅한 곰팡내가 나는데도 행여 지나가는 행인이 들여다볼까 창문조차 열지 못한다.</p>
+							<p>반지하는 영화 &lt;기생충&gt;이 화제가 되기 전까지 사회적 관심을 받지 못했던 주거공간이다. 반지하와 함께 ‘지·옥·고’로 묶이는 옥탑방이나 고시원보다 주거환경 개선 노력이 더뎠다. 지상에 있는 옥탑방과 고시원의 열악함은 눈에 쉽게 보이지만, 반지하는 직접 들어가보지 않고는 문제점을 찾기 어렵기 때문이다.</p>
+							<p>반지하는 1970년대 방공호로 시작했다. 남북 분단으로 언제 전쟁이 발발할지 모르니 대피소로 활용하기 위해 지하 주거층을 허용했던 것이다. 급격한 도시화는 반지하를 무분별하게 확산하는 촉매가 됐다. 주택 공급이 부족하자 공동주택에도 지하 1층을 주거용으로 허용하는 등 건축규제를 완화하면서 열악한 지하 주거공간이 40년 넘게 묵인돼 온 것이다.</p>
 							<p>반지하는 아이를 키우는 빈곤 가구가 선택할 수 있는 최후의 보루이기도 하다. 지상보다 저렴한 가격으로 넓은 주거면적을 찾아 ‘밑으로’ 내려가는 것이다.</p>
-							<p>본지는 한국도시연구소에 의뢰해 ‘전국 반지하 거주 현황’을 살펴봤다. 우리 주변에는 얼마나 많은 현실판 기택네가 살고 있을까</p>
+							<p>본지는 한국도시연구소에 의뢰해 ‘전국 반지하 거주 현황’을 살펴봤다. 2월 19일 한국도시연구소가 분석한 ‘전국 반지하 거주 현황’을 보면 전국적으로 옥탑방은 5만3832가구(9만6365명), 고시원은 15만1553가구로 집계됐는데, 반지하는 36만3896가구(68만8999명)로, 옥탑방보다는 7배 이상 많다.</p>
+							<p>우리 주변에는 얼마나 많은 현실판 기택네가 살고 있을까.</p>
 						</div>
 					</div>
 					
@@ -182,7 +185,9 @@
 							<p class="subtitle">우리 동네에는 반지하가 얼마나 있나</p>
 						</div>
 						<div class="searcher-holder">
-							<p class="des-text">거주지역을 입력하시면 해당 지역의 반지하 거주 현황을 알려드립니다.</p>
+							<p class="des-text">거주지역을 입력하시면<br/>해당 지역의 반지하 거주 현황을 알려드립니다.</p>
+							
+							<!--
 							<div class="search-panel-wrapper">
 								<div class="search-panel">
 									<select id="search-01" name="wide-area" class="srch_opt">											
@@ -190,11 +195,32 @@
 									</select>
 								</div>
 								<div class="search-panel">
-									<select id="search-02" name="basic-area" class="srch_opt">
+									<select id="search-02" name="basic-area" class="srch_opt search-btn-block">
 										<option value="선택"> 선택 </option>
 									</select>
 								</div>
-							</div>								
+							</div>	-->
+
+							<div class="search-panel-wrapper search-panel-deep">
+								<div class="search-panel">
+									<select id="search-01" name="wide-area" class="srch_opt">											
+										<option value="서울특별시">서울특별시</option><option value="부산광역시">부산광역시</option><option value="대구광역시">대구광역시</option><option value="인천광역시">인천광역시</option><option value="광주광역시">광주광역시</option><option value="대전광역시">대전광역시</option><option value="울산광역시">울산광역시</option><option value="경기도">경기도</option><option value="강원도">강원도</option><option value="충청북도">충청북도</option><option value="충청남도">충청남도</option><option value="전라북도">전라북도</option><option value="전라남도">전라남도</option><option value="경상북도">경상북도</option><option value="경상남도">경상남도</option><option value="제주도">제주특별자치도</option>
+									</select>
+								</div>
+								<div class="search-panel">
+									<select id="search-02" name="basic-area" class="srch_opt search-btn-block">
+										<option value="선택"> 선택 </option>
+									</select>
+								</div>
+								<div class="search-panel">
+									<select id="search-03" name="dong-area" class="srch_opt search-btn-block">
+										<option value="선택"> 선택 </option>
+									</select>
+								</div>
+							</div>	
+
+						<!-- 	<p class="info">※목록에 없는 12개 지자체(강원도 양구군·충청북도	증평군·충청북도 진천군·전라북도 정읍시·전라북도	임실군·전라북도 김제시·전라남도 강진군·전라남도 보성군·전라남도 해남군·경상북도 영양군·경상북도 청도군·경상북도 청송군)는 15년도 조사당시 반지하 거주 가구가 없는 지역입니다.</p> -->
+							<p class="info">※ 데이터: 도시인구총조사, 2010년. 조사한 목록에 없는 읍·면·동은 조사 당시 반지하 거주 가구가 없는 지역입니다.</p> 
 						</div>
 						
 						<div class="search-result">
@@ -210,11 +236,20 @@
 							</div>
 							<div class="search-result-box">
 								<div class="search-result-wrap">
-									<div class="result-text">
-										<p><span class="normal" id="SELECT_CITY_NANME">경기도 고양시</span>를 선택하셨습니다.</p>
+									<div class="result-text-before">
+										<p>지역을 선택해주세요</p>
+									</div>
+									<!--<div class="result-text">
+										<p><span class="normal" id="SELECT_CITY_NAME">경기도 고양시</span>를 선택하셨습니다.</p>
 										<p>이 지역에는 <span class="normal" id="SELECT_HOUSE_NUMBER">351495 가구</span>, 총 <span class="normal" id="SELECT_POP">954,696명</span>이 살고 있습니다.</p>
 										<p>그 중 반지하에 사는 이웃은 <span class="strong" id="SELECT_UNDERHOUSE_NUMBER">6,279가구</span><span class="strong" id="SELECT_UNDER_POP">(11,533명)</span>입니다.</p>
-										<p>이는 전체 가구의 <span class="strong" id="SELECT_UNDERHOUSE_RATIO">1.8%</span>에 해당하는 비율입니다.</p>
+										<p>이는 이 지역 전체 가구의 <span class="strong" id="SELECT_UNDERHOUSE_RATIO">1.8%</span>에 해당하는 비율입니다.</p>
+									</div>-->
+									<div class="result-text">
+										<p><span class="normal" id="SELECT_CITY_NAME">경기도 고양시</span>를 선택하셨습니다.</p>
+										<p>이 지역에는 <span class="normal" id="SELECT_HOUSE_NUMBER">351495 가구</span>가살고 있습니다.</p>
+										<p>그 중 반지하에 사는 이웃은 <span class="strong" id="SELECT_UNDERHOUSE_NUMBER">6,279가구</span>입니다.</p>
+										<p>이는 이 지역 전체 가구의 <span class="strong" id="SELECT_UNDERHOUSE_RATIO">1.8%</span>에 해당하는 비율입니다.</p>
 									</div>
 								</div>
 							</div>
@@ -236,7 +271,14 @@
 						<div class="para-holder">
 							<p>전국으로 보면 36만 가구, 68만 8천명<span class="semi">(2015년, 한국도시연구소)</span>이 반지하에 거주하고 있다. 지자체별 반지하 거주 현황 그래프는 다음과 같다.</p>
 						</div>
+
 						<div class="all-city-household-chart">
+							<div class="btn-holder" id="POLE_CHART_SWIFT">
+								<ul>
+									<li data-chart-type="all_city" class="on">지자체 전체</li>
+									<li data-chart-type="only_centre">수도권(서울·경기·인천)</li>
+								</ul>
+							</div>
 							<div id="ALL_CITY_HOUSE_POLE">
 								<svg>
 									<defs>
@@ -246,6 +288,10 @@
 										</linearGradient>
 									</defs>
 								</svg>
+							</div>
+							<div class="graph-des">※ 막대그래프에 마우스를 올리면 지자체별 상세정보를 보실 수 있습니다.<br/>숫자(%)는 반지하 가구 비율.</div>
+							<div class="pole-legend">
+								<p><span class="block-yellow"></span><span class="txt">반지하가구</span><span class="block-orange"></span><span class="txt">반지하 1인가구</span></p>
 							</div>
 							<div class="tooltip">
 								<div class="tooltip-con">
@@ -259,47 +305,68 @@
 						</div>
 
 						<div class="para-holder">
-							<p>전국 반지하 가구의 대부분인 <b>95.8%<span class="semi">(34만8782가구)</span>가 수도권</b>에 밀집돼 있다. 이 중 서울이 22만8467가구로 전체의 62.8%를 차지한다. 경기 지역은 9만9291가구, 인천은 2만1024가구가 반지하 거주 가구로 집계됐다.</p>
+							<p>전국 <b>반지하 가구의 대부분인 95.8%<span class="semi">(34만8782가구)</span>가 수도권</b>에 밀집돼 있다. 이 중 서울이 22만8467가구로 전체의 62.8%를 차지한다. 경기 지역은 9만9291가구, 인천은 2만1024가구가 반지하 거주 가구로 집계됐다.</p>
 							<p>가구가 아닌 인구 수 개념으로 따지면 전국에서는 68만8999명, 서울에서만 <b>42만6919명</b>이 반지하에 살고 있다.</p>
 							<p>전국 229개 지자체별로 보면  <b>경기 성남시가 2만5683가구로 반지하 거주 가구 수가 가장 많았다.</b> 이어 서울 관악구<span class="semi">(1만9121가구)</span>, 중랑구<span class="semi">(1만7839가구)</span>, 광진구<span class="semi">(1만5630가구)</span> 등의 순으로 반지하에 사는 가구 수가 많았다.</p>	
-							<p>비율로 따져보면 서울 중랑구가 11.3%로 가장 높았다. 사실상 주민 100명 중 11명이 반지하에 산다는 의미다. 이어 서울 광진구(10.6%), 경기 과천시(10.0%), 서울 강북구(9.5%)와 관악구(8.4%) 등도 반지하 거주 비율이 높았다.</p>
+							<p><b>비율로 따져보면 서울 중랑구가 11.3%로 가장 높았다.</b> 사실상 주민 100명 중 11명이 반지하에 산다는 의미다. 이어 서울 광진구<span class="semi">(10.6%)</span>, 경기 과천시<span class="semi">(10.0%)</span>, 서울 강북구<span class="semi">(9.5%)</span>와 관악구<span class="semi">(8.4%)</span> 등도 반지하 거주 비율이 높았다.</p>
+						</div>
+
+						<div class="interviewee-holder">
+							<div class="interview-text">
+								<p>“데이터를 보면 반지하는 옥탑이나 고시원에 비해 특히 수도권에 집중되어 있다. 지방에서는 조금만 여유가 있어도 거기까지는 안 사는 것. 높은 주거비와 연계가 되는 것이다. 수도권에서는 도시 빈곤층이 살 수 있는 주택이 반지하밖에 없다는 의미.”</p>
+								<p></p>
+								<p class="name">- 한국도시연구소 최은영 소장</p>
+							</div>
+						
 						</div>
 					</div>
 
 
 						
-					<div class="each-sec all-city-area">
+					<div class="each-sec seoul-map">
 						<div class="sec-title">
 							<p class="numb">3</p>
 							<p class="title">반지하 지도</p>
 							<p class="subtitle">100가구 중 6가구 반지하 사는 수도권<br/>반지하는 어떤 지역에 많을까</p>
 						</div>
-					</div>
+	
+						<div class="para-holder">
+							<p>서울시 지도에 반지하 가구 비율을 구별로 표시해봤다. 이후 관련 요인들을 확인해보았다.</p>
+						</div>
+	
+						<div class="btn-holder">
+							<ul>
+								<li data-map-type="under-house">반지하가구 비율(기본)</li>
+								<li data-map-type="low-income">기초생활수급가구 비율</li>
+								<li data-map-type="single-parents">한부모가정 비율</li>
+								<li data-map-type="old-low-income">저소득노인 비율</li>
+							</ul>
+						</div>
 
-					<div class="btn-holder">
-						<ul>
-							<li data-map-type="under-house">반지하가구 비율(기본)</li>
-							<li data-map-type="low-income">기초생활수급가구 비율</li>
-							<li data-map-type="single-parents">한부모가정 비율</li>
-							<li data-map-type="old-low-income">저소득노인 비율</li>
-						</ul>
-					</div>
-					<div id="chart">
-						<div class="back-map"><img src="img/seoul-map-back2.png" alt=""></div>
-						<svg id="SEOUL_MAP">
+						<div id="chart">
+							<div class="back-map"><img src="img/seoul-map-back2.png" alt=""></div>
+							<svg id="SEOUL_MAP">
+								
+							</svg>
+						</div>
 
-						</svg>
-					</div>
-		
-					<div class="para-holder">
-						<p>서울시 지도에 지하 가구 비율 색으로 1차 표시, 다른 요인들을 서울 구별 지도에 뿌려봤다. </p>
-						<p>기초생활수급비율 높은 강북구, 중랑구, 은평구, 금천구 등의 지역(지도에서 색이 진한 지역)은 반지하 가구 비율도 높다.</p>
-					</div>
+						<div class="para-holder">
+							<p>2월 19일 한국도시연구소가 분석한 ‘전국 반지하 거주 현황’을 토대로 </p>
+							<p>기초생활수급비율 높은 강북구, 중랑구, 은평구, 금천구 등의 지역(지도에서 색이 진한 지역)은 반지하 가구 비율도 높다.</p>
+						</div>
 
-
+					</div>
 				</div>
 
 
+				<div class="each-sec interview">
+					<div class="sec-title">
+						<p class="numb">4</p>
+						<p class="title">르포</p>
+						<p class="subtitle">누가 들어오면 곰팡이 냄새가 난다고 하더라</p>
+					</div>
+				</div>
+<!--
 					<div class="stackArea">
 						<svg id="STACK_AREA_CHART"></svg>
 
@@ -331,7 +398,7 @@
 						<svg id="ICON_SVG">
 							
 						</svg>
-					</div>
+					</div>-->
 
 
 				<!-- 하단 공통영역 (S) -->
@@ -340,7 +407,7 @@
 						<ul class="wrap-psrelative">
 							<div class="team-wrap">
 								<li class="team">뉴콘텐츠팀</li>
-								<li><a href="http://news.khan.co.kr/reporter_article.html?id=74" target="_blank">황경상 기자 yellowpig@khan.kr</a></li>
+								<li><a href="http://news.khan.co.kr/reporter_article.html?id=155" target="_blank">이성희 기자 mong2@kyunghyang.com</a></li>
 								<li><a href="http://news.khan.co.kr/reporter_article.html?id=302" target="_blank">김유진 디자이너 yjdigital@khan.kr</a></li>
 							</div>
 						</ul>
@@ -493,7 +560,7 @@
 	<script type="text/javascript" src="<?php echo $seoulData; ?>"></script>
 	<script type="text/javascript" src="<?php echo $allCityData; ?>"></script>
 	<script type="text/javascript" src="<?php echo $personPath; ?>"></script>
-
+	<script type="text/javascript" src="<?php echo $allDongData; ?>"></script>
 
   </body>
 </html> 
