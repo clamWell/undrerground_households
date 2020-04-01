@@ -693,7 +693,7 @@ $(function(){
 			height= 300,
 			margin= 10;
 		var data = dataObj;
-		var dataNumb = Number(data["pop"])/100;
+		var dataNumb = Number(data["house"])/20;
 		var underNumb =  (dataNumb*data["under_house_ratio"])/100;
 		var path = person_path;
 		var icon_width = 10,
@@ -783,9 +783,20 @@ $(function(){
 	g_Srch.appendOpt = function(geo){
 		$S.find("option").remove();
 		var S_sido = geo;
-		for (i=0; i<all_city_data.length;i++ ){
-			if( all_city_data[i]["geoWide"] == S_sido ){
-				$S.append("<option value='" +  all_city_data[i]["geo"] + "'>" +  all_city_data[i]["geo"] + "</option>");
+		var temp;
+		for (i=0; i<all_dong_data.length;i++ ){
+			if( all_dong_data[i]["geoWide"] == S_sido ){
+				if(i!==0){
+					if(temp == all_dong_data[i]["geo"]){
+
+					}else if(temp !== all_dong_data[i]["geo"]){
+						$S.append("<option value='" +  all_dong_data[i]["geo"] + "'>" +  all_dong_data[i]["geo"] + "</option>");
+						temp = all_dong_data[i]["geo"];
+					}
+				}else if(i==0){
+					$S.append("<option value='" +  all_dong_data[i]["geo"] + "'>" +  all_dong_data[i]["geo"] + "</option>");
+					temp = all_dong_data[i]["geo"];
+				}
 			}					
 		}
 		$S.removeClass("search-btn-block");
@@ -830,21 +841,16 @@ $(function(){
 
 	g_Srch.fillResult = function (geo1, geo2, geo3){
 		var userSelectG;
-		for (i=0; i<all_city_data.length;i++ ){
-			if( all_city_data[i]["geoWide"] == geo1 && all_city_data[i]["geo"] == geo2){
-				userSelectG = all_city_data[i];
+		for (i=0; i<all_dong_data.length;i++ ){
+			if( all_dong_data[i]["geoWide"] == geo1 && all_dong_data[i]["geo"] == geo2 && all_dong_data[i]["geoD"] == geo3 ){
+				userSelectG = all_dong_data[i];
 				break;
 			}					
 		}
-		if(geo1 == "세종시"){
-			$("#SELECT_CITY_NAME").html("세종특별시");
-		}else{
-			$("#SELECT_CITY_NAME").html(userSelectG["geoWide"]+" "+userSelectG["geo"]);
-		}
+		$("#SELECT_CITY_NAME").html(userSelectG["geoWide"]+" "+userSelectG["geo"]+" "+userSelectG["geoD"]);
+
 		$("#SELECT_HOUSE_NUMBER").html(userSelectG["house"]+" 가구");
-		$("#SELECT_POP").html(userSelectG["pop"]+" 명");
 		$("#SELECT_UNDERHOUSE_NUMBER").html(userSelectG["under_house"]+" 가구");
-		$("#SELECT_UNDER_POP").html("("+userSelectG["under_pop"]+"명)");
 		$("#SELECT_UNDERHOUSE_RATIO").html(userSelectG["under_house_ratio"]+"%");
 		$(".result-text-before").hide();
 		$(".result-text").slideDown();
@@ -888,7 +894,8 @@ $(function(){
 			return;
 		}else {
 			g_Srch.selectDong = $(this).val();
-		}					
+		}
+		console.log(g_Srch.selectGeoWide, g_Srch.selectBase, g_Srch.selectDong);
 		g_Srch.fillResult(g_Srch.selectGeoWide, g_Srch.selectBase, g_Srch.selectDong);
 	});
 
