@@ -2,7 +2,7 @@ $(function(){
 	var ieTest = false,
 		screenWidth = $(window).width(),
 		screenHeight = $(window).height(),
-		imgURL = "http://img.khan.co.kr/spko/storytelling/2019/running/",
+		imgURL = "http://img.khan.co.kr/spko/storytelling/2020/underground/",
 		isMobile = screenWidth <= 800 && true || false,
 		isNotebook = (screenWidth <= 1300 && screenHeight < 750) && true || false,
 		isMobileLandscape = ( screenWidth > 400 && screenWidth <= 800 && screenHeight < 450 ) && true || false;
@@ -18,12 +18,13 @@ $(function(){
 		var nowScroll = $(window).scrollTop();
 
 	});
+	var map_geo_label;
 
 	function makeMapOverlay(){
 		var width = 1000,
 			height = 700;
 
-		var svg = d3.select("#chart").select("svg")
+		var svg = d3.select(".map-holder").select("svg")
 					.attr("width", width)
 					.attr("height", height);
 
@@ -35,7 +36,8 @@ $(function(){
 		  .append("path")
 			.attr("d", 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
 			.attr("stroke", "#cf3a00")
-			.attr("stroke-width", 1);
+			//.attr("stroke", "#111")
+			.attr("stroke-width", 2);
 
 		var def_pattern = svg.append("pattern")
 			.attr("id", "diagonalHatch2")
@@ -60,12 +62,12 @@ $(function(){
 		var map = svg.append("g").attr("id", "map"),
 			places = svg.append("g").attr("id", "places");
 
-		var map_under_house_ratio = map.append("g").attr("id", "UNDER_HOUSE_RATIO");
-		var map_low_income_ratio = map.append("g").attr("id", "LOW_INCOME_RATIO");
-		var map_old_ratio = map.append("g").attr("id", "OLD_RATIO");
-		var map_single_parent_house_ratio = map.append("g").attr("id", "SINGLE_PARENT_RATIO");
+		var map_under_house_ratio = map.append("g").attr("id", "UNDER_HOUSE_RATIO").attr("class","map--layer");
+		var map_low_income_ratio = map.append("g").attr("id", "LOW_INCOME_RATIO").attr("class","map--layer");
+		var map_old_ratio = map.append("g").attr("id", "OLD_RATIO").attr("class","map--layer");
+		var map_single_parent_house_ratio = map.append("g").attr("id", "SINGLE_PARENT_RATIO").attr("class","map--layer");
 		var map_basic_geo = map.append("g").attr("id", "GEO");
-		var map_geo_label = map.append("g").attr("id", "GEO_LABEL");
+		map_geo_label = map.append("g").attr("id", "GEO_LABEL");
 
 		var projection = d3.geo.mercator()
 			.center([126.9895, 37.5651])
@@ -104,16 +106,34 @@ $(function(){
 			var colorFn = d3.scale.category10();
 
 			var color_under_house = d3.scale.linear().domain([2.2, 11.3])
-						  .range(["rgba(255,130,38,0.05)", "rgba(255,130,38,0.8)"]);
-
-			var color_old = d3.scale.linear().domain([0.2, 1.23])
-						  .range(["rgba(255,62,38,0.05)", "rgba(255,62,38,0.4)"]);
+					  .range(["rgba(255,130,38,0.05)", "rgba(255,130,38,0.5)"]);
+			/*function color_under_house(v){
+				if(v<=6){
+					if(2<v<=3){
+						return "rgba(255,130,38,0.05)";
+					}else if(3<v<=4){
+						return "rgba(255,130,38,0.1)";
+					}else if(4<v<=6){
+						return "rgba(255,130,38,0.15)";
+					}
+				}else if(v>6){
+					if(6<v<=8){
+						return "rgba(255,130,38,0.3)";
+					}else if(8<v<=10){
+						return "rgba(255,130,38,0.5)";
+					}else if(10<v){
+						return "rgba(255,130,38,0.7)";
+					}
+				}
+			}*/
+			var color_old = d3.scale.linear().domain([8.53, 29.28])
+						  .range(["rgba(255,62,38,0.01)", "rgba(255,62,38,0.5)"]);
 
 			var color_single_parents = d3.scale.linear().domain([0.39, 1.72])
 						  .range(["rgba(255,38,64,0.05)", "rgba(255,38,64,0.4)"]);
 			
 			var opacity_low_income =  d3.scale.linear().domain([2.32, 8.85]).range(["0.1", "1.0"]);
-			var opacity_single_parents =  d3.scale.linear().domain([0.39, 1.72]).range(["0.1", "1.0"]);
+			var opacity_single_parents =  d3.scale.linear().domain([0.39, 1.72]).range(["0.1", "0.7"]);
 
 			map_under_house_ratio.selectAll("path")
 				.data(features)
@@ -137,22 +157,26 @@ $(function(){
 				})
 				.style("stroke-opacity", function(d){
 					var value = d.properties["low_income_house_ratio"];
-					return opacity_low_income(value);
-				})
+					if(value<5.3){
+						return "0.2";
+					}else if(value>=5.3){
+						return "1";
+					}
+					//return opacity_low_income(value);
+				}).style("stroke-width","2");
 
 			 map_single_parent_house_ratio.selectAll("path")
 				.data(features)
 				.enter().append("path")
 				.attr("class", function(d) { console.log(); return "geo geo-single-parent c-" + d.properties.SIG_CD })
 				.attr("d", path)
-				 .style("fill", function(d){
+			/*	.style("fill", function(d){
 					var value = d.properties["single_parent_house_ratio"];
 					return color_single_parents(value);
 				}).style("stroke-opacity", function(d){
 					var value = d.properties["single_parent_house_ratio"];
 					return color_single_parents(value);
-				})
-				 /*
+				})*/
 				.style("fill", "url(#diagonalHatch)")
 				.style("fill-opacity", function(d){
 					var value = d.properties["single_parent_house_ratio"];
@@ -160,8 +184,13 @@ $(function(){
 				})
 				.style("stroke-opacity", function(d){
 					var value = d.properties["single_parent_house_ratio"];
-					return opacity_single_parents(value);
-				})*/
+					if(value<0.9){
+						return "0.1";
+					}else if(value>=0.9){
+						return "1";
+					}
+					//return opacity_low_income(value);
+				}).style("stroke-width","2").style("stroke","#cf3a00")
 
 			 map_old_ratio.selectAll("path")
 				.data(features)
@@ -410,6 +439,9 @@ $(function(){
 	}
 	makeStackedAreaChart();
 
+
+	/******** 막대그래프 ********/
+
 	var poleWidth, poleWidthC, poleHeight, poleMargin;
 
 	function makePoleChart(){
@@ -588,6 +620,7 @@ $(function(){
 	function swiftingPoleChart(t){
 		var swiftType = t; 
 		if(t=="all_city"){
+			$("#POLE_CHART_SWIFT .click-animation").fadeIn();
 			d3.selectAll(".pole").transition()
 			  .duration(500).style("display",null).style("opacity","1").attr("width", poleWidth);
 			d3.selectAll(".pole-g").transition()
@@ -596,6 +629,7 @@ $(function(){
 			d3.selectAll(".pole-label").style("display", "none");
 
 		}else if(t=="only_centre"){
+			$("#POLE_CHART_SWIFT .click-animation").hide();
 
 			d3.selectAll(".pole").filter(function(d){ 
 				return !( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"));
@@ -633,7 +667,10 @@ $(function(){
 		swiftingPoleChart(type);
 	});
 	
+	/******** 막대그래프 ********/
 
+
+	/******** 검색영역 아이콘  ********/
 	var randomRange = function(n1, n2) {
 		return Math.floor((Math.random() * (n2 - n1 + 1)) + n1);
 	};
@@ -754,7 +791,9 @@ $(function(){
 	function removeIcon(){
 		d3.select("#ICON_SPREADING_HOLDER").select(".icon_holder").remove();
 	}	
+	/******** 검색영역 아이콘  ********/
 
+	/******** 검색영역 검색기  ********/
 	var $S = $("#search-02"),
 		$S_W = $("#search-01"),
 		$S_D = $("#search-03"),
@@ -899,6 +938,8 @@ $(function(){
 		g_Srch.fillResult(g_Srch.selectGeoWide, g_Srch.selectBase, g_Srch.selectDong);
 	});
 
+	/******** 검색영역 검색기  ********/
+
 
 	$(".loading-page").fadeOut(200, function(){
 		$introItem = $(".intro-fadeTo");
@@ -908,6 +949,142 @@ $(function(){
 		
 	});
 
+
+	var nowScroll;
+	var mapPos = "before";
+	$(".map-fixed-slider .fixed-el").css({"padding-top": ((screenHeight-$(".map-holder").height())/2) +"px"});
+	$(window).scroll(function(){
+		var nowScroll = $(window).scrollTop();
+		var nowScrollWithCon = nowScroll+screenHeight*0.6;
+		var endPoint = $(".map-fixed-slider").offset().top + $(".map-fixed-slider").height()-screenHeight;
+
+		if( nowScroll >= $(".map-fixed-slider").offset().top && nowScroll < endPoint ){
+			if(mapPos !== "on"){
+				mapPos = "on";
+				console.log("맵영역");
+				$(".fixed-el").addClass("fixed-el-fixed");
+				$(".fixed-el").removeClass("fixed-el-bottom");
+			}
+
+		}else if( nowScroll < $(".map-fixed-slider").offset().top ){
+			if(mapPos !== "before"){
+				mapPos = "before";
+				console.log("맵영역이전");
+				$(".fixed-el").removeClass("fixed-el-fixed");
+				$(".fixed-el").removeClass("fixed-el-bottom");
+				$(".map--layer").hide();
+
+			}
+		}else if( nowScroll >= endPoint){
+			if(mapPos !== "after"){
+				mapPos = "after";
+				console.log("맵영역이후");
+				$(".fixed-el").removeClass("fixed-el-fixed");
+				$(".fixed-el").addClass("fixed-el-bottom");
+			}
+		}
+		checkMapStage(nowScroll);
+	
+	
+	});
+
+	// check map stage
+	var mapStage;
+	function adjustStage(g){
+		if( mapStage == g){
+		}else if( mapStage !==g ){
+			mapStage = g;
+			drawMapByStage(mapStage);
+			console.log(mapStage);
+		}
+	};
+	
+	function drawMapByStage(n){
+		switch(n){
+			case 0:
+				$(".map--layer").fadeOut();
+				map_geo_label.selectAll("text").style("opacity","1");
+				break;
+			case 1:
+				$(".map--layer").hide();
+				$("#OLD_RATIO").fadeIn();
+				map_geo_label.selectAll("text").style("opacity","1");
+				//$("#UNDER_HOUSE_RATIO").fadeIn();
+				break;
+			case 2:
+				$(".map--layer").hide();
+				$("#SINGLE_PARENT_RATIO").fadeIn();
+				map_geo_label.selectAll("text").style("opacity","1");
+				//$("#UNDER_HOUSE_RATIO").show();
+			//	$("#LOW_INCOME_RATIO").fadeIn();
+				break;
+			case 3:
+				$(".map--layer").hide();
+				$("#SINGLE_PARENT_RATIO").show();
+				$("#OLD_RATIO").fadeIn();
+				map_geo_label.selectAll("text").style("opacity","0");
+				map_geo_label.selectAll("text")
+					.filter(function(d){ 
+						var k = d.properties.SIG_KOR_NM;
+						return (k =="강북구"||k =="중랑구"||k =="금천구"||k =="노원구"||k =="은평구"||k =="강서구"||k =="양천구"||k =="광진구");
+					}).style("opacity", "1");
+	
+				break;
+
+			case 4:
+				map_geo_label.selectAll("text").style("opacity","0");
+				map_geo_label.selectAll("text")
+					.filter(function(d){ 
+						var k = d.properties.SIG_KOR_NM;
+						return (k =="강북구"||k =="중랑구"||k =="광진구");
+					}).style("opacity", "1");
+				map_geo_label.selectAll("text")
+					.filter(function(d){ 
+						var k = d.properties.SIG_KOR_NM;
+						return (k =="강동구"||k =="관악구"||k =="금천구"||k =="은평구"||k =="양천구");
+					}).style("opacity", "0.8");
+				map_geo_label.selectAll("text")
+					.filter(function(d){ 
+						var k = d.properties.SIG_KOR_NM;
+						return (k =="노원구"||k =="강서구");
+					}).style("opacity", "0.3");
+				$(".map--layer").hide();
+				$("#UNDER_HOUSE_RATIO").fadeIn();
+				break;
+			case 5:
+				map_geo_label.selectAll("text").style("opacity","0");
+				map_geo_label.selectAll("text")
+					.filter(function(d){ 
+						var k = d.properties.SIG_KOR_NM;
+						return (k =="강남구"||k =="서초구"||k =="송파구");
+					}).style("opacity", "1");
+				$(".map--layer").hide();
+				$("#UNDER_HOUSE_RATIO").show();
+				break;
+			case 6:
+				map_geo_label.selectAll("text").style("opacity","1");
+				$(".map--layer").hide();
+				$("#UNDER_HOUSE_RATIO").show();
+				break;
+		}	
+	}
+
+	function checkMapStage(n){
+		var $StagePoint = $(".map-stage");
+		var n = n+screenHeight*0.7;
+		if( n < $StagePoint.eq(0).offset().top){ 
+			adjustStage(0);
+		}else if( n >= $StagePoint.eq($StagePoint.length-1).offset().top ){
+			adjustStage($StagePoint.length);
+		}else if( n >= $StagePoint.eq(0).offset().top && n < $StagePoint.eq($StagePoint.length-1).offset().top){
+			for(s=0;s<$StagePoint.length-1;s++){
+				if( n >= $StagePoint.eq(s).offset().top && n <$StagePoint.eq(s+1).offset().top){
+					adjustStage(s+1);
+				}
+			}
+		}
+	}
+	// check map stage
 
 
 });
