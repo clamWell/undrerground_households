@@ -18,261 +18,6 @@ $(function(){
 		var nowScroll = $(window).scrollTop();
 
 	});
-	var map_geo_label;
-
-	function makeMapOverlay(){
-		var width = 1000,
-			height = 700;
-
-		var svg = d3.select(".map-holder").select("svg")
-					.attr("width", width)
-					.attr("height", height);
-
-		var def_stripe = svg.append("pattern")
-			.attr("id", "diagonalHatch")
-			.attr("patternUnits", "userSpaceOnUse")
-			.attr("width", 4)
-			.attr("height", 4)
-		  .append("path")
-			.attr("d", 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
-			.attr("stroke", "#cf3a00")
-			//.attr("stroke", "#111")
-			.attr("stroke-width", 2);
-
-		var def_pattern = svg.append("pattern")
-			.attr("id", "diagonalHatch2")
-			.attr("patternUnits", "userSpaceOnUse")
-			.attr("width", 6)
-			.attr("height", 6)
-		  .append("path")
-			.attr("d", 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
-			.attr("stroke", "#cf3a00")
-			.attr("stroke-width", 2);
-
-		var def_triangle = svg.append("pattern")
-			.attr("id", "triangle")
-			.attr("patternUnits", "userSpaceOnUse")
-			.attr("width", 6)
-			.attr("height", 6)
-		  .append("path")
-			.attr("d", "M5,0 10,10 0,10 Z")
-			.attr("fill", "#cf3a00")
-
-
-		var map = svg.append("g").attr("id", "map"),
-			places = svg.append("g").attr("id", "places");
-
-		var map_under_house_ratio = map.append("g").attr("id", "UNDER_HOUSE_RATIO").attr("class","map--layer");
-		var map_low_income_ratio = map.append("g").attr("id", "LOW_INCOME_RATIO").attr("class","map--layer");
-		var map_old_ratio = map.append("g").attr("id", "OLD_RATIO").attr("class","map--layer");
-		var map_single_parent_house_ratio = map.append("g").attr("id", "SINGLE_PARENT_RATIO").attr("class","map--layer");
-		var map_basic_geo = map.append("g").attr("id", "GEO");
-		map_geo_label = map.append("g").attr("id", "GEO_LABEL");
-
-		var projection = d3.geo.mercator()
-			.center([126.9895, 37.5651])
-			.scale(100000)
-			.translate([width/2, height/2]);
-
-		var path = d3.geo.path().projection(projection);
-		 
-		d3.json("js/seoul_municipalities_topo_simple.json", function(error, data) {
-			var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
-			var data = data;
-			
-			for(var i=0 ; i< seoul_basic.length; i++) { 
-				for(var m=0 ; m< features.length; m++) { 
-					if( seoul_basic[i]["geo_code"]==features[m].properties.SIG_CD) {
-						features[m].properties["real_price"] = seoul_basic[i]["real_price"];
-						features[m].properties["pop"] = seoul_basic[i]["pop"];
-						features[m].properties["house"] = seoul_basic[i]["house"];
-						features[m].properties["under_house"] = seoul_basic[i]["under_house"];
-						features[m].properties["under_house_ratio"] = seoul_basic[i]["under_house_ratio"];
-						features[m].properties["under_house_single_ratio"] = seoul_basic[i]["under_house_single_ratio"];
-						features[m].properties["old_ratio"] = seoul_basic[i]["old_ratio"];
-						features[m].properties["single_parent_house_ratio"] = seoul_basic[i]["single_parent_house_ratio"];
-						features[m].properties["low_income_house_ratio"] = seoul_basic[i]["low_income_house_ratio"];
-
-					//	console.log( features[m].properties.SIG_KOR_NM +"의 반지하 거주 가구비율은 "+features[m].properties["under_house_ratio"]+"%");
-						break;
-					}			
-				}
-			}
-		
-			/*
-			var colorFn = d3.scaleSequential(d3.interpolateOrRd)
-							.domain([2.2, 11.3]);*/
-			
-			var colorFn = d3.scale.category10();
-
-			var color_under_house = d3.scale.linear().domain([2.2, 11.3])
-					  .range(["rgba(255,130,38,0.05)", "rgba(255,130,38,0.5)"]);
-			/*function color_under_house(v){
-				if(v<=6){
-					if(2<v<=3){
-						return "rgba(255,130,38,0.05)";
-					}else if(3<v<=4){
-						return "rgba(255,130,38,0.1)";
-					}else if(4<v<=6){
-						return "rgba(255,130,38,0.15)";
-					}
-				}else if(v>6){
-					if(6<v<=8){
-						return "rgba(255,130,38,0.3)";
-					}else if(8<v<=10){
-						return "rgba(255,130,38,0.5)";
-					}else if(10<v){
-						return "rgba(255,130,38,0.7)";
-					}
-				}
-			}*/
-			var color_old = d3.scale.linear().domain([8.53, 29.28])
-						  .range(["rgba(255,62,38,0.01)", "rgba(255,62,38,0.5)"]);
-
-			var color_single_parents = d3.scale.linear().domain([0.39, 1.72])
-						  .range(["rgba(255,38,64,0.05)", "rgba(255,38,64,0.4)"]);
-			
-			var opacity_low_income =  d3.scale.linear().domain([2.32, 8.85]).range(["0.1", "1.0"]);
-			var opacity_single_parents =  d3.scale.linear().domain([0.39, 1.72]).range(["0.1", "0.7"]);
-
-			map_under_house_ratio.selectAll("path")
-				.data(features)
-				.enter().append("path")
-				.attr("class", function(d) { console.log(); return "geo geo-under-house c-" + d.properties.SIG_CD })
-				.attr("d", path)
-				.style("fill", function(d){
-					var value = d.properties["under_house_ratio"];
-					return color_under_house(value);
-				})
-
-			 map_low_income_ratio.selectAll("path")
-				.data(features)
-				.enter().append("path")
-				.attr("class", function(d) { console.log(); return "geo geo-low-income c-" + d.properties.SIG_CD })
-				.attr("d", path)
-				.style("fill", "url(#diagonalHatch)")
-				.style("fill-opacity", function(d){
-					var value = d.properties["low_income_house_ratio"];
-					return opacity_low_income(value);
-				})
-				.style("stroke-opacity", function(d){
-					var value = d.properties["low_income_house_ratio"];
-					if(value<5.3){
-						return "0.2";
-					}else if(value>=5.3){
-						return "1";
-					}
-					//return opacity_low_income(value);
-				}).style("stroke-width","2");
-
-			 map_single_parent_house_ratio.selectAll("path")
-				.data(features)
-				.enter().append("path")
-				.attr("class", function(d) { console.log(); return "geo geo-single-parent c-" + d.properties.SIG_CD })
-				.attr("d", path)
-			/*	.style("fill", function(d){
-					var value = d.properties["single_parent_house_ratio"];
-					return color_single_parents(value);
-				}).style("stroke-opacity", function(d){
-					var value = d.properties["single_parent_house_ratio"];
-					return color_single_parents(value);
-				})*/
-				.style("fill", "url(#diagonalHatch)")
-				.style("fill-opacity", function(d){
-					var value = d.properties["single_parent_house_ratio"];
-					return opacity_single_parents(value);
-				})
-				.style("stroke-opacity", function(d){
-					var value = d.properties["single_parent_house_ratio"];
-					if(value<0.9){
-						return "0.1";
-					}else if(value>=0.9){
-						return "1";
-					}
-					//return opacity_low_income(value);
-				}).style("stroke-width","2").style("stroke","#cf3a00")
-
-			 map_old_ratio.selectAll("path")
-				.data(features)
-				.enter().append("path")
-				.attr("class", function(d) { console.log(); return "geo geo-old c-" + d.properties.SIG_CD })
-				.attr("d", path)
-				.style("fill", function(d){
-					var value = d.properties["old_ratio"];
-					return color_old(value);
-				})
-
-			var geoBorder = map_basic_geo.selectAll("path")
-				.data(features)
-				.enter().append("path")
-				.attr("class", function(d) { console.log(); return "geo geo-basic c-" + d.properties.SIG_CD })
-				.attr("d", path)
-			
-			geoBorder.on("mouseover", function(d){
-					d3.select(this)
-						.style("stroke-opacity", "1")
-						.style("stroke-width", 2)
-						.style("stroke-dasharray", 0)
-						.style("stroke-dashoffset", 0)
-					}).on("mouseout", function(d){
-						d3.select(this)
-							.style("stroke-opacity", null)
-							.style("stroke-width", null)
-							.style("stroke-dasharray", null)
-							.style("stroke-dashoffset", null)
-						 
-					})
-
-			map_geo_label.selectAll("text")
-				.data(features)
-				.enter().append("text")
-				.attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })  // centroid 무게중심. path.centroid()는 path의 무게중심을 찾아주는 메소드 
-				.attr("dy", ".35em")
-				.attr("class", "geo-label")
-				.text(function(d) { return d.properties.SIG_KOR_NM})
-		});
-
-	}
-	makeMapOverlay();
-
-	function setMapDefault(){
-		$("#UNDER_HOUSE_RATIO").hide();
-		$("#LOW_INCOME_RATIO").hide();
-		$("#SINGLE_PARENT_RATIO").hide();
-		$("#OLD_RATIO").hide();
-	}
-	setMapDefault();
-
-	$(".seoul-map .btn-holder ul").find("li").on("click", function() {
-		var button_index = $(this).index();
-		var button_type = $(this).attr("data-map-type");
-		var checkOn = $(this).hasClass("on");
-		if (checkOn == true) {
-		  $(this).removeClass("on");
-			if(button_type =="under-house"){
-				$("#UNDER_HOUSE_RATIO").hide();
-			}else if(button_type =="low-income"){
-				$("#LOW_INCOME_RATIO").hide();
-			}else if(button_type =="single-parents"){
-				$("#SINGLE_PARENT_RATIO").hide();
-			}else if(button_type =="old-low-income"){
-				$("#OLD_RATIO").hide();
-			}
-		} else {
-		  $(this).addClass("on");
-			if(button_type =="under-house"){
-				$("#UNDER_HOUSE_RATIO").fadeIn();
-			}else if(button_type =="low-income"){
-				$("#LOW_INCOME_RATIO").fadeIn();
-			}else if(button_type =="single-parents"){
-				$("#SINGLE_PARENT_RATIO").fadeIn();
-			}else if(button_type =="old-low-income"){
-				$("#OLD_RATIO").fadeIn();
-			}
-		}
-	});
-
-
 
 	function makeStackedAreaChart(){
 		var margin = {top: 50, right: 50, bottom: 50, left: 50},
@@ -940,6 +685,472 @@ $(function(){
 
 	/******** 검색영역 검색기  ********/
 
+	
+
+	/********** 가구원수 stacked bar 챠트 ***********/
+	
+	var household_number = [
+	   {
+			"houseType":"반지하가구",
+			"1명":188442,
+			"2명":82762,
+			"3명":49642,
+			"4명":32050,
+			"5명":8707,
+			"6명":1679,
+			"7명 이상":614
+		 },
+		 {
+			"houseType":"옥상가구",
+			"1명":31832,
+			"2명":10112,
+			"3명":5964,
+			"4명":3978,
+			"5명":1330,
+			"6명":457,
+			"7명 이상":159
+		 }
+	];
+
+	function makeStarckedBar(data){
+		var margin = {top: 20,right: 20,bottom: 40,left: 60},
+			width = 600 - margin.left - margin.right,
+			height = 315 - margin.top - margin.bottom,
+			that = this,
+			data = data;
+
+		var x = d3.scale.ordinal().rangeRoundBands([0, width], .3);
+
+		var y = d3.scale.linear().rangeRound([height, 0]);
+
+		var color = d3.scale.category20();
+
+		var xAxis = d3.svg.axis().scale(x).orient("bottom");
+
+		var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".0%"));
+
+		var svg = d3.select("#STACKED_BAR").select("svg")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+		.append("g")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+			.attr("class","stacked-bar-holder")
+
+		color.domain(d3.keys(data[0]).filter(function (key) {
+			return key !== "houseType";
+		}));
+
+
+		data.forEach(function (d) {
+			var y0 = 0;
+			d.number = color.domain().map(function (name) {
+				console.log();
+				return {
+					name: name,
+					y0: y0,
+					y1: y0 += +d[name],
+					amount: d[name]
+				};
+			});
+			d.number.forEach(function (d) {
+				d.y0 /= y0;
+				d.y1 /= y0;
+			});
+			console.log(data);
+		});
+
+		data.sort(function (a, b) {
+			return b.number[0].y1 - a.number[0].y1;
+		});
+
+		x.domain(data.map(function (d) {
+			return d.houseType;
+		}));
+
+		var xAxis = svg.append("g").attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(xAxis)
+			.attr("class", "axis xaxis");
+		var yAxis = svg.append("g").attr("class", "y axis")
+			.call(yAxis)
+			.attr("class", "axis yaxis");
+
+		d3.selectAll(".yaxis g.tick")
+			.filter(function(d){ return d==0.5;})
+			.select("text")
+			.attr("class", "strong");
+
+		var houseTypeNumber = svg.selectAll(".houseType")
+			.data(data).enter()
+			.append("g")
+			.attr("class", "houseType")
+			.attr("transform", function (d) {
+				return "translate(" + x(d.houseType) + ",0)";
+			});
+
+		var eachStackedItem = houseTypeNumber.selectAll("rect")
+			.data(function (d) {
+				return d.number;
+			}).enter()
+			.append("rect")
+			.attr("width", x.rangeBand())
+			.attr("y", function (d) {
+				return y(d.y1);
+			}).attr("height", function (d) {
+				return y(d.y0) - y(d.y1);
+			}).style("fill", function (d) {
+				if(d.name=="1명"){
+					return "#ddd";
+				}else if(d.name=="2명"){
+					return "#b51e00";
+				}else if(d.name=="3명"){
+					return "#fa420b";
+				}else if(d.name=="4명"){
+					return "#ff6c40";
+				}else if(d.name=="5명"){
+					return "#ff8c43";
+				}else if(d.name=="6명"){
+					return "#ffc490";
+				}else if(d.name=="7명 이상"){
+					return "#ffdfc2";
+				}
+				//return color(d.name);
+			});
+		var halfLine = svg.append("line")
+			.attr("class", "half-line")
+			.attr("x1", 0)
+			.attr("y1", 0)
+			.attr("x2", width)
+			.attr("y2", 0)
+			.attr("stroke-width", "0.5")
+			.attr("stroke", "#111")
+			.attr("transform", "translate(0,"+ (height/2) +")");
+
+		var label = houseTypeNumber.selectAll("text")
+			.data(function (d) {
+				return d.number;
+			}).enter()
+			.append("text")
+			.attr("class","stacked-label")
+			.filter(function(d,i){
+				return (i <4);
+			})
+			.text(function(d){
+				return d.name
+			}).attr("transform", function(d){ 
+				return "translate("+(x.rangeBand()/2)+","+(y(d.y1)+15)+")";
+			});
+
+	
+
+
+	/*
+		eachStackedItem.on('mouseover', function (d) {
+				var total_amt;
+				total_amt = d.amount;
+				d3.select(".chart-tip").style('opacity', '1').html('Amount: <strong>$' + that.numberWithCommas(total_amt.toFixed(2)) + '</strong>');
+			}).on('mouseout', function () {
+				d3.select(".chart-tip").style('opacity', '0');
+			});*/
+	
+	}
+	makeStarckedBar(household_number);
+
+
+
+	/********** 가구원수 stacked bar 챠트 ***********/
+
+
+	/***** 서울시 지도 ******/
+
+	var map_geo_label;
+	function makeMapOverlay(){
+		var width = 1000,
+			height = 700;
+
+		var svg = d3.select(".map-holder").select("svg")
+					.attr("width", width)
+					.attr("height", height);
+
+		var def_stripe = svg.append("pattern")
+			.attr("id", "diagonalHatch")
+			.attr("patternUnits", "userSpaceOnUse")
+			.attr("width", 4)
+			.attr("height", 4)
+		  .append("path")
+			.attr("d", 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
+			.attr("stroke", "#cf3a00")
+			//.attr("stroke", "#111")
+			.attr("stroke-width", 2);
+
+		var def_pattern = svg.append("pattern")
+			.attr("id", "diagonalHatch2")
+			.attr("patternUnits", "userSpaceOnUse")
+			.attr("width", 6)
+			.attr("height", 6)
+		  .append("path")
+			.attr("d", 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
+			.attr("stroke", "#cf3a00")
+			.attr("stroke-width", 2);
+
+		var def_triangle = svg.append("pattern")
+			.attr("id", "triangle")
+			.attr("patternUnits", "userSpaceOnUse")
+			.attr("width", 6)
+			.attr("height", 6)
+		  .append("path")
+			.attr("d", "M5,0 10,10 0,10 Z")
+			.attr("fill", "#cf3a00")
+
+
+		var map = svg.append("g").attr("id", "map"),
+			places = svg.append("g").attr("id", "places");
+
+		var map_under_house_ratio = map.append("g").attr("id", "UNDER_HOUSE_RATIO").attr("class","map--layer");
+		var map_low_income_ratio = map.append("g").attr("id", "LOW_INCOME_RATIO").attr("class","map--layer");
+		var map_old_ratio = map.append("g").attr("id", "OLD_RATIO").attr("class","map--layer");
+		var map_single_parent_house_ratio = map.append("g").attr("id", "SINGLE_PARENT_RATIO").attr("class","map--layer");
+		var map_basic_geo = map.append("g").attr("id", "GEO");
+		map_geo_label = map.append("g").attr("id", "GEO_LABEL");
+
+		var projection = d3.geo.mercator()
+			.center([126.9895, 37.5651])
+			.scale(100000)
+			.translate([width/2, height/2]);
+
+		var path = d3.geo.path().projection(projection);
+		 
+		d3.json("js/seoul_municipalities_topo_simple.json", function(error, data) {
+			var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
+			var data = data;
+			
+			for(var i=0 ; i< seoul_basic.length; i++) { 
+				for(var m=0 ; m< features.length; m++) { 
+					if( seoul_basic[i]["geo_code"]==features[m].properties.SIG_CD) {
+						features[m].properties["real_price"] = seoul_basic[i]["real_price"];
+						features[m].properties["pop"] = seoul_basic[i]["pop"];
+						features[m].properties["house"] = seoul_basic[i]["house"];
+						features[m].properties["under_house"] = seoul_basic[i]["under_house"];
+						features[m].properties["under_house_ratio"] = seoul_basic[i]["under_house_ratio"];
+						features[m].properties["under_house_single_ratio"] = seoul_basic[i]["under_house_single_ratio"];
+						features[m].properties["old_ratio"] = seoul_basic[i]["old_ratio"];
+						features[m].properties["single_parent_house_ratio"] = seoul_basic[i]["single_parent_house_ratio"];
+						features[m].properties["low_income_house_ratio"] = seoul_basic[i]["low_income_house_ratio"];
+
+					//	console.log( features[m].properties.SIG_KOR_NM +"의 반지하 거주 가구비율은 "+features[m].properties["under_house_ratio"]+"%");
+						break;
+					}			
+				}
+			}
+		
+			/*
+			var colorFn = d3.scaleSequential(d3.interpolateOrRd)
+							.domain([2.2, 11.3]);*/
+			
+			var colorFn = d3.scale.category10();
+
+			var color_under_house = d3.scale.linear().domain([2.2, 11.3])
+					  .range(["rgba(255,130,38,0.05)", "rgba(255,130,38,0.5)"]);
+			function color_under_house_ratio(v){
+				if(v<=6){
+					if(2<v&&v<=3){
+						return "rgba(255,130,38,0.05)";
+					}else if(3<v&&v<=4){
+						return "rgba(255,130,38,0.1)";
+					}else if(4<v&&v<=6){
+						return "rgba(255,130,38,0.15)";
+					}
+				}else if(v>6){
+					if(6<v&&v<=8){
+						return "rgba(255,130,38,0.3)";
+					}else if(8<v&&v<=10){
+						return "rgba(255,130,38,0.5)";
+					}else if(10<v){
+						return "rgba(255,130,38,0.7)";
+					}
+				}
+			}
+			var color_old = d3.scale.linear().domain([8.53, 29.28])
+						  .range(["rgba(255,62,38,0.01)", "rgba(255,62,38,0.5)"]);
+
+			function color_old_ratio(v){
+				if(v<=18.5){
+					if(v<=12){
+						return "rgba(255,62,38,0.01)";
+					}else if(12<v&&v<=15){
+						return "rgba(255,62,38,0.05)";
+					}else if(15<v&&v<=18.5){
+						return "rgba(255,62,38,0.1)";
+					}
+				}else if(v>18.5){
+					if(18.5<v&&v<=22){
+						return "rgba(255,62,38,0.4)";
+					}else if(22<v&&v<=25){
+						return "rgba(255,62,38,0.5)";
+					}else if(25<v){
+						return "rgba(255,62,38,0.6)";
+					}
+				}
+			}
+
+			var color_single_parents = d3.scale.linear().domain([0.39, 1.72])
+						  .range(["rgba(255,38,64,0.05)", "rgba(255,38,64,0.4)"]);
+			
+			var opacity_low_income =  d3.scale.linear().domain([2.32, 8.85]).range(["0.1", "1.0"]);
+			var opacity_single_parents =  d3.scale.linear().domain([0.39, 1.72]).range(["0.1", "0.7"]);
+
+			map_under_house_ratio.selectAll("path")
+				.data(features)
+				.enter().append("path")
+				.attr("class", function(d) { console.log(); return "geo geo-under-house c-" + d.properties.SIG_CD })
+				.attr("d", path)
+				.style("fill", function(d){
+					var value = d.properties["under_house_ratio"];
+					//return color_under_house(value);
+					return color_under_house_ratio(value);
+				})
+
+			 map_low_income_ratio.selectAll("path")
+				.data(features)
+				.enter().append("path")
+				.attr("class", function(d) { console.log(); return "geo geo-low-income c-" + d.properties.SIG_CD })
+				.attr("d", path)
+				.style("fill", "url(#diagonalHatch)")
+				.style("fill-opacity", function(d){
+					var value = d.properties["low_income_house_ratio"];
+					return opacity_low_income(value);
+				})
+				.style("stroke-opacity", function(d){
+					var value = d.properties["low_income_house_ratio"];
+					if(value<5.3){
+						return "0.2";
+					}else if(value>=5.3){
+						return "1";
+					}
+					//return opacity_low_income(value);
+				}).style("stroke-width","2");
+
+			 map_single_parent_house_ratio.selectAll("path")
+				.data(features)
+				.enter().append("path")
+				.attr("class", function(d) { console.log(); return "geo geo-single-parent c-" + d.properties.SIG_CD })
+				.attr("d", path)
+			/*	.style("fill", function(d){
+					var value = d.properties["single_parent_house_ratio"];
+					return color_single_parents(value);
+				}).style("stroke-opacity", function(d){
+					var value = d.properties["single_parent_house_ratio"];
+					return color_single_parents(value);
+				})*/
+				.style("fill", "url(#diagonalHatch)")
+				.style("fill-opacity", function(d){
+					var value = d.properties["single_parent_house_ratio"];
+					return opacity_single_parents(value);
+				})
+				.style("stroke-opacity", function(d){
+					var value = d.properties["single_parent_house_ratio"];
+					if(value<0.9){
+						return "0.1";
+					}else if(value>=0.9){
+						return "1";
+					}
+					//return opacity_low_income(value);
+				}).style("stroke-width","2").style("stroke","#cf3a00")
+
+			 map_old_ratio.selectAll("path")
+				.data(features)
+				.enter().append("path")
+				.attr("class", function(d) { console.log(); return "geo geo-old c-" + d.properties.SIG_CD })
+				.attr("d", path)
+				.style("fill", function(d){
+					var value = d.properties["old_ratio"];
+					//return color_old(value);
+					return color_old_ratio(value);
+				})
+
+			var geoBorder = map_basic_geo.selectAll("path")
+				.data(features)
+				.enter().append("path")
+				.attr("class", function(d) { console.log(); return "geo geo-basic c-" + d.properties.SIG_CD })
+				.attr("d", path)
+
+			var $map_tooltip = $(".map-holder .tooltip");
+			
+			geoBorder.on("mouseover", function(d){
+					d3.select(this)
+						.style("stroke-opacity", "1")
+						.style("stroke-width", 2)
+						.style("stroke-dasharray", 0)
+						.style("stroke-dashoffset", 0)
+					//console.log(d.properties.SIG_KOR_NM, d.properties["under_house_ratio"]);
+					$map_tooltip.css("display","block");
+					$map_tooltip.find(".tooltip-con .city-name").html(d.properties.SIG_KOR_NM);
+					$map_tooltip.find(".tooltip-con .under-household-ratio .value").html(d.properties["under_house_ratio"]+"%");
+					$map_tooltip.css({"left":(d3.mouse(this)[0])+"px"});
+					$map_tooltip.css({"top": (d3.mouse(this)[1]+10) +"px"});
+
+					}).on("mouseout", function(d){
+						d3.select(this)
+							.style("stroke-opacity", null)
+							.style("stroke-width", null)
+							.style("stroke-dasharray", null)
+							.style("stroke-dashoffset", null)
+						
+						$map_tooltip.css("display","none");
+						 
+					})
+
+			map_geo_label.selectAll("text")
+				.data(features)
+				.enter().append("text")
+				.attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })  // centroid 무게중심. path.centroid()는 path의 무게중심을 찾아주는 메소드 
+				.attr("dy", ".35em")
+				.attr("class", "geo-label")
+				.text(function(d) { return d.properties.SIG_KOR_NM})
+		});
+
+	}
+	makeMapOverlay();
+
+	function setMapDefault(){
+		$("#UNDER_HOUSE_RATIO").hide();
+		$("#LOW_INCOME_RATIO").hide();
+		$("#SINGLE_PARENT_RATIO").hide();
+		$("#OLD_RATIO").hide();
+	}
+	setMapDefault();
+
+	$(".seoul-map .btn-holder ul").find("li").on("click", function() {
+		var button_index = $(this).index();
+		var button_type = $(this).attr("data-map-type");
+		var checkOn = $(this).hasClass("on");
+		if (checkOn == true) {
+		  $(this).removeClass("on");
+			if(button_type =="under-house"){
+				$("#UNDER_HOUSE_RATIO").hide();
+			}else if(button_type =="low-income"){
+				$("#LOW_INCOME_RATIO").hide();
+			}else if(button_type =="single-parents"){
+				$("#SINGLE_PARENT_RATIO").hide();
+			}else if(button_type =="old-low-income"){
+				$("#OLD_RATIO").hide();
+			}
+		} else {
+		  $(this).addClass("on");
+			if(button_type =="under-house"){
+				$("#UNDER_HOUSE_RATIO").fadeIn();
+			}else if(button_type =="low-income"){
+				$("#LOW_INCOME_RATIO").fadeIn();
+			}else if(button_type =="single-parents"){
+				$("#SINGLE_PARENT_RATIO").fadeIn();
+			}else if(button_type =="old-low-income"){
+				$("#OLD_RATIO").fadeIn();
+			}
+		}
+	});
+
+	/***** 서울시 지도 ******/
+
 
 	$(".loading-page").fadeOut(200, function(){
 		$introItem = $(".intro-fadeTo");
@@ -953,6 +1164,7 @@ $(function(){
 	var nowScroll;
 	var mapPos = "before";
 	$(".map-fixed-slider .fixed-el").css({"padding-top": ((screenHeight-$(".map-holder").height())/2) +"px"});
+	$(".map-fixed-slider").css({"height": ($(".map-fixed-slider").height()+screenHeight)+"px"});
 	$(window).scroll(function(){
 		var nowScroll = $(window).scrollTop();
 		var nowScrollWithCon = nowScroll+screenHeight*0.6;
@@ -1009,14 +1221,11 @@ $(function(){
 				$(".map--layer").hide();
 				$("#OLD_RATIO").fadeIn();
 				map_geo_label.selectAll("text").style("opacity","1");
-				//$("#UNDER_HOUSE_RATIO").fadeIn();
 				break;
 			case 2:
 				$(".map--layer").hide();
 				$("#SINGLE_PARENT_RATIO").fadeIn();
 				map_geo_label.selectAll("text").style("opacity","1");
-				//$("#UNDER_HOUSE_RATIO").show();
-			//	$("#LOW_INCOME_RATIO").fadeIn();
 				break;
 			case 3:
 				$(".map--layer").hide();

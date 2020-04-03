@@ -215,8 +215,8 @@ line-height: 1.7; letter-spacing: -0.3px; /* word-break: keep-all; */ }
 .page-title-text { display:none; }
 
 .art-photo {}
-.art-photo .photo-back { position: absolute; }
-.art-photo .photo-back > img {}
+.art-photo .photo-back { position: absolute;width: 100%; }
+.art-photo .photo-back > img {width: 100%;}
 .art-photo > img { position: relative;  margin: 0 auto;  display: block; left: -150px;}
 
 svg { overflow:visible;  display:block; margin: 0 auto;  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';}
@@ -310,6 +310,34 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 	100% {opacity: 1;left:0px;}
 }
 
+.stacked-bar-chart-holder { margin: 50px auto; }
+.stacked-bar-chart{}
+#STACKED_BAR {}
+#STACKED_BAR .axis .domain {stroke-dasharray: 2; fill: none;stroke: #969696; shape-rendering: crispEdges;}
+#STACKED_BAR .xaxis .domain { display:none; }
+#STACKED_BAR .axis .tick text {font-size: 12px;fill: #777;}
+#STACKED_BAR .xaxis .tick text {font-size: 14px;fill: #333; font-weight:bold;}
+#STACKED_BAR .axis .tick text.strong { font-weight:bold; fill: #111;  font-size: 13px;}
+#STACKED_BAR .stacked-label {  font-size: 13px; text-anchor: middle; fill: #fff; font-weight: bold; 
+font-weight: 500; fill:#111; stroke: white; stroke-width: 2px; paint-order: stroke fill;}
+#STACKED_BAR .half-line { fill: #111;  stroke-width: 1;  shape-rendering: crispEdges; stroke-dasharray: 3px; stroke-dashoffset: 3px;
+stroke-opacity: 0.4;}
+
+.stacked-bar-chart-holder .info {text-align: center;max-width: 500px; margin: 20px auto;font-size: 14px; line-height: 1.5; opacity: 0.85;}
+.stacked-bar-legend {margin: 15px auto; max-width: 600px; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; }
+.stacked-bar-legend p { text-align: center;font-size: 14px; line-height: 1.5; }
+.stacked-bar-legend p span { display: inline;vertical-align: bottom;} 
+.stacked-bar-legend p .block { width: 12px; height:12px; display: inline-block; margin-left: 10px; }
+.block-01 { background: #ddd; }
+.block-02 { background: #b51e00;  }
+.block-03 { background: #fa420b; }
+.block-04 { background: #ff6c40; }
+.block-05 { background: #ff8c43; }
+.block-06 { background: #ffc490; }
+.block-07 { background: #ffdfc2; }
+.stacked-bar-legend p .txt { font-size: 13px;  line-height: 14px; color:#111;  margin-left: 5px; opacity: 0.8; }
+
+
 
 .interviewee-holder { max-width: 550px; margin: 50px auto; position: relative;}
 .interviewee-holder .thumb { position: absolute;  left: -300px; top: 0; }
@@ -322,8 +350,10 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .map-fixed-slider { width: 100%; position: relative; }
 .map-fixed-slider .fixed-el {  z-index:1;position: absolute; top: 0;width: 100%; height: 100vh; padding-top: 100px;}
 .map-fixed-slider .fixed-el-fixed { position: fixed; top:0;}
-.map-fixed-slider .fixed-el .map-holder { width: 1000px;margin: 0 auto;  position: relative; left: -250px; }
-.map-fixed-slider .fixed-el-bottom { position: absolute; top: auto; bottom:0;}
+.map-fixed-slider .fixed-el .map-holder {transition:all 0.5s ease 0s;
+  width: 1000px;margin: 0 auto;  position: relative; left: -250px; }
+.map-fixed-slider .fixed-el-bottom { position: absolute; top: auto; bottom:0; z-index:3; }
+.map-fixed-slider .fixed-el-bottom .map-holder { width: 1000px;margin: 0 auto;  position: relative; left:0px; }
 
 .spacer-holder { position: relative; z-index:2; }
 .spacer { width: 100%; height: 100vh; display: block; }
@@ -332,6 +362,7 @@ padding:15px 20px; max-width: 450px; margin: 0 auto; letter-spacing: -0.02em;
  font-size: 18px; line-height: 1.6; font-weight: bold; word-break: keep-all;}
 .spacer .text-box p { margin: 10px 0; }
 .spacer-right .spacer .text-box { position: relative; left: 400px; }
+.spacer-transparent { height:10px;}
 
 #chart {   position: relative; width: 1000px;  margin: 0 auto; }
 .back-map {position: absolute; top: -3.5px; left: -4px; z-index:0; opacity:0.5;}
@@ -345,7 +376,11 @@ padding:15px 20px; max-width: 450px; margin: 0 auto; letter-spacing: -0.02em;
 #SEOUL_MAP #map text { font-size: 14px; text-anchor: middle; fill: #fff; font-weight: bold; 
 font-weight: 500;fill:#111; stroke: white; stroke-width: 1.5px; paint-order: stroke fill;}
 
-
+.map-holder .tooltip {position: absolute; background:#fff; text-align: left; padding:10px; display:none;
+border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; min-width: 150px; } 
+.map-holder .tooltip p {font-size:15px; line-height:1.5; }
+.map-holder .tooltip .city-name {  color:#111; }
+.map-holder .tooltip .under-household-ratio .value{ font-weight:bold; color: #ff6600;}
 
 #STACK_AREA_CHART .axis .domain {stroke-dasharray: 2; fill: none;stroke: #969696; shape-rendering: crispEdges;}
 #STACK_AREA_CHART path.area { stroke-width:1px;  }
