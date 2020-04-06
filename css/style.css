@@ -339,7 +339,7 @@ stroke-opacity: 0.4;}
 
 
 
-.interviewee-holder { max-width: 550px; margin: 50px auto; position: relative;}
+.interviewee-holder { max-width: 600px; margin: 50px auto; position: relative;}
 .interviewee-holder .thumb { position: absolute;  left: -300px; top: 0; }
 .interviewee-holder .thumb img {  width: 400px;}
 .interviewee-holder .interview-text { position: relative;}
@@ -388,13 +388,36 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 #STACK_AREA_CHART text.g-label { font-size: 14px; color:#555;  z-index: 3; } 
 #STACK_AREA_CHART .labels { font-size: 14px;  font-weight: bold; }
 
-
-
-
 .full-korea-map { margin: 50px auto;  }
 .full-korea-map .map-img-holder { }
 .full-korea-map .map-img-holder > img { display:block; margin: 0 auto;  max-width: 600px;}
-.full-korea-map .caption { text-align: center; max-width: 500px; margin: 20px auto; font-size: 14px; line-height: 1.5;opacity: 0.85; }
+.img-holder { margin: 100px auto; }
+.img-holder .caption { text-align: center; max-width: 500px; margin: 20px auto; font-size: 14px; line-height: 1.5;opacity: 0.85; }
+.img-holder > img { display:block; margin: 0 auto;  }
+
+
+.section-interview { background:#fff; }
+.img-holder-full { width: 100%;}
+.img-holder-full > img { width: 100%; max-width: 1500px;}
+.img-text { margin: 50px auto;  max-width: 600px; } 
+.img-text > img {display: block;} 
+.img-text-1 {} 
+.img-text-2 {} 
+.img-text-3 {} 
+
+.interviewee-holder {}
+.interviewee-holder p  {   font-size: 22px;text-align: left; color: #222;  margin: 20px auto; line-height: 1.7; letter-spacing: -0.3px;font-weight: bold; }
+.interviewee-holder .interviewee {  text-align: right;  font-size: 18px; opacity: 0.8;}
+.img-holder-col-2 {max-width: 1050px;}
+.img-holder-col-2 > img {width: 500px; display: inline-block;}
+.img-float-left {}
+.img-float-left > img {width: 600px;}
+
+.section-gangnam {}
+.img-holder-gallery {}
+.img-holder-gallery ul { max-width: 1260px; margin: 0 auto;}
+.img-holder-gallery ul li {display: inline-block;margin: 5px 5px;}
+.img-holder-gallery ul li img {}
 
 .stack-area-info {}
 .stack-area-info .name-type {}
@@ -402,13 +425,33 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .stack-area-info .each-year ul {}
 .stack-area-info .each-year ul li {}
 
-
 .svg-icon-test { margin: 100px auto; }
 #ICON_SVG { width: 800px; }
 .legend { margin: 30px auto; width: 200px; box-sizing: border-box; padding: 10px; border-radius: 3px; background: #f3f3f3;}
 .legend p {text-align: center;}
 .legend p span {  line-height: 30px;padding-left: 5px;font-weight: bold;}
 .legend p span.person img { width: 8px; }
+
+
+
+/** fixed Navi **/
+.fixed-navi {position: fixed; right: 10px;top: 50%;margin-top: -250px; right: -200px;
+font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';}
+.fixed-navi .navi-body { height: 500px;}
+.fixed-navi .navi-body .bar { height:100%; width:2px; background:#fff; background: rgba(0,0,0,0.2); position: relative; }
+.fixed-navi .navi-body .bar .progress { position: absolute; background: #ff5200;  width:100%; height: 0%; top:0px; left:0px; }
+.fixed-navi .navi-body .bar .step-txt { position: absolute; top:0px; right:0px; width: 200px;  height: 100%; text-align: right; box-sizing: border-box; padding-right: 20px; }
+.fixed-navi .navi-body .bar .step-txt p {  font-size: 11px;line-height: 20px; color:#111;  text-shadow: 1px 1px 1px #fff;opacity: 0.8;  
+ position: absolute; right: 15px; letter-spacing: 0;  font-weight: bold;}
+.fixed-navi .navi-body .bar .step-txt p.on { opacity:1; }
+.fixed-navi .navi-body .bar .step-txt p.s01 {top: 0%; }
+.fixed-navi .navi-body .bar .step-txt p.s02 {top: 19%; }
+.fixed-navi .navi-body .bar .step-txt p.s03 {top: 30%; }
+.fixed-navi .navi-body .bar .step-txt p.s04  {top: 52%; }
+.fixed-navi .navi-body .bar .step-txt p.s05 {top: 80%; }
+
+/** fixed Navi **/
+
 
 /*****footer*****/
 .footer-area {  background:#fff;  margin-top: 100px;  box-shadow: 0px -15px 20px rgba(0,0,0,0.05); border-top: 1px solid #cdd1d6; 

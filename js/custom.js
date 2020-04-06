@@ -1157,6 +1157,8 @@ $(function(){
 		for(o=0; o<$introItem.length;o++){
 			$introItem.eq(o).delay(o*700).animate({"opacity":"1"}, 1500);
 		};
+
+		$(".fixed-navi").animate({"right":"10px"},1000);
 		
 	});
 
@@ -1196,8 +1198,10 @@ $(function(){
 			}
 		}
 		checkMapStage(nowScroll);
-	
-	
+
+		var fullScroll = $(document).height()-$(window).height()-( $(".footer-area").height()+$(".digital-list").height() +$(".common-footer").height());			
+		var ScrollPer = (nowScroll/fullScroll)*100;
+		$(".progress").css({"height": ScrollPer+"%"});
 	});
 
 	// check map stage
