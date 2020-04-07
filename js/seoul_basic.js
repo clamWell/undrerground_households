@@ -698,33 +698,5 @@ var seoul_basic = [
     "low_income_house": "6986",
     "기초생활수급_가구비율": "4.256382136111618",
     "low_income_house_ratio": "4.26"
-  },
-  {
-    "geo": "",
-    "code": "",
-    "geo_code": "",
-    "rent_apart": "",
-    "rent_apart_r": "",
-    "rent_apart_ratio": "",
-    "real_price": "",
-    "pop": "",
-    "house": "3785433",
-    "under_house": "228467",
-    "under_house_single": "",
-    "under_pop": "",
-    "under_house_ratio": "",
-    "under_house_single_ratio": "",
-    "under_house_ratio_rank": "",
-    "old_pop": "",
-    "old_low_pop": "",
-    "기초생활수급_노인비율": "",
-    "old_ratio": "",
-    "single_parent_house": "",
-    "한부모가구비율": "",
-    "single_parent_house_ratio": "",
-    "env_satisfy": "",
-    "low_income_house": "",
-    "기초생활수급_가구비율": "",
-    "low_income_house_ratio": ""
   }
 ];

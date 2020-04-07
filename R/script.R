@@ -31,7 +31,10 @@ seoul_basic$under_house_single = as.numeric(gsub(",", "", seoul_basic$under_hous
 seoul_basic$old_pop = as.numeric(gsub(",", "", seoul_basic$old_pop))
 seoul_basic$single_parent_house = as.numeric(gsub(",", "", seoul_basic$single_parent_house))
 seoul_basic$low_income_house = as.numeric(gsub(",", "", seoul_basic$low_income_house))
- 
+seoul_basic$rent_apart = as.numeric(gsub(",", "", seoul_basic$rent_apart))
+
+
+
 
 box_plot_basic = boxplot(under_house_ratio)
 
@@ -55,6 +58,15 @@ plot_graph_real + geom_point(alpha=0.5, aes(color=under_house_ratio, size=under_
 
 plot_graph_real_and_income = ggplot(data=seoul_basic, aes(x=low_income_house_ratio, y=real_price))
 plot_graph_real_and_income + geom_point(alpha=0.5, aes(color=low_income_house_ratio, size=under_house_ratio))
+
+plot_graph_rental = ggplot(data=seoul_basic, aes(x=under_house_ratio, y=rent_apart_ratio))
+plot_graph_rental + geom_point(alpha=0.5, aes(color=under_house_ratio, size=under_house_ratio))+geom_text_repel(aes(label=ifelse(under_house_ratio>0.1,as.character(geo),'')),size=3)
+
+
+plot_graph_rental_2 = ggplot(data=seoul_basic, aes(x=under_house, y=rent_apart))
+plot_graph_rental_2 + geom_point(alpha=0.5, aes(color=under_house, size=under_house))+geom_text_repel(aes(label=ifelse(under_house_ratio>0.1,as.character(geo),'')),size=3)
+
+
 
 
 

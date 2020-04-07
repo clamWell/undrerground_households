@@ -236,7 +236,7 @@ $(function(){
 		poleWidth = ((width-margin) / data.length)-poleMargin;
 
 
-		var yAxis = chart_holder.append("g")
+		chart_holder.append("g")
 		  .attr("class", "y axis")
 		  .attr("transform", "translate(-10,0)")
 		  .call(yAxis);
@@ -334,7 +334,7 @@ $(function(){
 		var $tooltip = $(".all-city-household-chart .tooltip");
 		$tooltip.css({"opacity":"0"})
 		pole_under_house.on("mouseenter", function(d) {
-				d3.selectAll(".pole").style("fill-opacity", "0.4")
+				d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").style("fill-opacity", "0.4")
 				d3.select(this).selectAll(".pole")
 					.style("fill-opacity", "1")
 					.style("stroke", "#7b0000")
@@ -351,7 +351,7 @@ $(function(){
 				$tooltip.css({"bottom":"-50px"});
 
 			}).on("mouseleave", function(d){
-				d3.selectAll(".pole")
+				d3.selectAll("#ALL_CITY_HOUSE_POLE  .pole")
 					.style("fill-opacity", null)
 					.style("stroke", null)
 					.style("stroke-width",  null)
@@ -366,9 +366,9 @@ $(function(){
 		var swiftType = t; 
 		if(t=="all_city"){
 			$("#POLE_CHART_SWIFT .click-animation").fadeIn();
-			d3.selectAll(".pole").transition()
+			d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").transition()
 			  .duration(500).style("display",null).style("opacity","1").attr("width", poleWidth);
-			d3.selectAll(".pole-g").transition()
+			d3.selectAll("#ALL_CITY_HOUSE_POLE .pole-g").transition()
 			  .duration(500).attr("transform", function(d, i) { return "translate("+ ( i * (poleWidth  + poleMargin) ) +",0)";});
 			d3.selectAll(".area-box").style("opacity","1");
 			d3.selectAll(".pole-label").style("display", "none");
@@ -376,7 +376,7 @@ $(function(){
 		}else if(t=="only_centre"){
 			$("#POLE_CHART_SWIFT .click-animation").hide();
 
-			d3.selectAll(".pole").filter(function(d){ 
+			d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").filter(function(d){ 
 				return !( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"));
 			}).style("display","none").style("opacity","0");
 			d3.selectAll(".area-box").style("opacity","0");
@@ -387,12 +387,12 @@ $(function(){
 			poleMargin = 2; 
 			poleWidthC = ((width-margin)/ 66)-poleMargin;
 			
-			d3.selectAll(".pole-g").filter(function(d){ 
+			d3.selectAll("#ALL_CITY_HOUSE_POLE .pole-g").filter(function(d){ 
 				return ( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"));
 			}).transition()
 			  .duration(500).attr("transform", function(d, i) { return "translate("+ ( i * (poleWidthC  + poleMargin) ) +", 0)";});
 
-			d3.selectAll(".pole").filter(function(d){ 
+			d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").filter(function(d){ 
 				return ( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"));
 			}).transition()
 			  .duration(500)
@@ -856,8 +856,6 @@ $(function(){
 	}
 	makeStarckedBar(household_number);
 
-
-
 	/********** 가구원수 stacked bar 챠트 ***********/
 
 
@@ -1150,6 +1148,171 @@ $(function(){
 	});
 
 	/***** 서울시 지도 ******/
+
+
+	/****** 구별 임대주택 막대 그래프 ******/
+	var dataRent = [];
+	seoul_basic.map(function(v,i,a){
+		var tempObj = {};
+		tempObj.geo = a[i].geo;
+		tempObj["rent_apart"] = a[i]["rent_apart"];
+		dataRent.push(tempObj);
+	});
+
+	function makePoleChartRent(){
+		var width = (screenWidth<700)? screenWidth: 700,
+			height= 300,
+			margin= 10 ;
+		var data = seoul_basic;
+		
+		var values = data.map(function(v) {
+		  return Number(v["rent_apart"]);
+		});
+		var maxValue = d3.max(values);
+		var minValue = d3.min(values);
+		var multipleKey = height / maxValue;
+		var poleMarginRent = 2; 
+		var poleWidthRent = ((width-margin) / data.length)-poleMarginRent;
+
+		var pole_chart_svg = d3.select("#SEOUL_RENT_APART_POLE").select("svg")
+			.attr("width", width +"px" )
+			.attr("height", height +"px")
+
+		var chart_holder = pole_chart_svg.append("g")
+			.attr("class","chart-holder");
+		
+		var x = d3.scale.linear()
+			.range([0, width]);
+		var y = d3.scale.linear()
+			.range([height, 0])
+			.domain([0, maxValue])
+		var yAxis = d3.svg.axis()
+			.scale(y)
+			.orient("left").ticks(5);
+		chart_holder.append("g")
+		  .attr("class", "y axis")
+		  .attr("transform", "translate(-10,0)")
+		  .call(yAxis);
+
+		var labelHolder = pole_chart_svg.append("g")
+			.attr("transform", "translate(" + 0 + ","+ height +")")
+
+		var Xaxis = labelHolder.selectAll("g")
+			.data(data)
+			.enter()
+			.append("g")
+			.attr("transform", function(d, i) {	
+				return "translate("+ ( i * (poleWidthRent  + poleMarginRent) ) +", 30)";
+			});
+
+		var Xaxis_label = Xaxis.append("text")
+			.attr("width", "50")
+			.attr("transform","rotate(-45)")
+			.attr("fill", "#111")
+			.attr("font-size", "10px")
+			.attr("class", "graph-Xaxis")
+			.attr("text-anchor", "start")
+			.text(function(d) {
+			  return d.geo;
+			});
+
+
+		var halfLineHolder = chart_holder.append("g")
+			.attr("class", "half-line-holder")
+			.attr("transform", "translate(0,"+ (height-(multipleKey*10351)) +")");
+
+		var halfLine = halfLineHolder.append("line")
+			.attr("class", "half-line")
+			.attr("x1", 0)
+			.attr("y1", 0)
+			.attr("x2", width)
+			.attr("y2", 0)
+			.attr("stroke-width", "0.5")
+			.attr("stroke", "#111");
+		
+		halfLineHolder.append("text")
+			.attr("transform", "translate("+width+",0)")
+			.text("평균 10,351호");
+
+		var pole_rent_apart_holder = chart_holder.append("g")
+			.attr("class","pole-rent-holder");
+
+		var pole_rent_apart = pole_rent_apart_holder.selectAll("g")
+				.data(data)
+				.enter().append("g")
+				.attr("class","pole-g")
+				.attr("transform", function(d, i) { return "translate("+ ( i * (poleWidthRent  + poleMarginRent) ) +",0)"});
+
+		pole_rent_apart.append("rect")
+				.style("fill", function(d) {
+					if(d["geo"]=="강서구"||d["geo"]=="노원구"){
+						return "#ff5200";
+					}else{
+						return "#ff9c34";	
+					}
+				})
+				.attr("width", poleWidthRent)
+				.attr("class", "pole")
+				.attr("height", function(d) {
+					var h = Number(d["rent_apart"]) * multipleKey;
+					if(h<4){ h = 4;}
+					return h;
+				}).attr("x", function(d, i) {
+					return 0;
+				}).attr("y", function(d) {
+					var h = Number(d["rent_apart"]) * multipleKey;
+					if(h<4){ h = 4;}
+					return height-h;
+				});
+
+		pole_rent_apart.append("text")
+			.filter(function(d){ return (d["geo"]=="강서구"||d["geo"]=="노원구"); })
+			.attr("class","pole-label")
+			.attr("transform", function(d, i) { 
+				return "translate("+ (poleWidthRent/2)+","+(height-(Number(d["rent_apart"]) * multipleKey)-5) + ")";
+			})
+			.text(function(d) { return d["rent_apart"]+"호";});
+
+		var $tooltip = $(".seoul-rent-apart-chart .tooltip");
+		$tooltip.css({"opacity":"0"})
+
+		pole_rent_apart.on("mouseenter", function(d) {
+				d3.selectAll("#SEOUL_RENT_APART_POLE .pole").style("fill-opacity", "0.4")
+				d3.select(this).selectAll(".pole")
+					.style("fill-opacity", "1")
+					.style("stroke", "#7b0000")
+					.style("stroke-width", "1px")
+				$tooltip.css({"opacity":"1"})
+				$tooltip.find(".city-name").html(d["geo"]);
+				$tooltip.find(".rent-apart .value").html(d["rent_apart"]);
+				$tooltip.css({"left":((d3.mouse(this.parentNode)[0])+150)+"px"});
+				$tooltip.css({"bottom":"-30px"});
+
+				var g = d["geo"];
+				d3.selectAll(".graph-Xaxis")
+					.filter(function(d){ return d.geo == g;})
+					.style("fill-opacity","1")
+					.style("fill","#ff5200");
+
+			}).on("mouseleave", function(d){
+				d3.selectAll("#SEOUL_RENT_APART_POLE  .pole")
+					.style("fill-opacity", null)
+					.style("stroke", null)
+					.style("stroke-width",  null)
+				$tooltip.css({"opacity":"0"});
+
+				d3.selectAll(".graph-Xaxis")
+					.style("fill-opacity",null)
+					.style("fill",null);
+
+			});
+
+
+	};	
+	makePoleChartRent();
+
+
+	/****** 구별 임대주택 막대 그래프 ******/
 
 
 	$(".loading-page").fadeOut(200, function(){
