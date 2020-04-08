@@ -670,7 +670,6 @@ $(function(){
 			g_Srch.selectBase = $(this).val();
 			g_Srch.appendOptDong($(this).val());
 		}					
-		//g_Srch.fillResult(g_Srch.selectGeoWide, g_Srch.selectBase);
 	});
 
 	$S_D.on("change", function(){
@@ -684,6 +683,26 @@ $(function(){
 		g_Srch.fillResult(g_Srch.selectGeoWide, g_Srch.selectBase, g_Srch.selectDong);
 	});
 
+	function resetAllOpt(){   /// 지역 검색 단위 변경시 
+		g_Srch.selectGeoVote = null;
+		g_Srch.selectVote = null;
+		g_Srch.selectGeoWide = null;
+		g_Srch.selectBase = null;
+		g_Srch.selectDong = null;
+		$S_V.addClass("search-btn-block");
+		$("#search-05 option").remove();
+		$S_V.append("<option value='선택'> 선택 </option>");
+		$S.addClass("search-btn-block");
+		$("#search-02 option").remove();
+		$S.append("<option value='선택'> 선택 </option>");
+		$S_D.addClass("search-btn-block");
+		$("#search-03 option").remove();
+		$S_D.append("<option value='선택'> 선택 </option>");
+		
+		$S_W.find("option").eq(0).attr("selected", "selected");
+		$S_W_V.find("option").eq(0).attr("selected", "selected");
+	}
+
 	$("#SEARCHER_SWIFT ul li").on("click", function(e){
 		e.preventDefault();
 		$("#SEARCHER_SWIFT ul li").removeClass("on");
@@ -693,6 +712,7 @@ $(function(){
 		removeIcon();
 		$(".result-text").hide();
 		$(".result-text-before").slideDown();
+		resetAllOpt();
 
 		if(swiftType == "ver_dong"){
 			$(".searcher-holder-ver-geo").show();
@@ -1427,6 +1447,10 @@ $(function(){
 
 
 	$(".text-box").css("left", ((screenWidth - $(".text-box").width())/2-50)+"px");
+	if(isMobile==true){
+		$(".page-title").find("img").attr("src", "img/page-title-m.png");
+		
+	}
 
 	$(".loading-page").fadeOut(200, function(){
 		$introItem = $(".intro-fadeTo");
@@ -1434,7 +1458,7 @@ $(function(){
 			$introItem.eq(o).delay(o*700).animate({"opacity":"1"}, 1500);
 		};
 
-		$(".fixed-navi").animate({"right":"10px"},1000);
+		if(isMobile==false){ $(".fixed-navi").animate({"right":"10px"},1000); }
 		
 	});
 
@@ -1477,7 +1501,11 @@ $(function(){
 
 		var fullScroll = $(document).height()-$(window).height()-( $(".footer-area").height()+$(".digital-list").height() +$(".common-footer").height());			
 		var ScrollPer = (nowScroll/fullScroll)*100;
-		$(".progress").css({"height": ScrollPer+"%"});
+		if(isMobile==true){
+			$(".progress").css({"width":ScrollPer+"%"});
+		}else {
+			$(".progress").css({"height":ScrollPer+"%"});
+		}
 	});
 
 	// check map stage

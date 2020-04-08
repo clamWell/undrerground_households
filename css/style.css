@@ -238,7 +238,7 @@ font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕', Malgun Gothi
 .button-block {  pointer-events: none;opacity: 0.8;}
 .search-btn-block {   cursor: default;pointer-events: none; opacity: 0.8;}
 .searcher-holder .search-panel-wrapper::after { clear: both; content:''; display: block; } 
-.search-result { width: 100%; position: relative;  padding-bottom: 200px;}
+.search-result { width: 100%; position: relative;  padding-bottom: 150px;}
 .result-back-people { position: absolute;   width: 100%; min-height: 400px;  top: 100px;}
 .result-back-people > svg { width:100%; height:100%; display:block; } 
 #ICON_SPREADING_HOLDER { }
@@ -659,6 +659,60 @@ body { background: #0e0d0d;}
 
 
 .interactive-header { display:none; }
+
+.fixed-navi { right: 0; left: 0; margin-top: 0; top: 0; top: 39px;}
+.fixed-navi .navi-body { height:2px; width: 100%; }
+.fixed-navi .navi-body .bar { width:100%; height: 100%; background: rgba(51, 51, 51, 0.5);}
+.fixed-navi .navi-body .bar .step-txt p { display: none; }
+.fixed-navi .navi-body .bar .progress { height:100%; width: 0%; }
+
+.top-feature .window-holder { width: 350px; height: 148px;   margin-left: -175px;}
+.top-feature .window-holder .window-frame > img { width: 100%; }
+.top-feature .window-holder .bug {  bottom: 10px;  right: 100px;}
+.top-feature .window-holder .bug > img { width: 30px; }
+.top-feature .window-holder .car > img { width: 400px; }
+.top-feature .person-back > img { width: 350px; }
+.top-feature .person-back { margin-left: -250px;}
+.top-feature .page-title {  bottom: 100px;}
+.top-feature .page-title > img { width: 85%; }  
+.going-down {  bottom: 0px; }
+.top-feature { height: 600px; }
+.going-down span { opacity: 0.7; }
+.going-down img { opacity: 0.7; }
+
+.intro-des { margin: 70px auto;  font-size: 18px; line-height: 1.7;}
+.intro-des p { margin: 25px auto; width: 100%;box-sizing: border-box; padding: 0px 12px;} 
+.art-photo > img { width: 120%; left: -10%; }
+.art-photo {  position: relative; margin-top: 100px;}
+.art-photo .photo-back {  width: 600px; top: -50px;}
+
+.each-sec { margin-top: 20px; padding-top: 30px 0; }
+.each-sec .sec-title .numb { line-height: 15px;font-size: 150px;opacity: 0.7; z-index: 0;
+ position: relative; top: 20px;}
+.each-sec .sec-title .title {  font-size: 14px;text-shadow: 1px 1px 0px rgba(255,255,255,0.7); font-weight: bold;font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; z-index: 1;
+position: relative; }
+.each-sec .sec-title .subtitle { font-size: 18px;  position: relative; }
+#SEARCHER_SWIFT .click-animation { margin-left:80px; }
+.btn-holder ul li { font-size: 14px; }
+.searcher-holder .des-text { font-size: 16px;width: 100%;}
+.searcher-holder .search-panel { width: 100%; }
+.searcher-holder .search-panel-deep .search-panel { width: 80%; margin: 0px auto; display: block; float: none;}
+.searcher-holder .search-panel .search-panel { width: 80%; margin: 0px auto; display: block; float: none;}
+.searcher-holder .search-panel-wrapper .search-panel { width: 80%; margin: 0px auto; display: block; float: none; }
+.searcher-holder .search-panel-deep .srch_opt {  font-size: 14px; line-height: 16px; width: 100%; margin-bottom: 5px;}
+.srch_opt {  font-size: 14px; line-height: 16px; width: 100%; margin-bottom: 5px; } 
+.srch_opt option { font-size: 13px;padding: 2px 0;}
+.searcher-holder .info { font-size: 12px; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; }
+.searcher-holder .search-panel-wrapper { width: 100%; }
+.searcher-holder .info { margin: 10px auto; width: 100%;  box-sizing: border-box; padding: 0px 20px; }
+.result-text-before p { font-size: 16px; }
+.search-result { padding-bottom: 150px; }
+.search-result-box { padding: 30px 0; }
+.result-text {width: 100%;  box-sizing: border-box; padding: 0px 15px;  }
+.result-text p {  line-height: 1.5; font-size: 16px; text-align: left; margin: 5px 0; }
+
+
+.para-holder p {font-size: 18px; line-height: 1.7; box-sizing: border-box; padding: 0px 12px;}
 
 }
 
