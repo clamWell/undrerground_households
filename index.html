@@ -5,6 +5,7 @@
 	$allCityData = "js/all_city.js?" . filemtime("js/all_city.js");
 	$personPath = "js/person_path.js?" . filemtime("js/person_path.js");
 	$allDongData = "js/all_dong_data.js?" . filemtime("js/all_dong_data.js");
+	$fullCityVote = "js/all_city_vote.js?" . filemtime("js/all_city_vote.js");
 ?>
 
 <!doctype html>
@@ -190,44 +191,67 @@
 							<p class="title">우리동네검색</p>
 							<p class="subtitle">우리 동네에는 반지하가 얼마나 있나</p>
 						</div>
-						<div class="searcher-holder">
-							<p class="des-text">거주지역을 입력하시면<br/>해당 지역의 반지하 거주 현황을 알려드립니다.</p>
-							
-							<!--
-							<div class="search-panel-wrapper">
-								<div class="search-panel">
-									<select id="search-01" name="wide-area" class="srch_opt">											
-										<option value="서울시">서울특별시</option><option value="부산시">부산광역시</option><option value="대구시">대구광역시</option><option value="인천시">인천광역시</option><option value="광주시">광주광역시</option><option value="대전시">대전광역시</option><option value="울산시">울산광역시</option><option value="세종시">세종특별자치시</option><option value="경기도">경기도</option><option value="강원도">강원도</option><option value="충청북도">충청북도</option><option value="충청남도">충청남도</option><option value="전라북도">전라북도</option><option value="전라남도">전라남도</option><option value="경상북도">경상북도</option><option value="경상남도">경상남도</option><option value="제주도">제주특별자치도</option>
-									</select>
-								</div>
-								<div class="search-panel">
-									<select id="search-02" name="basic-area" class="srch_opt search-btn-block">
-										<option value="선택"> 선택 </option>
-									</select>
-								</div>
-							</div>	-->
-
-							<div class="search-panel-wrapper search-panel-deep">
-								<div class="search-panel">
-									<select id="search-01" name="wide-area" class="srch_opt">											
-										<option value="서울특별시">서울특별시</option><option value="부산광역시">부산광역시</option><option value="대구광역시">대구광역시</option><option value="인천광역시">인천광역시</option><option value="광주광역시">광주광역시</option><option value="대전광역시">대전광역시</option><option value="울산광역시">울산광역시</option><option value="경기도">경기도</option><option value="강원도">강원도</option><option value="충청북도">충청북도</option><option value="충청남도">충청남도</option><option value="전라북도">전라북도</option><option value="전라남도">전라남도</option><option value="경상북도">경상북도</option><option value="경상남도">경상남도</option><option value="제주도">제주특별자치도</option>
-									</select>
-								</div>
-								<div class="search-panel">
-									<select id="search-02" name="basic-area" class="srch_opt search-btn-block">
-										<option value="선택"> 선택 </option>
-									</select>
-								</div>
-								<div class="search-panel">
-									<select id="search-03" name="dong-area" class="srch_opt search-btn-block">
-										<option value="선택"> 선택 </option>
-									</select>
-								</div>
-							</div>	
-
-						<!-- 	<p class="info">※목록에 없는 12개 지자체(강원도 양구군·충청북도	증평군·충청북도 진천군·전라북도 정읍시·전라북도	임실군·전라북도 김제시·전라남도 강진군·전라남도 보성군·전라남도 해남군·경상북도 영양군·경상북도 청도군·경상북도 청송군)는 15년도 조사당시 반지하 거주 가구가 없는 지역입니다.</p> -->
-							<p class="info">※ 2010년 인구주택총조사 기준. 조사한 목록에 없는 읍·면·동은 조사 당시 반지하 거주 가구가 없는 지역입니다.</p> 
+						<div class="btn-holder" id="SEARCHER_SWIFT">
+							<ul>
+								<li data-search-type="ver_dong" class="on">읍·면·동 단위</li>
+								<li data-search-type="ver_vote">지역구 단위</li>
+							</ul>
+							<div class="click-animation">
+								<img src="http://img.khan.co.kr/spko/storytelling/2017/elite/click-icon.png" class="ani" alt="클릭아이콘">
+							</div>
 						</div>
+					
+						<div class="searcher-type-switching">
+							<div class="searcher-holder searcher-holder-ver-geo">
+								<p class="des-text">거주지역을 선택하시면<br/>해당 지역의 반지하 거주 현황을 알려드립니다.</p>
+						
+								<div class="search-panel-wrapper search-panel-deep">
+									<div class="search-panel">
+										<select id="search-01" name="wide-area" class="srch_opt">											
+											<option value="서울특별시">서울특별시</option><option value="부산광역시">부산광역시</option><option value="대구광역시">대구광역시</option><option value="인천광역시">인천광역시</option><option value="광주광역시">광주광역시</option><option value="대전광역시">대전광역시</option><option value="울산광역시">울산광역시</option><option value="경기도">경기도</option><option value="강원도">강원도</option><option value="충청북도">충청북도</option><option value="충청남도">충청남도</option><option value="전라북도">전라북도</option><option value="전라남도">전라남도</option><option value="경상북도">경상북도</option><option value="경상남도">경상남도</option><option value="제주도">제주특별자치도</option>
+										</select>
+									</div>
+									<div class="search-panel">
+										<select id="search-02" name="basic-area" class="srch_opt search-btn-block">
+											<option value="선택"> 선택 </option>
+										</select>
+									</div>
+									<div class="search-panel">
+										<select id="search-03" name="dong-area" class="srch_opt search-btn-block">
+											<option value="선택"> 선택 </option>
+										</select>
+									</div>
+								</div>	
+
+								<div class="info">
+									<p>※ 2010년 인구주택총조사(전수조사)</p>
+									<p>※ 2010년 통계로 행정구역과 지명이 지금과 다를 수 있습니다.</p>
+								</div> 
+							</div>
+							<div class="searcher-holder searcher-holder-ver-vote">
+								<p class="des-text">지역구를 선택하시면<br/>해당 지역구의 반지하 거주 현황을 알려드립니다.</p>
+						
+								<div class="search-panel-wrapper">
+									<div class="search-panel">
+										<select id="search-04" name="wide-area" class="srch_opt">											
+											<option value="서울특별시">서울특별시</option><option value="부산광역시">부산광역시</option><option value="대구광역시">대구광역시</option><option value="인천광역시">인천광역시</option><option value="광주광역시">광주광역시</option><option value="대전광역시">대전광역시</option><option value="울산광역시">울산광역시</option><option value="경기도">경기도</option><option value="강원도">강원도</option><option value="충청북도">충청북도</option><option value="충청남도">충청남도</option><option value="전라북도">전라북도</option><option value="전라남도">전라남도</option><option value="경상북도">경상북도</option><option value="경상남도">경상남도</option><option value="제주특별자치도">제주특별자치도</option>
+										</select>
+									</div>
+									<div class="search-panel">
+										<select id="search-05" name="basic-area" class="srch_opt search-btn-block">
+											<option value="선택"> 선택 </option>
+										</select>
+									</div>
+								</div>	
+
+								<div class="info">
+									<p>※ 2010년 인구주택총조사(전수조사)</p>
+									<p>※ 2010년 통계과 중앙선거관리위원회에서 제공하는 읍면동별 선거구 현황 자료를 활용해 정리했습니다.</p>
+								</div> 
+							</div>
+
+						</div>
+						
 						
 						<div class="search-result">
 							<div class="result-back-people">
@@ -240,29 +264,25 @@
 									</defs>
 								</svg>
 							</div>
-							<div class="search-result-box">
+							<div class="search-result-box search-result-box-dong">
 								<div class="search-result-wrap">
 									<div class="result-text-before">
 										<p>지역을 선택해주세요</p>
 									</div>
-									<!--<div class="result-text">
-										<p><span class="normal" id="SELECT_CITY_NAME">경기도 고양시</span>를 선택하셨습니다.</p>
-										<p>이 지역에는 <span class="normal" id="SELECT_HOUSE_NUMBER">351495 가구</span>, 총 <span class="normal" id="SELECT_POP">954,696명</span>이 살고 있습니다.</p>
-										<p>그 중 반지하에 사는 이웃은 <span class="strong" id="SELECT_UNDERHOUSE_NUMBER">6,279가구</span><span class="strong" id="SELECT_UNDER_POP">(11,533명)</span>입니다.</p>
-										<p>이는 이 지역 전체 가구의 <span class="strong" id="SELECT_UNDERHOUSE_RATIO">1.8%</span>에 해당하는 비율입니다.</p>
-									</div>-->
+
 									<div class="result-text">
 										<p><span class="normal" id="SELECT_CITY_NAME">경기도 고양시</span>를(을) 선택하셨습니다.</p>
-										<p>이 지역에는 <span class="normal" id="SELECT_HOUSE_NUMBER">351495 가구</span>가살고 있습니다.</p>
+										<p>이 <span class="geo-exp">지역</span>에는 <span class="normal" id="SELECT_HOUSE_NUMBER">351495 가구</span>가살고 있습니다.</p>
 										<p>그 중 반지하에 사는 이웃은 <span class="strong" id="SELECT_UNDERHOUSE_NUMBER">6,279가구</span>입니다.</p>
-										<p>이는 이 지역 전체 가구의 <span class="strong" id="SELECT_UNDERHOUSE_RATIO">1.8%</span>에 해당하는 비율입니다.</p>
+										<p>이는 이  <span class="geo-exp">지역</span> 전체 가구의 <span class="strong" id="SELECT_UNDERHOUSE_RATIO">1.8%</span>에 해당하는 비율입니다.</p>
 									</div>
 								</div>
 							</div>
+
 						</div>
 						<div class="para-holder">
-							<p>반지하는 생각보다 우리 주변에 많으며, 허구의 공간이 아닌 실제의 공간임을 다시 복기.</p>
-							<p>총선이슈 연결하는 텍스트 필요....각 지자체별 주민들의 주거 환경 문제는 해당 지역구 의원들의 몫이다. 20대 국회에서는 어떤 의원들이 반지하, 저소득층 거주의 문제에 대해서 언급했고 어떤 의정활동을 하였는지. 또 이번 21대 국회의원 후보로 나온 후보들 중 어떤 후보가 이와 관련하여 언급을 하였는지 간단하게 적어준다. </p>
+							<p>2010년·읍면동을 기준으로 반지하에 거주하는 가구가 없었던 동네도 있었지만 가장 많았던 동네에서는 3182가구가 반지하에 거주하고 있었다. 영화 속에 등장하는 ‘반지하’는 영화 속 허구의 공간이 아닌 우리동네 곳곳에 실재하는 공간이다.</p>
+							<p>또한 주민들의 열악한 주거복지 문제는 해당 지역구 의원들이 풀어나가야 할 중요 의제다. 본지가 지역구 단위로 반지하 가구의 현황을 검색해볼 수 있게 한 이유다. 유권자들이 21대 총선에 나온 후보들, 그리고 당선자들이 자신의 지역구 주거 문제 대해 앞으로 어떤 의정활동을 할지 지켜봐주길 바란다.</p>
 						</div>
 
 						
@@ -299,7 +319,7 @@
 								</svg>
 							</div>
 							<div class="graph-des">
-								<p>※2015년 인구주택총조사 기준/%는 전체 가구 대비 반지하 가구의 비율</p>
+								<p>※ 2015년 인구주택총조사(표본조사) 기준 / %는 전체 가구 대비 반지하 가구의 비율</p>
 								<p>막대그래프에 마우스를 올리면 지자체별 상세정보를 보실 수 있습니다.</p>
 							</div>
 							<div class="pole-legend">
@@ -326,7 +346,10 @@
 								<div class="pole-legend">
 									<p><span class="block b01"></span><span class="txt">0가구</span><span class="block b02"></span><span class="txt">1가구~30가구</span><span class="block b03"></span><span class="txt">31가구~100가구</span><span class="block b04"></span><span class="txt">101가구~1,000가구</span><span class="block b05"></span><span class="txt">1,001가구~3,182가구</span></p>
 								</div>
-								<p class="caption">※2010년 인구주택총조사 기준 전국 읍면동 단위 반지하 가구 비율 맵핑/한국도시연구소. </p>
+								<div class="caption">
+									<p>※ 2010년 인구주택총조사(전수조사) 기준
+									<p>한국도시연구소 제공 전국 읍면동 단위 반지하 가구 비율 맵핑</p>
+								</div>
 							</div>
 						</div>
 
@@ -337,22 +360,23 @@
 						
 						<div class="para-holder">
 							<p>수도권에만 유독 반지하 가구가 많은 까닭은 수도권의 높은 주거비와 무관하지 않다. 국토연구원의 2019년 2월 발표에 따르면 <b>수도권에서 주택을 임차해 살기 위해서 부담하는 비용은 월평균 68.7만원이다. 서울시의 경우 월 평균 76.9만원에 이른다.</b></p>
-							<p>2018년 기준 서울 지역 반지하 가구의 월 경상소득은 평균 219만원<span class="semi">(한국도시연구소, 반지하 거주 가구 주거실태)</span>이다. 2018년 당시 도시근로자 월평균 소득은 540만1814원<span class="semi">(3인 이하 가구 기준)</span>으로, 반지하 가구 소득은 이보다 60%가량 적은 수준이다.</p>
+							<p>2018년 기준 서울 지역 반지하 가구의 월 경상소득은 평균 219만원<span class="semi">*</span>이다. 2018년 당시 도시근로자 월평균 소득은 540만1814원으로 반지하 가구 소득은 이보다 60%가량 적은 수준이다.</p>
+							<p class="sm">* 국토교통부의 2018년 주거실태조사자료를 토대로 한국도시연구소가 추출</p>
 						</div>
 						<div class="img-holder">
 							<h4 class="graph-title">도시 근로자 및 서울시 반지하 가구의 평균 월 소득</h4>
 							<img src="img/graph_wage_avr.png" alt="반지하 가구 월 소득 분포">
-							<p class="caption">※출처: 국토연구원(2019.02)/국토교통부</p>
+							<p class="caption">※ 통계 출처: 국토연구원·국토교통부</p>
 						</div>
 						<div class="para-holder">
 							<p>이 조사 결과에 따르면 서울 지역의 월 평균 주거 비용 76.9만원은 반지하 가구의 월 소득의 34%에 해당하는 금액이다.</p>
-							<p>높은 주거비를 감당할 수 없는 독거노인, 1인 청년가구 등 저소득 가구는 <b>상대적으로 적은 금액으로 거주할 수 있는 공간을 찾아 자꾸만 '밑으로' 내려가는 것</b>이다.</p>
+							<p>높은 주거비를 감당할 수 없는 독거노인, 1인 청년가구 등 저소득 가구는 <b>상대적으로 적은 금액으로 거주할 수 있는 공간을 찾아 자꾸만 ‘밑으로’ 내려가는 것</b>이다.</p>
 						</div>
 
 						<div class="img-holder">
 							<h4 class="graph-title">서울시 반지하(및 지하) 거주가구의 월 소득</h4>
 							<img src="img/graph_underhouse_wage.png" alt="반지하 가구 월 소득 분포">
-							<p class="caption">※국토교통부의 2018년 주거실태조사자료를 토대로 한국도시연구소가 추출/무응답 가구 제외</p>
+							<p class="caption">※ 국토교통부의 2018년 주거실태조사자료를 토대로 한국도시연구소가 추출</p>
 						</div>
 
 						<div class="para-holder">
@@ -379,7 +403,7 @@
 									<span class="block block-07"></span><span class="txt">7명 이상</span>
 								</p>
 							</div>
-							<p class="info">※ 데이터: 인구주택총조사, 2015년</p>
+							<p class="info">※ 2015년 인구주택총조사(표본조사)</p>
 						</div>
 
 						<div class="para-holder">	
@@ -409,7 +433,7 @@
 						<div class="para-holder">
 							<p>한국도시연구소가 분석한 ‘전국 반지하 거주 현황’에 따르면 서울시 전체의 반지하 거주 비율은 약 6%다. 서울시의 100가구 중 6가구는 반지하에 거주하는 셈이다.</p>
 							<P><b>서울시 안에서도 반지하 가구 비율은 구별로 편차가 크다.</b> 전체 25개 구 중 반지하 가구 비율이 가장 높은 중랑구는 반지하 가구 비율이 11.3%(17,839가구)지만, 가장 비율이 낮은 곳 노원구는 2.2%(4,483가구)로 다섯배 이상 차이가 난다.</p>
-							<p>그렇다면 서울시 안에서도 어떤 지역에 반지하 가구가 많을까. 서울시 구 별 반지하 가구 비율, 저소득노인 가구 비율, 한부모가구 비율 등을 차례대로 확인해보았다.</p>
+							<p>그렇다면 서울시 안에서도 어떤 지역에서 반지하 가구가 비율이 높을까. 서울시 구 별 저소득노인 가구 비율, 한부모가구 비율 등을 차례대로 확인해보았다.</p>
 						</div>
 
 						<div class="btn-holder" id="TEMP_MAP_SWIFT">
@@ -442,13 +466,13 @@
 								</div>
 								<div class="spacer map-stage">
 									<div class="text-box">
-										<p>먼저 구별로 저소득노인의 비율을 확인했다. 서울시에서 2018년도에 집계한 65세 이상 노인인구 중 기초생활수급자의 비율을 따졌다.</p>
-										<p>강서구(29.28%), 중랑구(25.73%), 은평구(24.47%), 노원구(24.46%), 중구(23.86%), 금천구(23.72%), 양천구(22.16%), 강북구(20.07), 용산구(19.89%), 광진구(18.74) 등의 지역은 저소득노인 비율이 높게 나타났다.</p>
+										<p>먼저 구별로 저소득노인의 비율을 확인했다. 서울시에서 2018년도에 집계한 65세 이상 노인 인구 중 기초생활수급자의 비율을 따졌다.</p>
+										<p>강서구(29.28%), 중랑구(25.73%), 은평구(24.47%), 노원구(24.46%), 중구(23.86%), 금천구(23.72%), 양천구(22.16%), 강북구(20.07), 용산구(19.89%), 광진구(18.74) 등의 지역은 저소득노인 비율이 전체 서울 평균 18.57% 보다 높게 나타났다.</p>
 									</div>
 								</div>
 								<div class="spacer map-stage">
 									<div class="text-box">
-										<p>서울시 한부모 가구의 비율도 확인했다. 서울시에서 2018년도에 조사한 구별 전체 가구수 대비 한부모가구수의 비율이다. 빗금과 경계선이 짙을수록 한부모가구수의 비율이 높은 지역이다.</p>
+										<p>서울시 한부모 가구의 비율도 확인했다. 서울시에서 2018년도에 조사한 구별 한부모가구수를 토대로 구별 한부모가구수의 비율을 구했다. 빗금과 경계선이 짙을수록 한부모가구수의 비율이 높은 지역이다.</p>
 										<p>강북구(1.72%), 중랑구(1.54%), 금천구(1.43%), 도봉구(1.46%), 노원구(1.36%), 은평구(1.26%), 강서구(1.08%) 등의 지역은 한부모 가구의 비율이 전체 서울 평균인 0.9%를 상회하는 지역이다.</p>
 									</div>
 								</div>
@@ -460,7 +484,7 @@
 								</div>
 								<div class="spacer map-stage">
 									<div class="text-box">
-										<p>강서구와, 노원구를 제외하고 저소득노인비율과 한부모 가구 비율이 높았던 지역들은 반지하 가구 비율이 높은 지역이기도 했다.</p>
+										<p>강서구와, 노원구를 제외하고 저소득노인비율과 한부모 가구 비율이 모두 높았던 지역들은 반지하 가구 비율이 높은 지역이기도 했다.</p>
 										<p>서울시 지도에 구별로 반지하 가구의 비율을 표시하자 중랑구(11.3%), 광진구(10.6%), 강북구(9.5%), 관악구(8.4%), 강동구(8%), 은평구(7.8%) 등의 지역이 반지하 가구의 비율이 높은 지역으로 나타났다.</p>
 									</div>
 								</div>
@@ -477,9 +501,9 @@
 						</div>
 						
 						<div class="para-holder">
-							<p>결과적으로 서울시안에서도 저소득노인가구가 많거나 한부모가구가 많은 지역(강북구, 중랑구, 광진구, 은평구, 금천구)에서 반지하 가구의 비율도 높게 나타났다. 빈곤가구 비율이 높은 지역에서 반지하 가구의 비율이 높은 것은 어찌보면 당연한 결과이다.</p>
-							<p>그렇다면 <b>저소득노인가구와 한부모가구가 많았던 노원구와 강서구는 왜 다른지역과 달리 반지하 가구 비율이 낮았을까.</b> 노원구와 강서구는 반지하 가구 비율이 2.2%와 4.3%로 서울시 전체 평균보다 낮은 수치를 보였다.</p>
-							<p>그 원인은 임대아파트에서 찾을 수 있었다. <b>강서구는 임대 아파트 공급양이 31,952호로 서울시 전체 중 공급양이 가장 많았고, 노원구는 26,684호로 그 뒤를 이었다.</b> 이는 서울시 전체 임대아파트 공급 평균인 10,351호보다 크게 웃도는 양이다.</p>
+							<p>서울시 안에서도 저소득노인가구가 많거나 한부모가구가 많은 지역(강북구·중랑구·광진구·은평구·금천구)에서 반지하 가구의 비율도 높게 나타났다. 빈곤가구 비율이 높은 지역에서 반지하 가구의 비율이 높은 것은 어찌보면 당연한 결과이다.</p>
+							<p>그렇다면 <b>저소득노인가구와 한부모가구가 많았던 노원구와 강서구는 왜 다른지역과 달리 반지하 가구 비율이 낮았을까.</b> 노원구와 강서구는 반지하 가구 비율이 2.2%와 4.3%로 서울시 전체 평균인 6% 보다 낮은 수치를 보였다.</p>
+							<p>그 원인은 임대아파트에서 찾을 수 있었다. <b>강서구는 임대 아파트 공급양이 31,952호로 서울시 전체 중 공급양이 가장 많았고, 노원구는 26,684호로 그 뒤를 이었다.</b> 이는 서울시 전체 임대아파트 공급 평균인 10,351호를 크게 웃도는 양이다.</p>
 						</div>	
 
 						<!--
@@ -504,7 +528,7 @@
 						</div>
 
 						<div class="para-holder">
-							<p>즉 저소득노인가구나 한부모가구와 같은 빈곤가구가 많은 지역이더라도 공공·임대아파트와 같이 빈곤가구가 입주 할 수 있는 대체 주거공간이 있다면, 반지하 거주 비율은 현저히 낮아질 수 있음을 시사한다.</p>
+							<p>즉 저소득노인가구나 한부모가구와 같은 빈곤가구가 많은 지역이더라도 공공·임대아파트와 같이 빈곤가구가 입주 할 수 있는 대체 주거공간이 충분히 있는 지역은 반지하 거주 비율이 낮아질 수 있음을 시사한다.</p>
 						</div>			
 
 					</div>
@@ -618,7 +642,7 @@
 					<div class="sec-title">
 						<p class="numb">5</p>
 						<p class="title">반지하가 사라져야하는 이유</p>
-						<p class="subtitle">기택네는 영화 속 허구가 아니다</p>
+						<p class="subtitle">사람이 살 수 없는 집이 있다</p>
 					</div>
 
 					<!--
@@ -734,8 +758,8 @@
 					</div>
 
 					<div class="para-holder">
-						<p>서울시는 2010년 폭우와 침수피해로 홍역을 치른 이후, 큰 수해를 입은 반지하주택의 신규 건축을 금지했다. 제도적으로 반지하 가구의 신규 공급을 막은 것이다. 그 결과 2005~2015년에 걸쳐 반지하의 규모는 점차 줄어들고 있다.<p>
-						<p>하지만 자연 소멸을 기다리기에는 그 수가 아직 많다. 줄었다고 하지만 36만 가구가 넘는다.<p>
+						<p>서울시는 2010년 폭우와 침수피해로 홍역을 치른 이후, 큰 수해를 입은 반지하주택의 신규 건축을 금지했다. 제도적으로 반지하 가구의 신규 공급을 막은 것이다. 그 결과 2005~2015년에 걸쳐 반지하의 규모는 점차 줄어들고 있다.</p>
+						<p>하지만 자연 소멸을 기다리기에는 그 수가 아직 많다. 줄었다고 하지만 36만 가구가 넘는다.</p>
 						<p><b>36만 가구는 여전히 엄청 큰 숫자다.</b></p>
 					</div>
 
@@ -896,6 +920,7 @@
 						<div class="bar">
 							<div class="progress"></div>
 							<div class="step-txt">
+								<p class="s00">인트로</p>
 								<p class="s01">우리동네 검색</p>
 								<p class="s02">전국 반지하 현황</p>
 								<p class="s03">반지하는 어떤 지역에 많을까</p>
@@ -915,6 +940,8 @@
 	<script type="text/javascript" src="<?php echo $allCityData; ?>"></script>
 	<script type="text/javascript" src="<?php echo $personPath; ?>"></script>
 	<script type="text/javascript" src="<?php echo $allDongData; ?>"></script>
+	<script type="text/javascript" src="<?php echo $fullCityVote; ?>"></script>
+
 
   </body>
 </html> 

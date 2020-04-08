@@ -190,7 +190,7 @@ $(function(){
 	var poleWidth, poleWidthC, poleHeight, poleMargin;
 
 	function makePoleChart(){
-		var width = (screenWidth<1300)? screenWidth: 1300,
+		var width = (screenWidth<1300)? (screenWidth-80): 1300,
 			height= 400,
 			margin= 10 ;
 		var data = all_city_data;
@@ -381,7 +381,7 @@ $(function(){
 			}).style("display","none").style("opacity","0");
 			d3.selectAll(".area-box").style("opacity","0");
 
-			var width = (screenWidth<1300)? screenWidth: 1300,
+			var width = (screenWidth<1300)? (screenWidth-80): 1300,
 				margin= 10;
 		
 			poleMargin = 2; 
@@ -631,6 +631,7 @@ $(function(){
 				break;
 			}					
 		}
+		$(".geo-exp").html("지역");
 		$("#SELECT_CITY_NAME").html(userSelectG["geoWide"]+" "+userSelectG["geo"]+" "+userSelectG["geoD"]);
 
 		$("#SELECT_HOUSE_NUMBER").html(userSelectG["house"]+" 가구");
@@ -682,6 +683,116 @@ $(function(){
 		console.log(g_Srch.selectGeoWide, g_Srch.selectBase, g_Srch.selectDong);
 		g_Srch.fillResult(g_Srch.selectGeoWide, g_Srch.selectBase, g_Srch.selectDong);
 	});
+
+	$("#SEARCHER_SWIFT ul li").on("click", function(e){
+		e.preventDefault();
+		$("#SEARCHER_SWIFT ul li").removeClass("on");
+		$(this).addClass("on");
+		var swiftType = $(this).attr("data-search-type");
+
+		removeIcon();
+		$(".result-text").hide();
+		$(".result-text-before").slideDown();
+
+		if(swiftType == "ver_dong"){
+			$(".searcher-holder-ver-geo").show();
+			$(".searcher-holder-ver-vote").hide();
+			$("#SEARCHER_SWIFT .click-animation").fadeIn();
+		}else if(swiftType == "ver_vote"){
+			$(".searcher-holder-ver-geo").hide();
+			$(".searcher-holder-ver-vote").show();
+			$("#SEARCHER_SWIFT .click-animation").hide();
+		}
+	});
+
+
+	var $S_V = $("#search-05"),
+		$S_W_V = $("#search-04"),
+		Op_lt_v =  $S_W_V.find("option");
+	
+	Op_lt_v.sort(function(a, b){
+		if (a.text > b.text) return 1;
+		else if (a.text < b.text) return -1;
+		else {
+			if (a.value > b.value) return 1;
+			else if (a.value < b.value) return -1;
+			else return 0;
+		}
+	});
+
+	$S_W_V.html(Op_lt_v);
+	$S_W_V.prepend("<option value='선택'> 선택 </option>");
+	$S_W_V.find("option").eq(0).attr("selected", "selected");
+
+	g_Srch.selectGeoVote;
+	g_Srch.selectVote;
+
+	g_Srch.appendOptVote = function(geo){
+		$S_V.find("option").remove();
+		var S_sido = geo;
+		for (i=0; i<full_city_vote.length;i++ ){
+			if( full_city_vote[i]["geo1"] == S_sido ){
+				$S_V.append("<option value='" +  full_city_vote[i]["geo2"] + "'>" +  full_city_vote[i]["geo2"] + "</option>");
+			}					
+		}
+		$S_V.removeClass("search-btn-block");
+		var Op_lt_v = $S_V.find("option");
+		Op_lt_v.sort(function(a, b){
+			if (a.text > b.text) return 1;
+			else if (a.text < b.text) return -1;
+			else {
+				if (a.value > b.value) return 1;
+				else if (a.value < b.value) return -1;
+				else return 0;
+			}
+		});
+		$S_V.html(Op_lt_v);
+		$S_V.prepend("<option value='선택'> 선택 </option>");
+		$S_V.find("option").eq(0).attr("selected", "selected");
+	};
+	g_Srch.fillResultVote = function (geo1, geo2){
+		var userSelectG;
+		for (i=0; i<full_city_vote.length;i++ ){
+			if( full_city_vote[i]["geo1"] == geo1 && full_city_vote[i]["geo2"] == geo2 ){
+				userSelectG = full_city_vote[i];
+				break;
+			}					
+		}
+		$(".geo-exp").html("지역구");
+		$("#SELECT_CITY_NAME").html(userSelectG["geoFull"]);
+
+		$("#SELECT_HOUSE_NUMBER").html(userSelectG["house"]+" 가구");
+		$("#SELECT_UNDERHOUSE_NUMBER").html(userSelectG["under_house"]+" 가구");
+		$("#SELECT_UNDERHOUSE_RATIO").html(userSelectG["under_house_ratio"]+"%");
+		$(".result-text-before").hide();
+		$(".result-text").slideDown();
+
+		spreadIcon(userSelectG);
+	};
+	$S_W_V.on("change", function(){
+		g_Srch.selectGeoVote = null;
+		g_Srch.selectVote = null;
+		if ( $(this).children("option:selected").index() == 0 ){ 
+			$S_V.addClass("search-btn-block");
+			$("#search-05 option").remove();
+			$S_V.append("<option value='선택'> 선택 </option>");
+			return;
+		}else {
+			g_Srch.appendOptVote($(this).val());
+			g_Srch.selectGeoVote = $(this).val(); 
+		}				
+	});
+	$S_V.on("change", function(){
+		g_Srch.selectVote = null;
+		if ($(this).children("option:selected").index() == 0){ 
+			return;
+		}else {
+			g_Srch.selectVote = $(this).val();
+		}
+		console.log(g_Srch.selectGeoVote, g_Srch.selectVote);
+		g_Srch.fillResultVote(g_Srch.selectGeoVote, g_Srch.selectVote);
+	});
+
 
 	/******** 검색영역 검색기  ********/
 
@@ -1314,6 +1425,8 @@ $(function(){
 
 	/****** 구별 임대주택 막대 그래프 ******/
 
+
+	$(".text-box").css("left", ((screenWidth - $(".text-box").width())/2-50)+"px");
 
 	$(".loading-page").fadeOut(200, function(){
 		$introItem = $(".intro-fadeTo");
