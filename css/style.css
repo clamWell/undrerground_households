@@ -301,7 +301,8 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .all-city-household-chart .tooltip .under-household-ratio { font-weight:bold; margin-top: 5px; color: #ff6600;}
 .seoul-area-rect {stroke: #333; stroke-width: 1px; shape-rendering: crispEdges;stroke-opacity: 0.5; }
 .area-label { font-size: 14px;font-weight: bold; color: #555;stroke: white;stroke-width: 1.5px;paint-order: stroke fill; text-anchor: middle;}
-.all-city-household-chart .graph-des {   text-align: center;   max-width: 500px;  margin: 20px auto; font-size: 14px; line-height: 1.5; opacity: 0.85; }
+.all-city-household-chart .graph-des {  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
+text-align: center;   max-width: 500px;  margin: 20px auto; font-size: 15px; line-height: 1.5; opacity: 0.85; }
 .pole-legend {margin: 15px auto; max-width: 500px; }
 .pole-legend p { text-align: center;font-size: 14px; line-height: 1.5; }
 .pole-legend p span { display: inline;vertical-align: bottom;}
@@ -403,6 +404,7 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .full-korea-map .map-img-holder > img { display:block; margin: 0 auto;  max-width: 500px;}
 .img-holder { margin: 100px auto; }
 .img-holder .caption { text-align: center; max-width: 600px; margin: 20px auto; font-size: 14px; line-height: 1.5;opacity: 0.85; }
+.caption { text-align: center; max-width: 600px; margin: 20px auto; font-size: 14px; line-height: 1.5;opacity: 0.85; }
 .img-holder > img { display:block; margin: 0 auto;  }
 
 .full-korea-map .pole-legend {margin:30px auto; max-width: 600px; }
@@ -429,6 +431,8 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .seoul-rent-apart-chart .tooltip .rent-apart .value { font-weight:bold; color: #ff6600;}
 #SEOUL_RENT_APART_POLE .half-line {  fill: #111;stroke-width: 1; shape-rendering: crispEdges; stroke-dasharray: 3px; stroke-dashoffset: 3px; stroke-opacity: 0.4;}
 #SEOUL_RENT_APART_POLE .half-line-holder text { font-size: 12px;font-weight: bold; fill: #000000; opacity: 0.6;}
+.seoul-rent-apart-chart .graph-des {   font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; text-align: center;
+ max-width: 500px; margin: 20px auto; font-size: 15px;  line-height: 1.5;opacity: 0.85; margin-bottom: 40px; }
 
 .section-interview { background:#fff; }
 .img-holder-full { width: 100%;}
@@ -519,14 +523,15 @@ position: relative; margin-top: 0px; font-family: 'Noto Sans KR', 'notokr-regula
 .footer-area .copyright p { text-align: center; font-size: 14px; color:#555;line-height: 20px;  margin: 5px 0; }
 
 .rel-article {  padding: 30px 0px; }
+.rel-article h4 {  font-size: 16px; font-weight: 500; text-align: center; margin-bottom: 20px; margin-top: 20px;}
 .rel-article .rel-box { width:100%; max-width: 750px; margin: 0 auto;   border: 1px solid #d2d1d6; border-bottom: 4px solid #222;}
 .rel-article .rel-box-2 {   margin: 20px auto;}
 .rel-article .rel-box-2 .rel-art-list { padding: 10px; }
 .rel-article .rel-box .thumb { width:100%; position: relative; height: auto; }
 .rel-article .rel-box .thumb a { width:100%; display:block; }
 .rel-article .rel-box .thumb img { width:100%; }
-.rel-article .rel-box .thumb .project-name { position: absolute; top: 10px; left:10px; background: #222;color:#fff;border-radius: 5px; font-weight: 300; 
- font-size: 18px; line-height:18px; padding: 8px 15px;text-align:center; color: #ddd; display: inline-block;display:none;  }
+.rel-article .rel-box .thumb .project-name { position: absolute; top: 10px; left:0px; background: #222;color:#fff;border-radius: 2px; font-weight: 300; 
+ font-size: 16px; font-weight:bold; line-height:18px; padding: 8px 15px;text-align:center; color: #ddd; display: inline-block; }
 .rel-article .rel-box .rel-art-list { width:100%; box-sizing: border-box; padding: 20px 15px;position: relative;  }
 .rel-article .rel-box .rel-art-list ul { width:100%; }
 .rel-article .rel-box .rel-art-list ul li { margin: 6px 0px; text-align: center; }
@@ -686,12 +691,12 @@ body { background: #0e0d0d;}
 .art-photo {  position: relative; margin-top: 100px;}
 .art-photo .photo-back {  width: 600px; top: -50px;}
 
-.each-sec { margin-top: 20px; padding-top: 30px 0; }
+.each-sec { margin-top: 20px; padding-top: 60px; }
 .each-sec .sec-title .numb { line-height: 15px;font-size: 150px;opacity: 0.7; z-index: 0;
  position: relative; top: 20px;}
 .each-sec .sec-title .title {  font-size: 14px;text-shadow: 1px 1px 0px rgba(255,255,255,0.7); font-weight: bold;font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; z-index: 1;
 position: relative; }
-.each-sec .sec-title .subtitle { font-size: 18px;  position: relative; }
+.each-sec .sec-title .subtitle { font-size: 18px;  position: relative;text-shadow: 1px 1px 0px rgba(255,255,255,0.7);}
 #SEARCHER_SWIFT .click-animation { margin-left:80px; }
 .btn-holder ul li { font-size: 14px; }
 .searcher-holder .des-text { font-size: 16px;width: 100%;}
@@ -710,14 +715,101 @@ position: relative; }
 .search-result-box { padding: 30px 0; }
 .result-text {width: 100%;  box-sizing: border-box; padding: 0px 15px;  }
 .result-text p {  line-height: 1.5; font-size: 16px; text-align: left; margin: 5px 0; }
-
-
 .para-holder p {font-size: 18px; line-height: 1.7; box-sizing: border-box; padding: 0px 12px;}
+
+
+#ALL_CITY_HOUSE_POLE {   left: 0px; }
+#POLE_CHART_SWIFT { margin-bottom: 0; }
+.all-city-household-chart .pole-legend { margin:10px auto;  }
+.all-city-household-chart .graph-des { margin: 10px auto; margin-bottom: 60px;}
+
+.pole-legend p { font-size: 13px;line-height: 1.1; 
+font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';}
+.pole-legend p .txt { font-weight:normal; opacity:0.7; }
+.pole-legend p .block-yellow { width: 20px; height: 12px; }
+.pole-legend p .block-orange { width: 20px; height: 12px;}
+.area-label { font-size:12px; }
+.all-city-household-chart {  margin: 40px auto;}
+.seoul-area-rect { stroke: #2f0000; stroke-opacity: 0.2;}
+.all-city-household-chart .graph-des {   font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
+font-size: 12px;text-align: left; width: 100%;box-sizing: border-box; padding: 0px 15px;}
+#ALL_CITY_HOUSE_POLE .graph-Xaxis {font-weight: bold;  color: #555; fill:#999; stroke: #fff;
+stroke-width: 1.5px;paint-order: stroke fill; text-anchor: start;}
+.pole-label {  opacity: 0.4; font-size: 10px; text-anchor: start;}
+.all-city-household-chart .tooltip { position: fixed; width: 100%; top: auto;bottom: 0px; left: 0;}
+.all-city-household-chart .tooltip p { font-size: 13px;line-height: 1.6; }
+.all-city-household-chart .caption {  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
+font-size: 12px;text-align: left; width: 100%;box-sizing: border-box; padding: 0px 15px;}
+.para-holder p.sm { font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
+font-size: 14px; }
+.para-holder { margin: 40px auto; }
+.img-holder { margin: 40px auto; width: 100%; box-sizing: border-box; padding: 0px 15px;}
+.graph-title { font-size: 16px; margin-bottom: 10px;}
+.img-holder > img { width: 100%; }
+.img-holder .caption {   font-size: 12px;
+width: 100%;box-sizing: border-box; padding: 0px 5px; word-break: keep-all;margin: 8px 0; }
+.stacked-bar-legend { margin: 10px auto; }
+.stacked-bar-legend p { padding: 0; margin: 0 auto; line-height: 1.7; }
+.stacked-bar-legend p .block {  margin-left: 5px;} 
+.chart-holder .info { font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
+font-size: 12px;width: 100%;box-sizing: border-box; padding: 0px 10px;}
+.interviewee-holder {margin: 40px auto;width: 100%;box-sizing: border-box; padding: 0px 15px; }
+.interviewee-holder .interview-text p { font-size: 17px; }
+.interviewee-holder .interview-text .name { font-size: 14.5px; text-align: left; }
+.interviewee-holder p {font-size: 17px;  }
+.interviewee-holder .interviewee { font-size: 14.5px; text-align: left; }
+
+.map-fixed-slider .fixed-el .map-holder { width:100%; left: 0; }
+#SEOUL_MAP #map text {  font-size: 22px; stroke-width: 4px; }
+.spacer-right .spacer .text-box { width: 95%; left: 2.5%;box-sizing: border-box;padding: 10px; font-size: 16px;}
+.spacer .text-box p { margin: 10px 0;font-size: 15.5px; line-height: 1.6;}
+.seoul-rent-apart-chart .graph-des {    font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
+font-size: 13px; width: 100%; box-sizing: border-box; padding: 0px 10px;}
+.seoul-rent-apart-chart .tooltip {position: fixed; width: 100%;  top: auto;bottom: 0px; left: 0; }
+.seoul-rent-apart-chart .tooltip p { font-size: 13px; line-height: 1.6;}
+#SEOUL_RENT_APART_POLE .graph-Xaxis { font-size: 12px;  transform: none;fill-opacity: 0.8; fill: #ea4d00; }
+#SEOUL_RENT_APART_POLE .pole-label {  text-anchor: middle; font-size: 12px;opacity: 0.8;}
+#SEOUL_RENT_APART_POLE .y { display:none; }
+
+.img-holder { padding: 0; }
+.img-holder-full > img {   width: 150%; left: -15%; position: relative; }
+.img-text { width: 100%; box-sizing: border-box; padding: 0px 15px;}
+
+.img-holder-col-2 > img { width: 100%; margin: 3px 0; } 
+.section-gangnam {padding-top: 0;}
+.img-holder-gallery ul { width: 100%; }
+.img-holder-gallery ul li {  width: 50%; display: block; float: left; box-sizing: border-box; padding: 3px; margin: 0; }
+.img-holder-gallery ul li img { width:100%; }
+.img-holder-gallery ul::after { clear:both; display:block; content:"";}
+.tbl { margin-top: 10px; }
+.tbl th {  padding: 8px 2px;  font-size: 13px;}
+.tbl td { font-size:12px; }
+.tbl td.sm {font-size:10px; }
+.graph-title { font-size: 15px; margin-bottom: 10px; }
+.table-holder .caption {  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';  font-size: 12px;
+width: 100%;box-sizing: border-box; padding: 0px 5px; word-break: keep-all;margin: 8px 0;}
+
+.digital-list-wrap{ border-top: 0;}
+.bottom-byline { margin-top:0;}
+.common-footer { display:none;}
+
+.rel-article { padding: 20px; }
+.rel-article .rel-box .rel-art-list { padding: 12px;} 
+.rel-article .rel-box .rel-art-list ul li { margin: 8px 0; }
+.rel-article .rel-box .rel-art-list ul li a { font-size: 15px; line-height: 20px;  display: block;}
+.rel-article .rel-box .thumb .project-name { padding: 7px 10px;font-size: 14px;}
+
+.bottom-byline ul { padding:30px 0; padding-top: 30px; }
+.bottom-byline ul li { letter-spacing: 0px; }
+.bottom-byline ul li.team { margin: 0; }
+.bottom-byline ul .team-wrap { width:100%; float:none;margin-bottom: 10px;}
+
 
 }
 
 /****** 모바일 Landscape *****/
 @media (max-width: 800px) and (orientation: landscape){
+
 
 
 

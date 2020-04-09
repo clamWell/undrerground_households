@@ -190,173 +190,329 @@ $(function(){
 	var poleWidth, poleWidthC, poleHeight, poleMargin;
 
 	function makePoleChart(){
-		var width = (screenWidth<1300)? (screenWidth-80): 1300,
-			height= 400,
-			margin= 10 ;
 		var data = all_city_data;
-		
 		var values = data.map(function(v) {
-		  return Number(v["under_house"]);
-		});
+			  return Number(v["under_house"]);
+			});
 		var maxValue = d3.max(values);
 		var minValue = d3.min(values);
 
-		var pole_chart_svg = d3.select("#ALL_CITY_HOUSE_POLE").select("svg")
-			.attr("width", width +"px" )
-			.attr("height", height +"px")
-
+		var pole_chart_svg = d3.select("#ALL_CITY_HOUSE_POLE").select("svg");
 		var def_stripe = pole_chart_svg.append("pattern")
-			.attr("id", "diagonalHatchArea")
-			.attr("patternUnits", "userSpaceOnUse")
-			.attr("width", 4)
-			.attr("height", 4)
-		  .append("path")
-			.attr("d", 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
-			//.attr("stroke", "#ff5200")
-			.attr("stroke", "#333")
-			.attr("stroke-width", 1);
+				.attr("id", "diagonalHatchArea")
+				.attr("patternUnits", "userSpaceOnUse")
+				.attr("width", 4)
+				.attr("height", 4)
+			  .append("path")
+				.attr("d", "M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2")
+				.attr("stroke", "#333")
+				.attr("stroke-width", 1);
 
-		var chart_holder = pole_chart_svg.append("g")
-			.attr("class","chart-holder");
+		if(isMobile==true){ // Mobile vertical Pole Graph
+			poleMargin = 3; 
+			poleHeight = 15;
+			var width = screenWidth-70; 
+				height= ((poleHeight+poleMargin)*data.length);
+			var multipleKey = width / maxValue;
 
-		var x = d3.scale.linear()
-			.range([0, width]);
+			pole_chart_svg.attr("width", width +"px" )
+				.attr("height", height +"px")
+				.attr("transform", "translate(10, 0)");
 
-		var y = d3.scale.linear()
-			.range([height, 0])
-			.domain([0, maxValue])
+			var chart_holder = pole_chart_svg.append("g")
+				.attr("class","chart-holder");
 
-		var yAxis = d3.svg.axis()
-			.scale(y)
-			.orient("left").ticks(5);
+			var x = d3.scale.linear()
+				.range([0, width])
+				.domain([0, maxValue]);
 
-		var multipleKey = height / maxValue;
-	  //  var multipleKey = 0.02;
-		poleMargin = 2; 
-		poleWidth = ((width-margin) / data.length)-poleMargin;
+			var y = d3.scale.linear()
+				.range([0, height]);
 
+			var xAxis = d3.svg.axis()
+				.scale(x)
+				.orient("top").ticks(5);
 
-		chart_holder.append("g")
-		  .attr("class", "y axis")
-		  .attr("transform", "translate(-10,0)")
-		  .call(yAxis);
+			chart_holder.append("g")
+			  .attr("class", "x axis")
+			  .attr("transform", "translate(0,-10)")
+			  .call(xAxis);
 
-		var centre_area = chart_holder.append("g")
-			.attr("class","area-box centre-area");
+			var centre_area = chart_holder.append("g")
+				.attr("class","area-box centre-area");
 
-		var centre_area_rect = centre_area.append("rect")
-			.style("fill", function(d) {
-				  return "url(#diagonalHatchArea)";
-			})
-			.attr("width", (poleWidth  + poleMargin)*66)
-			.attr("height", height )
-			.attr("class", "area-rect centre-area-rect")
-			.style("fill-opacity", "0.15");
-		centre_area.append("text")
-			.text("수도권")
-			.attr("class","area-label")
-			.attr("transform", "translate("+(poleWidth  + poleMargin)*33+",20)")
+			var centre_area_rect = centre_area.append("rect")
+				.style("fill", function(d) {
+					  return "url(#diagonalHatchArea)";
+				})
+				.attr("height", (poleHeight+poleMargin)*66)
+				.attr("width", width)
+				.attr("class", "area-rect centre-area-rect")
+				.style("fill-opacity", "0.15");
+			centre_area.append("text")
+				.text("수도권")
+				.attr("class","area-label")
+				.attr("transform", "translate("+width+",10)");
 
+			var seoul_area = chart_holder.append("g")
+				.attr("class","area-box seoul-area");
 
-		var seoul_area = chart_holder.append("g")
-			.attr("class","area-box seoul-area");
+			var seoul_area_rect = seoul_area.append("rect")
+				.style("fill", function(d) {
+					  return "rgb(187, 187, 187)";
+				})
+				.attr("width",width*0.8)
+				.attr("height",(poleHeight+poleMargin)*25 )
+				.attr("x", "0")
+				.attr("y", "0")
+				.attr("class", "area-rect seoul-area-rect")
+				.style("fill-opacity", "0.2");
+			seoul_area.append("text")
+				.text("서울")
+				.attr("class","area-label")
+				.attr("transform", "translate("+width*0.75+",10)");
 
-		var seoul_area_rect = seoul_area.append("rect")
-			.style("fill", function(d) {
-				  return "rgb(255, 183, 183)";
-			})
-			.attr("width", (poleWidth  + poleMargin)*25)
-			.attr("height", height*0.8 )
-			.attr("x", "0")
-			.attr("y", height*0.2 )
-			.attr("class", "area-rect seoul-area-rect")
-			.style("fill-opacity", "0");
-		seoul_area.append("text")
-			.text("서울")
-			.attr("class","area-label")
-			.attr("transform", "translate("+(poleWidth  + poleMargin)*12+","+ height*0.2+")")
+			var pole_under_house_holder = chart_holder.append("g")
+				.attr("class","pole-under-house-holder");
+
+			var pole_under_house = pole_under_house_holder.selectAll("g")
+					.data(data)
+					.enter().append("g")
+					.attr("class","pole-g")
+					.attr("transform", function(d, i) { return "translate(0,"+ ( i * (poleHeight + poleMargin) ) +")";});
 			
-		
-		var pole_under_house_holder = chart_holder.append("g")
-			.attr("class","pole-under-house-holder");
+			pole_under_house.append("rect")
+					.style("fill", function(d) {
+					  return "#ffae12";
+					})
+					.attr("height", poleHeight)
+					.attr("class", "pole pole-under-house")
+					.attr("width", function(d) {
+						var w = Number(d["under_house"]) * multipleKey;
+						if(w<4){ w = 4;}
+						return w;
+					}).attr("x", "0").attr("y", "0");
 
-		var pole_under_house = pole_under_house_holder.selectAll("g")
+			var pole_under_house_single = pole_under_house.append("rect")
+					.style("fill", function(d) {
+					  return "#ff432f";
+					})
+					.attr("height", poleHeight)
+					.attr("class", "pole pole-under-single-house")
+					.attr("width", function(d) {
+						return Number(d["under_house_single"]) * multipleKey;
+					}).attr("x", "0").attr("y", "0");
+
+			pole_under_house.append("text")
+				.attr("class","pole-label")
+			//	.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
+				.text(function(d) { return d.under_house+"가구("+d.under_house_ratio+"%)"; })
+				.attr("transform", function(d, i) { 
+					var xValue = Number(d["under_house"]) * multipleKey;
+					if(xValue >= (width-60)){xValue =width-60 }
+					return "translate("+xValue+","+(poleHeight-4)+")";
+				})
+
+			var labelHolder = chart_holder.append("g")
+				.attr("class","label-holder")
+				.attr("transform", "translate(0, 10)");
+
+			var Xaxis = labelHolder.selectAll("g")
 				.data(data)
-				.enter().append("g")
-				.attr("class","pole-g")
-				.attr("transform", function(d, i) { return "translate("+ ( i * (poleWidth  + poleMargin) ) +",0)";});
-		
-		pole_under_house.append("rect")
-				.style("fill", function(d) {
-				  return "#ffae12";
-				})
-				.attr("width", poleWidth)
-				.attr("class", "pole pole-under-house")
-				.attr("height", function(d) {
-					var h = Number(d["under_house"]) * multipleKey;
-					if(h<4){ h = 4;}
-					return h;
-				}).attr("x", function(d, i) {
-				//	return i * (poleWidth  + poleMargin);
-					return 0;
-				}).attr("y", function(d) {
-					var h = Number(d["under_house"]) * multipleKey;
-					if(h<4){ h = 4;}
-					return height-h;
-					//return 0;
-				});
-		
-
-		var pole_under_house_single = pole_under_house.append("rect")
-				.style("fill", function(d) {
-				  return "#ff432f";
-				})
-				.attr("width", poleWidth)
-				.attr("class", "pole pole-under-single-house")
-				.attr("height", function(d) {
-					return Number(d["under_house_single"]) * multipleKey;
-				}).attr("x", function(d, i) {
-					//return i * (poleWidth  + poleMargin);
-					return 0;
-				}).attr("y", function(d) {
-					return height-(Number(d["under_house_single"]) * multipleKey);
-					//return 0;
+				.enter()
+				.append("g")
+				.attr("transform", function(d, i) {	
+					return "translate(-35,"+ ( i * (poleHeight+poleMargin) ) +")";
 				});
 
-		pole_under_house.append("text")
-			.attr("class","pole-label")
-		//	.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
-			.text(function(d) { return d.under_house_ratio+"%"; })
-			.attr("transform", function(d, i) { 
-				return "translate(8," + (height-(Number(d["under_house"]) * multipleKey)-2) + ")";
-			}).style("display", "none");
-		
-		var $tooltip = $(".all-city-household-chart .tooltip");
-		$tooltip.css({"opacity":"0"})
-		pole_under_house.on("mouseenter", function(d) {
-				d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").style("fill-opacity", "0.4")
-				d3.select(this).selectAll(".pole")
-					.style("fill-opacity", "1")
-					.style("stroke", "#7b0000")
-					.style("stroke-width", "1px")
+			var Xaxis_label = Xaxis.append("text")
+				.attr("width", "30")
+				.attr("fill", "#111")
+				.attr("font-size", "10px")
+				.attr("class", "graph-Xaxis")
+				.attr("text-anchor", "start")
+				.text(function(d) {
+				  return d.geo;
+				});
+
+			var $tooltip = $(".all-city-household-chart .tooltip");
+			$tooltip.css({"opacity":"0"})
+			pole_under_house.on("click", function(d) {
+					d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").style("fill-opacity", "0.4")
+					d3.select(this).selectAll(".pole")
+						.style("fill-opacity", "1")
+						.style("stroke", "#7b0000")
+						.style("stroke-width", "1px");
+					
+					$tooltip.css({"opacity":"1"});
+					$tooltip.find(".city-name").html(d["geoWide"]+" "+d.geo);
+					$tooltip.find(".household .value").html(d.house);
+					$tooltip.find(".under-household .value").html(d["under_house"]);
+					$tooltip.find(".under-household-single .value").html(d["under_house_single"]);
+					$tooltip.find(".under-household-ratio .value").html(d["under_house_ratio"]);
+					d3.select(this).selectAll(".pole-label")
+						.style("opacity", "1");
+
+				}).on("mouseleave", function(d){
+					d3.selectAll("#ALL_CITY_HOUSE_POLE  .pole")
+						.style("fill-opacity", null)
+						.style("stroke", null)
+						.style("stroke-width",  null)
+					$tooltip.css({"opacity":"0"})
+
+					d3.selectAll(".pole-label")
+						.style("opacity", null);
+				});		
+
+
+		}else{ // PC horizontal Pole Graph
+			var width = (screenWidth<1300)? (screenWidth-80): 1300,
+				height= 400,
+				margin= 10 ;
+			
+
+			pole_chart_svg.attr("width", width +"px" )
+				.attr("height", height +"px");
+
+			var chart_holder = pole_chart_svg.append("g")
+				.attr("class","chart-holder");
+
+			var x = d3.scale.linear()
+				.range([0, width]);
+
+			var y = d3.scale.linear()
+				.range([height, 0])
+				.domain([0, maxValue])
+
+			var yAxis = d3.svg.axis()
+				.scale(y)
+				.orient("left").ticks(5);
+
+			var multipleKey = height / maxValue;
+			poleMargin = 2; 
+			poleWidth = ((width-margin) / data.length)-poleMargin;
+
+			chart_holder.append("g")
+			  .attr("class", "y axis")
+			  .attr("transform", "translate(-10,0)")
+			  .call(yAxis);
+
+			var centre_area = chart_holder.append("g")
+				.attr("class","area-box centre-area");
+
+			var centre_area_rect = centre_area.append("rect")
+				.style("fill", function(d) {
+					  return "url(#diagonalHatchArea)";
+				})
+				.attr("width", (poleWidth  + poleMargin)*66)
+				.attr("height", height )
+				.attr("class", "area-rect centre-area-rect")
+				.style("fill-opacity", "0.15");
+			centre_area.append("text")
+				.text("수도권")
+				.attr("class","area-label")
+				.attr("transform", "translate("+(poleWidth  + poleMargin)*33+",20)")
+
+
+			var seoul_area = chart_holder.append("g")
+				.attr("class","area-box seoul-area");
+
+			var seoul_area_rect = seoul_area.append("rect")
+				.style("fill", function(d) {
+					  return "rgb(255, 183, 183)";
+				})
+				.attr("width", (poleWidth  + poleMargin)*25)
+				.attr("height", height*0.8 )
+				.attr("x", "0")
+				.attr("y", height*0.2 )
+				.attr("class", "area-rect seoul-area-rect")
+				.style("fill-opacity", "0");
+			seoul_area.append("text")
+				.text("서울")
+				.attr("class","area-label")
+				.attr("transform", "translate("+(poleWidth  + poleMargin)*12+","+ height*0.2+")")
 				
-				$tooltip.css({"opacity":"1"})
-				$tooltip.find(".city-name").html(d["geoWide"]+" "+d.geo);
-				$tooltip.find(".household .value").html(d.house);
-				$tooltip.find(".under-household .value").html(d["under_house"]);
-				$tooltip.find(".under-household-single .value").html(d["under_house_single"]);
-				$tooltip.find(".under-household-ratio .value").html(d["under_house_ratio"]);
-				$tooltip.css({"left":(d3.mouse(this.parentNode)[0])+"px"});
-			//	$tooltip.css({"top": (d3.mouse(this.parentNode)[1]+20) +"px"});
-				$tooltip.css({"bottom":"-50px"});
+			$(".item.one").insertAfter(".item.three");
+			var pole_under_house_holder = chart_holder.append("g")
+				.attr("class","pole-under-house-holder");
 
-			}).on("mouseleave", function(d){
-				d3.selectAll("#ALL_CITY_HOUSE_POLE  .pole")
-					.style("fill-opacity", null)
-					.style("stroke", null)
-					.style("stroke-width",  null)
-				$tooltip.css({"opacity":"0"})
-			});
+			var pole_under_house = pole_under_house_holder.selectAll("g")
+					.data(data)
+					.enter().append("g")
+					.attr("class","pole-g")
+					.attr("transform", function(d, i) { return "translate("+ ( i * (poleWidth  + poleMargin) ) +",0)";});
+			
+			pole_under_house.append("rect")
+					.style("fill", function(d) {
+					  return "#ffae12";
+					})
+					.attr("width", poleWidth)
+					.attr("class", "pole pole-under-house")
+					.attr("height", function(d) {
+						var h = Number(d["under_house"]) * multipleKey;
+						if(h<4){ h = 4;}
+						return h;
+					}).attr("x", function(d, i) {
+						return 0;
+					}).attr("y", function(d) {
+						var h = Number(d["under_house"]) * multipleKey;
+						if(h<4){ h = 4;}
+						return height-h;
+					});
+			
+
+			var pole_under_house_single = pole_under_house.append("rect")
+					.style("fill", function(d) {
+					  return "#ff432f";
+					})
+					.attr("width", poleWidth)
+					.attr("class", "pole pole-under-single-house")
+					.attr("height", function(d) {
+						return Number(d["under_house_single"]) * multipleKey;
+					}).attr("x", function(d, i) {
+						return 0;
+					}).attr("y", function(d) {
+						return height-(Number(d["under_house_single"]) * multipleKey);
+					});
+
+			pole_under_house.append("text")
+				.attr("class","pole-label")
+			//	.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
+				.text(function(d) { return d.under_house_ratio+"%"; })
+				.attr("transform", function(d, i) { 
+					return "translate(8," + (height-(Number(d["under_house"]) * multipleKey)-2) + ")";
+				}).style("display", "none");
+			
+			var $tooltip = $(".all-city-household-chart .tooltip");
+			$tooltip.css({"opacity":"0"})
+			pole_under_house.on("mouseenter", function(d) {
+					d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").style("fill-opacity", "0.4")
+					d3.select(this).selectAll(".pole")
+						.style("fill-opacity", "1")
+						.style("stroke", "#7b0000")
+						.style("stroke-width", "1px")
+					
+					$tooltip.css({"opacity":"1"})
+					$tooltip.find(".city-name").html(d["geoWide"]+" "+d.geo);
+					$tooltip.find(".household .value").html(d.house);
+					$tooltip.find(".under-household .value").html(d["under_house"]);
+					$tooltip.find(".under-household-single .value").html(d["under_house_single"]);
+					$tooltip.find(".under-household-ratio .value").html(d["under_house_ratio"]);
+					$tooltip.css({"left":(d3.mouse(this.parentNode)[0])+"px"});
+					$tooltip.css({"bottom":"-50px"});
+
+				}).on("mouseleave", function(d){
+					d3.selectAll("#ALL_CITY_HOUSE_POLE  .pole")
+						.style("fill-opacity", null)
+						.style("stroke", null)
+						.style("stroke-width",  null)
+					$tooltip.css({"opacity":"0"})
+				});		
+		
+		
+		
+		
+		}
 
 	}
 
@@ -481,6 +637,7 @@ $(function(){
 		var icon_width = 10,
 			icon_height = 27;
 
+		
 		var icon_svg = d3.select("#ICON_SPREADING_HOLDER")
 			.attr("width", width +"px" )
 			.attr("height", height +"px")
@@ -491,9 +648,10 @@ $(function(){
 		var each_group = icon_holder.append("g")
 			.attr("class", "each-g");
 		
-		if(dataNumb>2000){ 
-			dataNumb = 2000;
-			underNumb = (2000*data["under_house_ratio"])/100; 
+		var dataNumbMax = (isMobile==true)? 500 :1000; 
+		if(dataNumb> dataNumbMax){ 
+			dataNumb =  dataNumbMax;
+			underNumb = ( dataNumbMax*data["under_house_ratio"])/100; 
 		}
 		console.log( dataNumb, underNumb);
 
@@ -637,11 +795,21 @@ $(function(){
 		$("#SELECT_HOUSE_NUMBER").html(userSelectG["house"]+" 가구");
 		$("#SELECT_UNDERHOUSE_NUMBER").html(userSelectG["under_house"]+" 가구");
 		$("#SELECT_UNDERHOUSE_RATIO").html(userSelectG["under_house_ratio"]+"%");
-		$(".result-text-before").hide();
-		$(".result-text").slideDown();
 
-		spreadIcon(userSelectG);
+		g_Srch.showResult(userSelectG);
 	};
+
+	g_Srch.showResult = function (u){
+		var data = u;
+		$(".result-text-before").hide();
+		$(".result-text").slideDown( function(){
+			var movePosAdKey = (isMobile==true)? 100: 200;
+			var movePos = $(".search-result-box").offset().top-movePosAdKey;
+			$("html, body").animate({scrollTop: movePos},1200, "easeOutCubic");
+			spreadIcon(data);
+		});	
+
+	};	
 
 	$S_W.on("change", function(){
 		g_Srch.selectBase = null;
@@ -784,10 +952,8 @@ $(function(){
 		$("#SELECT_HOUSE_NUMBER").html(userSelectG["house"]+" 가구");
 		$("#SELECT_UNDERHOUSE_NUMBER").html(userSelectG["under_house"]+" 가구");
 		$("#SELECT_UNDERHOUSE_RATIO").html(userSelectG["under_house_ratio"]+"%");
-		$(".result-text-before").hide();
-		$(".result-text").slideDown();
 
-		spreadIcon(userSelectG);
+		g_Srch.showResult(userSelectG);
 	};
 	$S_W_V.on("change", function(){
 		g_Srch.selectGeoVote = null;
@@ -845,7 +1011,7 @@ $(function(){
 
 	function makeStarckedBar(data){
 		var margin = {top: 20,right: 20,bottom: 40,left: 60},
-			width = 600 - margin.left - margin.right,
+			width = ((screenWidth<600)? screenWidth: 600) - margin.left - margin.right,
 			height = 315 - margin.top - margin.bottom,
 			that = this,
 			data = data;
@@ -1009,7 +1175,6 @@ $(function(){
 		  .append("path")
 			.attr("d", 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
 			.attr("stroke", "#cf3a00")
-			//.attr("stroke", "#111")
 			.attr("stroke-width", 2);
 
 		var def_pattern = svg.append("pattern")
@@ -1065,8 +1230,6 @@ $(function(){
 						features[m].properties["old_ratio"] = seoul_basic[i]["old_ratio"];
 						features[m].properties["single_parent_house_ratio"] = seoul_basic[i]["single_parent_house_ratio"];
 						features[m].properties["low_income_house_ratio"] = seoul_basic[i]["low_income_house_ratio"];
-
-					//	console.log( features[m].properties.SIG_KOR_NM +"의 반지하 거주 가구비율은 "+features[m].properties["under_house_ratio"]+"%");
 						break;
 					}			
 				}
@@ -1291,9 +1454,9 @@ $(function(){
 	});
 
 	function makePoleChartRent(){
-		var width = (screenWidth<700)? screenWidth: 700,
+		var width = (screenWidth<700)? (screenWidth-50): 700,
 			height= 300,
-			margin= 10 ;
+			margin= 10;
 		var data = seoul_basic;
 		
 		var values = data.map(function(v) {
@@ -1333,21 +1496,30 @@ $(function(){
 			.enter()
 			.append("g")
 			.attr("transform", function(d, i) {	
-				return "translate("+ ( i * (poleWidthRent  + poleMarginRent) ) +", 30)";
+				return "translate("+ ( i * (poleWidthRent  + poleMarginRent) ) +","+( (isMobile==true)? 15 : 30)+")";
 			});
 
 		var Xaxis_label = Xaxis.append("text")
-			.attr("width", "50")
-			.attr("transform","rotate(-45)")
+			.attr("width", "50")	
 			.attr("fill", "#111")
 			.attr("font-size", "10px")
 			.attr("class", "graph-Xaxis")
-			.attr("text-anchor", "start")
 			.text(function(d) {
 			  return d.geo;
-			});
+			})
 
-
+		if(isMobile==true){
+			Xaxis_label.style("opacity", function(d){
+				if(d["geo"]=="강서구"||d["geo"]=="노원구"){
+					return "1";
+				}else{
+					return "0";
+				}
+			}).attr("text-anchor", "middle")
+		}else{
+			Xaxis_label.attr("transform","rotate(-45)").attr("text-anchor", "start")
+		}
+		
 		var halfLineHolder = chart_holder.append("g")
 			.attr("class", "half-line-holder")
 			.attr("transform", "translate(0,"+ (height-(multipleKey*10351)) +")");
@@ -1361,9 +1533,10 @@ $(function(){
 			.attr("stroke-width", "0.5")
 			.attr("stroke", "#111");
 		
+		var avrLineText = (isMobile==true)? "평균":"평균 10,351호";
 		halfLineHolder.append("text")
-			.attr("transform", "translate("+width+",0)")
-			.text("평균 10,351호");
+			.attr("transform", "translate("+(width-5)+",0)")
+			.text(avrLineText);
 
 		var pole_rent_apart_holder = chart_holder.append("g")
 			.attr("class","pole-rent-holder");
@@ -1416,9 +1589,12 @@ $(function(){
 				$tooltip.css({"opacity":"1"})
 				$tooltip.find(".city-name").html(d["geo"]);
 				$tooltip.find(".rent-apart .value").html(d["rent_apart"]);
-				$tooltip.css({"left":((d3.mouse(this.parentNode)[0])+150)+"px"});
-				$tooltip.css({"bottom":"-30px"});
-
+				if(isMobile==true){
+				
+				}else{
+					$tooltip.css({"left":((d3.mouse(this.parentNode)[0])+150)+"px"});
+					$tooltip.css({"bottom":"-30px"});
+				}
 				var g = d["geo"];
 				d3.selectAll(".graph-Xaxis")
 					.filter(function(d){ return d.geo == g;})
@@ -1445,10 +1621,19 @@ $(function(){
 
 	/****** 구별 임대주택 막대 그래프 ******/
 
-
+	
 	$(".text-box").css("left", ((screenWidth - $(".text-box").width())/2-50)+"px");
+	/******** 모바일 전용 조정 ********/
 	if(isMobile==true){
+		$(".text-box").css("left", "0px");
 		$(".page-title").find("img").attr("src", "img/page-title-m.png");
+		$(".all-city-household-chart .pole-legend").insertAfter("#POLE_CHART_SWIFT");
+		$("#POLE_CHART_SWIFT").hide();
+		$(".wage_avr").attr("src", "img/graph_wage_avr_m.png");
+		$(".underhouse-wage").attr("src", "img/graph_underhouse_wage_m.png");
+		var mapScaleKey = Number((screenWidth/1000).toFixed(4))+0.13;
+		var mapTransValue = (screenWidth*4/15).toFixed(4);
+		$(".seoul-map .map-holder").css({"transform":"scale("+mapScaleKey+") translate("+(mapTransValue*-1)+"px, 0px)", "transform-origin":"left center"});
 		
 	}
 
