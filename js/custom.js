@@ -508,11 +508,15 @@ $(function(){
 						.style("stroke-width",  null)
 					$tooltip.css({"opacity":"0"})
 				});		
-		
-		
-		
-		
 		}
+		
+		$(".all-city-household-chart .tooltip .close-btn").on("click", function(){
+			d3.selectAll("#ALL_CITY_HOUSE_POLE  .pole")
+				.style("fill-opacity", null)
+				.style("stroke", null)
+				.style("stroke-width",  null)
+			$tooltip.css({"opacity":"0"})
+		});
 
 	}
 
@@ -1613,6 +1617,19 @@ $(function(){
 					.style("fill",null);
 
 			});
+			$(".seoul-rent-apart-chart .tooltip .close-btn").on("click", function(){
+				d3.selectAll("#SEOUL_RENT_APART_POLE  .pole")
+					.style("fill-opacity", null)
+					.style("stroke", null)
+					.style("stroke-width",  null)
+				$tooltip.css({"opacity":"0"});
+
+				d3.selectAll(".graph-Xaxis")
+					.style("fill-opacity",null)
+					.style("fill",null);
+			});
+		
+
 
 
 	};	

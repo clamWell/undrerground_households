@@ -299,6 +299,9 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .all-city-household-chart .tooltip p {font-size:15px; line-height:1.5; }
 .all-city-household-chart .tooltip .city-name { font-weight:bold; color:#111; }
 .all-city-household-chart .tooltip .under-household-ratio { font-weight:bold; margin-top: 5px; color: #ff6600;}
+.all-city-household-chart .tooltip .close-btn { position: absolute; color: #222;
+ top: 5px; cursor: pointer; right: 10px; opacity: 0.7; font-size: 28px; line-height: 28px; display:none; }
+
 .seoul-area-rect {stroke: #333; stroke-width: 1px; shape-rendering: crispEdges;stroke-opacity: 0.5; }
 .area-label { font-size: 14px;font-weight: bold; color: #555;stroke: white;stroke-width: 1.5px;paint-order: stroke fill; text-anchor: middle;}
 .all-city-household-chart .graph-des {  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
@@ -429,6 +432,10 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .seoul-rent-apart-chart .tooltip p {font-size:15px; line-height:1.5; }
 .seoul-rent-apart-chart .tooltip .city-name {color:#111;font-weight:bold;  }
 .seoul-rent-apart-chart .tooltip .rent-apart .value { font-weight:bold; color: #ff6600;}
+.seoul-rent-apart-chart .tooltip .close-btn { position: absolute; color: #222;
+ top: 5px; cursor: pointer; right: 10px; opacity: 0.7; font-size: 28px; line-height: 28px; display:none; }
+
+
 #SEOUL_RENT_APART_POLE .half-line {  fill: #111;stroke-width: 1; shape-rendering: crispEdges; stroke-dasharray: 3px; stroke-dashoffset: 3px; stroke-opacity: 0.4;}
 #SEOUL_RENT_APART_POLE .half-line-holder text { font-size: 12px;font-weight: bold; fill: #000000; opacity: 0.6;}
 .seoul-rent-apart-chart .graph-des {   font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕'; text-align: center;
@@ -736,7 +743,7 @@ font-size: 12px;text-align: left; width: 100%;box-sizing: border-box; padding: 0
 #ALL_CITY_HOUSE_POLE .graph-Xaxis {font-weight: bold;  color: #555; fill:#999; stroke: #fff;
 stroke-width: 1.5px;paint-order: stroke fill; text-anchor: start;}
 .pole-label {  opacity: 0.4; font-size: 10px; text-anchor: start;}
-.all-city-household-chart .tooltip { position: fixed; width: 100%; top: auto;bottom: 0px; left: 0;}
+.all-city-household-chart .tooltip { position: fixed; width: 100%; top: auto;bottom: 0px; left: 0;box-sizing: border-box;}
 .all-city-household-chart .tooltip p { font-size: 13px;line-height: 1.6; }
 .all-city-household-chart .caption {  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
 font-size: 12px;text-align: left; width: 100%;box-sizing: border-box; padding: 0px 15px;}
@@ -765,7 +772,7 @@ font-size: 12px;width: 100%;box-sizing: border-box; padding: 0px 10px;}
 .spacer .text-box p { margin: 10px 0;font-size: 15.5px; line-height: 1.6;}
 .seoul-rent-apart-chart .graph-des {    font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';
 font-size: 13px; width: 100%; box-sizing: border-box; padding: 0px 10px;}
-.seoul-rent-apart-chart .tooltip {position: fixed; width: 100%;  top: auto;bottom: 0px; left: 0; }
+.seoul-rent-apart-chart .tooltip {position: fixed; width: 100%;  top: auto;bottom: 0px; left: 0;box-sizing: border-box; }
 .seoul-rent-apart-chart .tooltip p { font-size: 13px; line-height: 1.6;}
 #SEOUL_RENT_APART_POLE .graph-Xaxis { font-size: 12px;  transform: none;fill-opacity: 0.8; fill: #ea4d00; }
 #SEOUL_RENT_APART_POLE .pole-label {  text-anchor: middle; font-size: 12px;opacity: 0.8;}
@@ -788,6 +795,9 @@ font-size: 13px; width: 100%; box-sizing: border-box; padding: 0px 10px;}
 .graph-title { font-size: 15px; margin-bottom: 10px; }
 .table-holder .caption {  font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';  font-size: 12px;
 width: 100%;box-sizing: border-box; padding: 0px 5px; word-break: keep-all;margin: 8px 0;}
+
+.seoul-rent-apart-chart .tooltip .close-btn { display:block; cursor: pointer; }
+.all-city-household-chart .tooltip .close-btn { display:block;cursor: pointer;  }
 
 .digital-list-wrap{ border-top: 0;}
 .bottom-byline { margin-top:0;}
