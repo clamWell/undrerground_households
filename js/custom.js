@@ -706,6 +706,10 @@ $(function(){
 		$S_D = $("#search-03"),
 		Op_lt =  $S_W.find("option");
 	
+	var $S_V = $("#search-05"),
+		$S_W_V = $("#search-04"),
+		Op_lt_v =  $S_W_V.find("option");
+
 	Op_lt.sort(function(a, b){
 		if (a.text > b.text) return 1;
 		else if (a.text < b.text) return -1;
@@ -897,10 +901,6 @@ $(function(){
 		}
 	});
 
-
-	var $S_V = $("#search-05"),
-		$S_W_V = $("#search-04"),
-		Op_lt_v =  $S_W_V.find("option");
 	
 	Op_lt_v.sort(function(a, b){
 		if (a.text > b.text) return 1;
@@ -1584,7 +1584,8 @@ $(function(){
 		var $tooltip = $(".seoul-rent-apart-chart .tooltip");
 		$tooltip.css({"opacity":"0"})
 
-		pole_rent_apart.on("mouseenter", function(d) {
+		if(isMobile==true){
+			pole_rent_apart.on("click", function(d) {
 				d3.selectAll("#SEOUL_RENT_APART_POLE .pole").style("fill-opacity", "0.4")
 				d3.select(this).selectAll(".pole")
 					.style("fill-opacity", "1")
@@ -1617,7 +1618,30 @@ $(function(){
 					.style("fill",null);
 
 			});
-			$(".seoul-rent-apart-chart .tooltip .close-btn").on("click", function(){
+		
+		}else{
+			pole_rent_apart.on("mouseenter", function(d) {
+				d3.selectAll("#SEOUL_RENT_APART_POLE .pole").style("fill-opacity", "0.4")
+				d3.select(this).selectAll(".pole")
+					.style("fill-opacity", "1")
+					.style("stroke", "#7b0000")
+					.style("stroke-width", "1px")
+				$tooltip.css({"opacity":"1"})
+				$tooltip.find(".city-name").html(d["geo"]);
+				$tooltip.find(".rent-apart .value").html(d["rent_apart"]);
+				if(isMobile==true){
+				
+				}else{
+					$tooltip.css({"left":((d3.mouse(this.parentNode)[0])+150)+"px"});
+					$tooltip.css({"bottom":"-30px"});
+				}
+				var g = d["geo"];
+				d3.selectAll(".graph-Xaxis")
+					.filter(function(d){ return d.geo == g;})
+					.style("fill-opacity","1")
+					.style("fill","#ff5200");
+
+			}).on("mouseleave", function(d){
 				d3.selectAll("#SEOUL_RENT_APART_POLE  .pole")
 					.style("fill-opacity", null)
 					.style("stroke", null)
@@ -1627,7 +1651,21 @@ $(function(){
 				d3.selectAll(".graph-Xaxis")
 					.style("fill-opacity",null)
 					.style("fill",null);
+
 			});
+		}
+		
+		$(".seoul-rent-apart-chart .tooltip .close-btn").on("click", function(){
+			d3.selectAll("#SEOUL_RENT_APART_POLE  .pole")
+				.style("fill-opacity", null)
+				.style("stroke", null)
+				.style("stroke-width",  null)
+			$tooltip.css({"opacity":"0"});
+
+			d3.selectAll(".graph-Xaxis")
+				.style("fill-opacity",null)
+				.style("fill",null);
+		});
 		
 
 
@@ -1638,8 +1676,9 @@ $(function(){
 
 	/****** 구별 임대주택 막대 그래프 ******/
 
-	
-	$(".text-box").css("left", ((screenWidth - $(".text-box").width())/2-50)+"px");
+	var textBoxLeftMove = ((screenWidth - $(".text-box").width())/2-50); 
+	if(textBoxLeftMove >=450){textBoxLeftMove = 450; }
+	$(".text-box").css("left", textBoxLeftMove+"px");
 	/******** 모바일 전용 조정 ********/
 	if(isMobile==true){
 		$(".text-box").css("left", "0px");
@@ -1651,9 +1690,13 @@ $(function(){
 		var mapScaleKey = Number((screenWidth/1000).toFixed(4))+0.13;
 		var mapTransValue = (screenWidth*4/15).toFixed(4);
 		$(".seoul-map .map-holder").css({"transform":"scale("+mapScaleKey+") translate("+(mapTransValue*-1)+"px, 0px)", "transform-origin":"left center"});
+
+		$(".all-city-household-chart .graph-des").html("막대그래프를 클릭하시면 <b>지자체별 상세정보</b>를 보실 수 있습니다.");
+		$(".seoul-rent-apart-chart .graph-des").html("막대그래프를 클릭하시면 <b>구별 상세정보</b>를 보실 수 있습니다.");
 		
 	}
 
+	resetAllOpt();
 	$(".loading-page").fadeOut(200, function(){
 		$introItem = $(".intro-fadeTo");
 		for(o=0; o<$introItem.length;o++){
