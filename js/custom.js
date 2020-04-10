@@ -1057,7 +1057,7 @@ $(function(){
 				d.y0 /= y0;
 				d.y1 /= y0;
 			});
-			console.log(data);
+			//console.log(data);
 		});
 
 		data.sort(function (a, b) {
@@ -1707,6 +1707,10 @@ $(function(){
 		
 	});
 
+	$(".close-ie-block").on("click", function(){
+		$(".ie-block-9").hide();
+	})
+
 
 	var nowScroll;
 	var mapPos = "before";
@@ -1720,7 +1724,7 @@ $(function(){
 		if( nowScroll >= $(".map-fixed-slider").offset().top && nowScroll < endPoint ){
 			if(mapPos !== "on"){
 				mapPos = "on";
-				console.log("맵영역");
+			//	console.log("맵영역");
 				$(".fixed-el").addClass("fixed-el-fixed");
 				$(".fixed-el").removeClass("fixed-el-bottom");
 			}
@@ -1728,7 +1732,7 @@ $(function(){
 		}else if( nowScroll < $(".map-fixed-slider").offset().top ){
 			if(mapPos !== "before"){
 				mapPos = "before";
-				console.log("맵영역이전");
+			//	console.log("맵영역이전");
 				$(".fixed-el").removeClass("fixed-el-fixed");
 				$(".fixed-el").removeClass("fixed-el-bottom");
 				$(".map--layer").hide();
@@ -1737,7 +1741,7 @@ $(function(){
 		}else if( nowScroll >= endPoint){
 			if(mapPos !== "after"){
 				mapPos = "after";
-				console.log("맵영역이후");
+			//	console.log("맵영역이후");
 				$(".fixed-el").removeClass("fixed-el-fixed");
 				$(".fixed-el").addClass("fixed-el-bottom");
 			}
@@ -1760,7 +1764,7 @@ $(function(){
 		}else if( mapStage !==g ){
 			mapStage = g;
 			drawMapByStage(mapStage);
-			console.log(mapStage);
+		//	console.log(mapStage);
 		}
 	};
 	

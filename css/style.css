@@ -111,8 +111,8 @@ font-family: sans-serif; font-weight: bold;}
 .ie-block {  z-index: 99999; width:100%; height:100vh; background:#111; background: rgba(21, 21, 21, 0.9);position:fixed; top:0;left:0;bottom:0;right:0;}
 .ie-block .alert-msg { position: absolute; background:#fff; box-sizing: border-box; padding: 25px; border-radius: 5px; 
 box-shadow: 2px 2px 8px rgba(152, 153, 156, 0.2);width: 50%; left:25%; top: 50%; margin-top:-150px; }
-.ie-block .alert-msg p { margin-bottom:8px;  text-align: center; color: #454750;font-size: 20px; }
-.ie-block .alert-msg button {    display: block; width: 80%; margin: 0px auto;margin-top: 20px;
+.ie-block .alert-msg p { margin-bottom:8px;  text-align: center; color: #454750;font-size: 16px; }
+.ie-block .alert-msg button {    display: block; width: 80%; margin: 0px auto;margin-top: 10px;
 box-sizing: border-box;  padding: 10px; background: #ececf1;  border-radius: 4px; color: #565661; font-weight: bold; font-size: 14px; cursor: pointer; border: 1px solid #dedee2; letter-spacing: -0.05em; }
 
 
@@ -572,6 +572,7 @@ font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고
 .area-label {  stroke-width: 0.2px ;}
 #SEOUL_MAP #map text {  stroke-width: 0.2px ;}
 .pole-label  {  stroke-width: 0.2px ;}
+#STACKED_BAR .stacked-label  {  stroke-width: 0.2px ;}
 
 }
 /* IE9,10 */
@@ -579,6 +580,7 @@ font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고
 .area-label {  stroke-width: 0.2px ;}
 #SEOUL_MAP #map text {  stroke-width: 0.2px ;}
 .pole-label  {  stroke-width: 0.2px ;}
+#STACKED_BAR .stacked-label  {  stroke-width: 0.2px ;}
 } 
 
 /*****footer*****/
