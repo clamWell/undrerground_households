@@ -932,7 +932,6 @@ $(function(){
 
 
 	/***** 서울시 지도 ******/
-
 	var map_geo_label;
 	function makeMapOverlay(){
 		var width = 1000,
@@ -1009,13 +1008,7 @@ $(function(){
 					}			
 				}
 			}
-		
-			/*
-			var colorFn = d3.scaleSequential(d3.interpolateOrRd)
-							.domain([2.2, 11.3]);*/
 			
-			var colorFn = d3.scale.category10();
-
 			var color_under_house = d3.scale.linear().domain([2.2, 11.3])
 					  .range(["rgba(255,130,38,0.05)", "rgba(255,130,38,0.5)"]);
 			function color_under_house_ratio(v){

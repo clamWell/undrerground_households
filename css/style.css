@@ -189,7 +189,7 @@ body {  font-family: 'Noto Serif KR',  'notokr-regular'; }
 .top-feature {width:100%; height:800px; height:95vh; background: #000; }
 .top-feature-wrap { width: 100%; height:100%; position: relative; }
 .top-feature .window-holder { overflow: hidden; position: absolute; width: 579px; height: 245px;   top: 100px; left: 50%; margin-left: -290px;}
-.top-feature .window-holder .sunset { width: 100%;height:100%; position: relative; background: url("../img/sunset.jpg") no-repeat; background-size: cover; }
+.top-feature .window-holder .sunset { width: 100%;height:100%; position: relative; background: url("http://img.khan.co.kr/spko/storytelling/2020/underground/sunset.jpg") no-repeat; background-size: cover; }
 .top-feature .window-holder .car { position: absolute;   bottom: 0;  right: -700px; }
 .top-feature .window-holder .car > img { position: relative;  bottom: 0; right: 0;
  animation: carRiding 8s infinite cubic-bezier(0.37,0.01,0.55,0.99) both; }
@@ -366,7 +366,7 @@ text-align: center;   max-width: 500px;  margin: 20px auto; font-size: 15px; lin
 	100% {opacity: 1;left:0px;}
 }
 
-.stacked-bar-chart-holder { margin: 50px auto; }
+.stacked-bar-chart-holder { margin: 50px auto; display: none; }
 .stacked-bar-chart{}
 #STACKED_BAR {}
 #STACKED_BAR .axis .domain {stroke-dasharray: 2; fill: none;stroke: #969696; shape-rendering: crispEdges;}
@@ -394,7 +394,7 @@ stroke-opacity: 0.4;}
 .block-07 { background: #ffdfc2; }
 .stacked-bar-legend p .txt { font-size: 13px;  line-height: 14px; color:#111;  margin-left: 5px; opacity: 0.8; }
 
-.graph-title {text-align: center; font-size: 18px; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';}
+.graph-title {text-align: center; margin-bottom: 10px;font-size: 18px; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕';}
 
 .interviewee-holder { max-width: 600px; margin: 50px auto; position: relative;}
 .interviewee-holder .thumb { position: absolute;  left: -300px; top: 0; }
@@ -447,7 +447,7 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 
 .full-korea-map { margin: 50px auto;  }
 .full-korea-map .map-img-holder { }
-.full-korea-map .map-img-holder > img { display:block; margin: 0 auto;  max-width: 500px;}
+.full-korea-map .map-img-holder > img { display:block; margin: 0 auto;  max-width: 600px;}
 .img-holder { margin: 100px auto; }
 .img-holder .caption { text-align: center; max-width: 600px; margin: 20px auto; font-size: 14px; line-height: 1.5;opacity: 0.85; }
 .caption { text-align: center; max-width: 600px; margin: 20px auto; font-size: 14px; line-height: 1.5;opacity: 0.85; }
@@ -461,8 +461,6 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 .full-korea-map span.b03 { background:#ff8c43; }
 .full-korea-map span.b04 { background:#f9410a; }
 .full-korea-map span.b05 { background:#b51e00; }
-
-
 
 .pole-chart-holder { margin: 100px auto; position: relative; max-width: 1400px; overflow: visible;}
 .pole-chart-holder #SEOUL_RENT_APART_POLE { margin-bottom: 50px;}
@@ -503,9 +501,25 @@ border: 1px solid #ddd; z-index: 2;  font-family: 'Noto Sans KR', 'notokr-regula
 
 .section-gangnam {}
 .img-holder-gallery {}
-.img-holder-gallery ul { max-width: 1260px; margin: 0 auto;}
+/* .img-holder-gallery ul { max-width: 1260px; margin: 0 auto;}
 .img-holder-gallery ul li {display: inline-block;margin: 5px 5px;}
-.img-holder-gallery ul li img {}
+.img-holder-gallery ul li img {} */
+
+.gallery-slider { width:100%; margin-top: 50px; box-sizing: border-box; }
+.gallery-slider .slider-wrapper { width: 100%; max-width: 800px;  height:600px; margin: 0 auto; position: relative;  }
+.slider-body { overflow: visible; width: 100%;  position: relative; top:0; left:0; }
+.slider-body ul {  position: relative; top:0; left:0; }
+.slider-body ul li { transition: all 0.3s ease 0s; position: relative;  width: 800px; height: 600px; 
+float: left; display: inline-block;  box-sizing: border-box;  opacity:0.2;transform: scale(0.9);}
+.slider-body ul li.slider-item-on{ opacity:1; transform: scale(1);box-shadow: 5px 5px 20px rgba(78, 71, 68, 0.5);} 
+.slider-body ul li > img { width: 100%; }
+.gallery-slider .arrow { z-index: 2; }
+.gallery-slider .arrow img { width:100%; opacity:0.6;  }
+.gallery-slider .arrow:hover > img { opacity:1; }
+.gallery-slider .prev {position: absolute; top: 50%; margin-top: -15px; left: -30px; cursor: pointer;width: 20px; }
+.gallery-slider .next {position: absolute; top: 50%; margin-top: -15px; right: -30px; cursor: pointer;width: 20px;}
+.gallery-slider .arrow-block { pointer-events: none; }
+
 
 .stack-area-info {}
 .stack-area-info .name-type {}
@@ -566,6 +580,10 @@ font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고
 /** fixed Navi **/
 
 
+
+p.needHelp { color: #ff1800; font-weight:bold; position: relative; }
+p.needHelp::after { display: inline; position: absolute; top: auto; bottom: -20px; right:0; font-size: 14px; content:"확인·수정필";
+background: #ffbe79; padding: 0 4px; }
  
  /* IE10+ */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -617,7 +635,7 @@ padding: 30px 0; text-align: center;  max-width: 500px; margin: 0 auto;}
 .bottom-byline ul .team-wrap {  }
 .bottom-byline ul .team-wrap:nth-child(1) { margin-bottom: 15px; }
 .bottom-byline ul::after { clear: both; content:''; display:block; }
-.bottom-byline ul li { opacity:0.9;  font-weight: 300;font-size: 13px; line-height:20px; color:#222; letter-spacing: 0px; }
+.bottom-byline ul li { opacity:0.9;  font-weight: 300;  font-size: 14px; line-height: 1.7;color:#222; letter-spacing: 0px; }
 .bottom-byline ul li.team { font-weight: bold; font-size: 15px; opacity:1;   letter-spacing: -1px; margin: 5px 0px; }
 .bottom-byline ul li.team span { margin: 0px 5px; font-size: 13px; position: relative; top: -2px; }
 .bottom-byline ul li .roll { font-weight:bold; display: inline-block; margin: 7px 0px; }
@@ -671,7 +689,7 @@ padding: 30px 0; text-align: center;  max-width: 500px; margin: 0 auto;}
 .going-down { bottom: 10px; }
 .top-feature .page-title { bottom: 120px; }
 .intro-des { font-size: 20px; max-width: 550px;}
-.full-korea-map .map-img-holder > img { max-width: 400px; }
+.full-korea-map .map-img-holder > img { max-width: 550px; }
 .para-holder p {  font-size: 20px; max-width: 550px; }
 .interviewee-holder { max-width: 500px; }
 .interviewee-holder .interview-text p { font-size: 20px;}
@@ -683,8 +701,7 @@ padding: 30px 0; text-align: center;  max-width: 500px; margin: 0 auto;}
 .img-holder-col-2 { max-width: 720px;}
 .img-holder-col-2 > img {width: 350px; }
 .img-float-left > img { width: 400px; }
-.img-holder-gallery ul li img { width: 200px;}
-.img-holder-gallery ul { max-width: 855px;}
+
 .table-holder { max-width: 600px; }
 #ALL_CITY_HOUSE_POLE { position: relative; left: 30px; }
 
@@ -844,10 +861,14 @@ font-size: 13px; width: 100%; box-sizing: border-box; padding: 0px 10px;}
 
 .img-holder-col-2 > img { width: 100%; margin: 3px 0; } 
 .section-gangnam {padding-top: 0;}
-.img-holder-gallery ul { width: 100%; }
+/* .img-holder-gallery ul { width: 100%; }
 .img-holder-gallery ul li {  width: 50%; display: block; float: left; box-sizing: border-box; padding: 3px; margin: 0; }
 .img-holder-gallery ul li img { width:100%; }
-.img-holder-gallery ul::after { clear:both; display:block; content:"";}
+.img-holder-gallery ul::after { clear:both; display:block; content:"";} */
+.gallery-slider .arrow { background: rgba(255,255,255,0.6); box-sizing: border-box; padding: 5px; width: 30px; }
+.gallery-slider .prev { left:0; }
+.gallery-slider .next { right: 0; }
+
 .tbl { margin-top: 10px; }
 .tbl th {  padding: 8px 2px;  font-size: 13px;}
 .tbl td { font-size:12px; }

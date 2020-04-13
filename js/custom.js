@@ -359,7 +359,7 @@ $(function(){
 	function swiftingPoleChart(t){
 		var swiftType = t; 
 		if(t=="all_city"){
-			$("#POLE_CHART_SWIFT .click-animation").fadeIn();
+			$("#POLE_CHART_SWIFT .click-animation").hide();
 			d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").transition()
 			  .duration(500).style("display",null).style("opacity","1").attr("width", poleWidth);
 			d3.selectAll("#ALL_CITY_HOUSE_POLE .pole-g").transition()
@@ -368,7 +368,7 @@ $(function(){
 			d3.selectAll(".pole-label").style("display", "none");
 
 		}else if(t=="only_centre"){
-			$("#POLE_CHART_SWIFT .click-animation").hide();
+			$("#POLE_CHART_SWIFT .click-animation").fadeIn();
 
 			d3.selectAll("#ALL_CITY_HOUSE_POLE .pole").filter(function(d){ 
 				return !( (d["geoWide"]=="서울시")||(d["geoWide"]=="경기도")||(d["geoWide"]=="인천시"));
@@ -1502,11 +1502,11 @@ $(function(){
 		});
 		
 
-
-
 	};	
 	makePoleChartRent();
-
+	if(isMobile==false){
+		swiftingPoleChart("only_centre");
+	}
 
 	/****** 구별 임대주택 막대 그래프 ******/
 
@@ -1516,11 +1516,11 @@ $(function(){
 	/******** 모바일 전용 조정 ********/
 	if(isMobile==true){
 		$(".text-box").css("left", "0px");
-		$(".page-title").find("img").attr("src", "img/page-title-m.png");
+		$(".page-title").find("img").attr("src", imgURL+"page-title-m.png");
 		$(".all-city-household-chart .pole-legend").insertAfter("#POLE_CHART_SWIFT");
 		$("#POLE_CHART_SWIFT").hide();
-		$(".wage_avr").attr("src", "img/graph_wage_avr_m.png");
-		$(".underhouse-wage").attr("src", "img/graph_underhouse_wage_m.png");
+		$(".wage_avr").attr("src",  imgURL+"graph_wage_avr_m.png");
+		$(".underhouse-wage").attr("src",  imgURL+"graph_underhouse_wage_m.png");
 		var mapScaleKey = Number((screenWidth/1000).toFixed(4))+0.13;
 		var mapTransValue = (screenWidth*4/15).toFixed(4);
 		$(".seoul-map .map-holder").css({"transform":"scale("+mapScaleKey+") translate("+(mapTransValue*-1)+"px, 0px)", "transform-origin":"left center"});
@@ -1529,6 +1529,60 @@ $(function(){
 		$(".seoul-rent-apart-chart .graph-des").html("막대그래프를 클릭하시면 <b>구별 상세정보</b>를 보실 수 있습니다.");
 		
 	}
+
+
+	/******** Gallery Slider ********/
+	var Slider = {},
+		baseWidth = null,
+		$Base = $(".slider-body ul li");
+ 	Slider.itemNumb = $Base.length;
+	Slider.setSlider = function(){
+		if(isMobile==true){
+			$(".gallery-slider .slider-wrapper").css({"height": (screenWidth*3/4)+"px"});
+			$Base.css({"width": $(".slider-body").width(), "height": (screenWidth*3/4)+"px"});
+			baseWidth = $(".slider-body").width();
+		}else{
+			baseWidth = $Base.width();
+		}	
+		$(".slider-body ul").css({"width":Slider.itemNumb*baseWidth });
+		$Base.eq(0).addClass("slider-item-on");
+	};
+
+	Slider.index = 0;
+	Slider.moveSlide = function(drct){
+		if(drct=="prev"){ // 이전
+			if(Slider.index==0){}
+			else if(Slider.index>0){
+				Slider.index -=1;
+				var moving = baseWidth*Slider.index;
+				$(".slider-body ul").stop().animate({"left":-moving}, 500,"easeOutCubic");
+				$Base.removeClass("slider-item-on");
+				$Base.eq(Slider.index).addClass("slider-item-on");
+			}
+
+		}else if(drct=="next"){ // 다음
+			if(Slider.index==Slider.itemNumb-1 ){}
+			else if(Slider.index<Slider.itemNumb-1 ){
+				Slider.index +=1;
+				var moving = baseWidth*Slider.index;
+				$(".slider-body ul").stop().animate({"left":-moving}, 500,"easeOutCubic");
+				$Base.removeClass("slider-item-on");
+				$Base.eq(Slider.index).addClass("slider-item-on");
+			}
+
+		}
+		$(".arrow").removeClass("arrow-block");
+	}
+	Slider.setSlider();
+
+	$(".arrow").on("click", function(e){
+		$(".arrow").addClass("arrow-block");
+		e.preventDefault();
+		var drct = $(this).attr("id");
+		Slider.moveSlide(drct);
+	});
+	/******** Gallery Slider ********/
+
 
 	resetAllOpt();
 	$(".loading-page").fadeOut(200, function(){
@@ -1652,16 +1706,6 @@ $(function(){
 				$("#UNDER_HOUSE_RATIO").fadeIn();
 				break;
 			case 5:
-				map_geo_label.selectAll("text").style("opacity","0");
-				map_geo_label.selectAll("text")
-					.filter(function(d){ 
-						var k = d.properties.SIG_KOR_NM;
-						return (k =="강남구"||k =="서초구"||k =="송파구");
-					}).style("opacity", "1");
-				$(".map--layer").hide();
-				$("#UNDER_HOUSE_RATIO").show();
-				break;
-			case 6:
 				map_geo_label.selectAll("text").style("opacity","1");
 				$(".map--layer").hide();
 				$("#UNDER_HOUSE_RATIO").show();
