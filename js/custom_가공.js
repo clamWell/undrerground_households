@@ -18,6 +18,9 @@ $(function(){
 		var nowScroll = $(window).scrollTop();
 
 	});
+	var randomRange = function(n1, n2) {
+		return Math.floor((Math.random() * (n2 - n1 + 1)) + n1);
+	};
 
 
 	/******** 전국 지자체 반지하 현황 막대그래프 ********/
@@ -139,7 +142,6 @@ $(function(){
 
 			pole_under_house.append("text")
 				.attr("class","pole-label")
-			//	.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
 				.text(function(d) { return d.under_house+"가구("+d.under_house_ratio+"%)"; })
 				.attr("transform", function(d, i) { 
 					var xValue = Number(d["under_house"]) * multipleKey;
@@ -311,7 +313,6 @@ $(function(){
 
 			pole_under_house.append("text")
 				.attr("class","pole-label")
-			//	.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
 				.text(function(d) { return d.under_house_ratio+"%"; })
 				.attr("transform", function(d, i) { 
 					return "translate(8," + (height-(Number(d["under_house"]) * multipleKey)-2) + ")";
@@ -333,7 +334,7 @@ $(function(){
 					$tooltip.find(".under-household-single .value").html(d["under_house_single"]);
 					$tooltip.find(".under-household-ratio .value").html(d["under_house_ratio"]);
 					$tooltip.css({"left":(d3.mouse(this.parentNode)[0])+"px"});
-					$tooltip.css({"bottom":"-70px"});
+					$tooltip.css({"bottom":"-50px"});
 
 				}).on("mouseleave", function(d){
 					d3.selectAll("#ALL_CITY_HOUSE_POLE  .pole")
@@ -355,7 +356,9 @@ $(function(){
 	}
 
 	makePoleChart();
+	/******** 전국 지자체 반지하 현황 막대그래프 ********/
 
+	/******** 전국 지자체 반지하 현황 막대그래프 옵션 변경 ********/
 	function swiftingPoleChart(t){
 		var swiftType = t; 
 		if(t=="all_city"){
@@ -405,64 +408,11 @@ $(function(){
 		var type = $(this).attr("data-chart-type");
 		swiftingPoleChart(type);
 	});
-	
-	/******** 막대그래프 ********/
+	/******** 전국 지자체 반지하 현황 막대그래프 옵션 변경 ********/
+
 
 
 	/******** 검색영역 아이콘  ********/
-	var randomRange = function(n1, n2) {
-		return Math.floor((Math.random() * (n2 - n1 + 1)) + n1);
-	};
-
-	function drawIcon(){
-		var width = 1000,
-			height= 300,
-			margin= 10;
-		var data = seoul_basic[0];
-		var dataNumb = Number(data["under_pop"])/50;
-		var path = person_path;
-		var icon_mg = 1,
-			icon_width = 15,
-			icon_height = 40,
-			lineMaxNum = parseInt($("#ICON_SVG").width() / (icon_width + icon_mg));
-	
-		var icon_svg = d3.select("#ICON_SVG")
-			.attr("width", width +"px" )
-			.attr("height", height +"px")
-
-		var icon_holder = icon_svg.append("g")
-			.attr("class","icon_holder");
-
-		var each_group = icon_holder.append("g")
-			.attr("class", "each-g");
-
-		for(i=0; i<dataNumb; i++){
-			var g = each_group.append("g")
-				.attr("class", "icon")
-				.attr("transform", function() {
-					var x = (i % lineMaxNum) * (icon_width + icon_mg);
-					var y = parseInt(i / lineMaxNum) * (icon_height + icon_mg)
-					return "translate(" + x + "," + y + ")";
-				}).style("width", icon_width)
-				.style("height", icon_height)
-
-			g.append("rect")
-				.attr("class", "iconBack")
-				.style("width", icon_width)
-				.style("height", icon_height)
-				.attr("fill", "rgba(255,255,255,0.05)");
-
-			g.append("path")
-				.attr("d", function(i) {
-					var n = randomRange(0, 17);
-					return path[n].path;
-				}).style("fill", "rgb(131, 138, 148)");
-		}
-
-
-	}
-	//drawIcon();
-
 	function spreadIcon(dataObj){
 		removeIcon();
 		var width = screenWidth,
@@ -977,20 +927,7 @@ $(function(){
 			});
 
 	
-
-
-	/*
-		eachStackedItem.on('mouseover', function (d) {
-				var total_amt;
-				total_amt = d.amount;
-				d3.select(".chart-tip").style('opacity', '1').html('Amount: <strong>$' + that.numberWithCommas(total_amt.toFixed(2)) + '</strong>');
-			}).on('mouseout', function () {
-				d3.select(".chart-tip").style('opacity', '0');
-			});*/
-	
 	}
-	makeStarckedBar(household_number);
-
 	/********** 가구원수 stacked bar 챠트 ***********/
 
 
@@ -1240,7 +1177,7 @@ $(function(){
 		});
 
 	}
-	makeMapOverlay();
+
 
 	function setMapDefault(){
 		$("#UNDER_HOUSE_RATIO").hide();
@@ -1248,7 +1185,6 @@ $(function(){
 		$("#SINGLE_PARENT_RATIO").hide();
 		$("#OLD_RATIO").hide();
 	}
-	setMapDefault();
 
 	$(".seoul-map .btn-holder ul").find("li").on("click", function() {
 		var button_index = $(this).index();
@@ -1505,7 +1441,14 @@ $(function(){
 
 
 	};	
-	makePoleChartRent();
+
+
+	function drawAllGraphAndChart(){
+		makeStarckedBar(household_number);
+		makeMapOverlay();
+		setMapDefault();
+		makePoleChartRent();
+	};
 
 
 	/****** 구별 임대주택 막대 그래프 ******/
@@ -1531,6 +1474,8 @@ $(function(){
 	}
 
 	resetAllOpt();
+	
+
 	$(".loading-page").fadeOut(200, function(){
 		$introItem = $(".intro-fadeTo");
 		for(o=0; o<$introItem.length;o++){
@@ -1540,6 +1485,7 @@ $(function(){
 		if(isMobile==false){ $(".fixed-navi").animate({"right":"10px"},1000); }
 		
 	});
+
 
 	$(".close-ie-block").on("click", function(){
 		$(".ie-block-9").hide();
