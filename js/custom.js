@@ -18,6 +18,13 @@ $(function(){
 		var nowScroll = $(window).scrollTop();
 
 	});
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	$(".close-ie-block").on("click", function(){
+		$(".ie-block-9").hide();
+	})
+
 
 
 	/******** 전국 지자체 반지하 현황 막대그래프 ********/
@@ -139,7 +146,6 @@ $(function(){
 
 			pole_under_house.append("text")
 				.attr("class","pole-label")
-			//	.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
 				.text(function(d) { return d.under_house+"가구("+d.under_house_ratio+"%)"; })
 				.attr("transform", function(d, i) { 
 					var xValue = Number(d["under_house"]) * multipleKey;
@@ -179,10 +185,11 @@ $(function(){
 						.style("stroke-width", "1px");
 					
 					$tooltip.css({"opacity":"1"});
+					$tooltip.css({"display":"block"});
 					$tooltip.find(".city-name").html(d["geoWide"]+" "+d.geo);
-					$tooltip.find(".household .value").html(d.house);
-					$tooltip.find(".under-household .value").html(d["under_house"]);
-					$tooltip.find(".under-household-single .value").html(d["under_house_single"]);
+					$tooltip.find(".household .value").html(numberWithCommas(d.house));
+					$tooltip.find(".under-household .value").html( numberWithCommas(d["under_house"]) );
+					$tooltip.find(".under-household-single .value").html( numberWithCommas(d["under_house_single"]));
 					$tooltip.find(".under-household-ratio .value").html(d["under_house_ratio"]);
 					d3.select(this).selectAll(".pole-label")
 						.style("opacity", "1");
@@ -193,11 +200,21 @@ $(function(){
 						.style("stroke", null)
 						.style("stroke-width",  null)
 					$tooltip.css({"opacity":"0"})
-
+					$tooltip.css({"display":"none"});
 					d3.selectAll(".pole-label")
 						.style("opacity", null);
 				});		
 
+			$(".story-body:not(#ALL_CITY_HOUSE_POLE)").on("touchstart",function(){
+				d3.selectAll("#ALL_CITY_HOUSE_POLE  .pole")
+					.style("fill-opacity", null)
+					.style("stroke", null)
+					.style("stroke-width",  null)
+				$tooltip.css({"opacity":"0"})
+				$tooltip.css({"display":"none"});
+				d3.selectAll(".pole-label")
+					.style("opacity", null);
+			});
 
 		}else{ // PC horizontal Pole Graph
 			var width = (screenWidth<1300)? (screenWidth-80): 1300,
@@ -311,7 +328,6 @@ $(function(){
 
 			pole_under_house.append("text")
 				.attr("class","pole-label")
-			//	.filter(function(d){ return Number(d.under_house_ratio) >= 7;})
 				.text(function(d) { return d.under_house_ratio+"%"; })
 				.attr("transform", function(d, i) { 
 					return "translate(8," + (height-(Number(d["under_house"]) * multipleKey)-2) + ")";
@@ -328,9 +344,9 @@ $(function(){
 					
 					$tooltip.css({"opacity":"1"})
 					$tooltip.find(".city-name").html(d["geoWide"]+" "+d.geo);
-					$tooltip.find(".household .value").html(d.house);
-					$tooltip.find(".under-household .value").html(d["under_house"]);
-					$tooltip.find(".under-household-single .value").html(d["under_house_single"]);
+					$tooltip.find(".household .value").html(numberWithCommas(d.house));
+					$tooltip.find(".under-household .value").html( numberWithCommas(d["under_house"]) );
+					$tooltip.find(".under-household-single .value").html( numberWithCommas(d["under_house_single"]));
 					$tooltip.find(".under-household-ratio .value").html(d["under_house_ratio"]);
 					$tooltip.css({"left":(d3.mouse(this.parentNode)[0])+"px"});
 					$tooltip.css({"bottom":"-70px"});
@@ -350,11 +366,13 @@ $(function(){
 				.style("stroke", null)
 				.style("stroke-width",  null)
 			$tooltip.css({"opacity":"0"})
+			$tooltip.css({"display":"none"})
+
+			d3.selectAll(".pole-label")
+					.style("opacity", null);
 		});
 
 	}
-
-	makePoleChart();
 
 	function swiftingPoleChart(t){
 		var swiftType = t; 
@@ -413,56 +431,6 @@ $(function(){
 	var randomRange = function(n1, n2) {
 		return Math.floor((Math.random() * (n2 - n1 + 1)) + n1);
 	};
-
-	function drawIcon(){
-		var width = 1000,
-			height= 300,
-			margin= 10;
-		var data = seoul_basic[0];
-		var dataNumb = Number(data["under_pop"])/50;
-		var path = person_path;
-		var icon_mg = 1,
-			icon_width = 15,
-			icon_height = 40,
-			lineMaxNum = parseInt($("#ICON_SVG").width() / (icon_width + icon_mg));
-	
-		var icon_svg = d3.select("#ICON_SVG")
-			.attr("width", width +"px" )
-			.attr("height", height +"px")
-
-		var icon_holder = icon_svg.append("g")
-			.attr("class","icon_holder");
-
-		var each_group = icon_holder.append("g")
-			.attr("class", "each-g");
-
-		for(i=0; i<dataNumb; i++){
-			var g = each_group.append("g")
-				.attr("class", "icon")
-				.attr("transform", function() {
-					var x = (i % lineMaxNum) * (icon_width + icon_mg);
-					var y = parseInt(i / lineMaxNum) * (icon_height + icon_mg)
-					return "translate(" + x + "," + y + ")";
-				}).style("width", icon_width)
-				.style("height", icon_height)
-
-			g.append("rect")
-				.attr("class", "iconBack")
-				.style("width", icon_width)
-				.style("height", icon_height)
-				.attr("fill", "rgba(255,255,255,0.05)");
-
-			g.append("path")
-				.attr("d", function(i) {
-					var n = randomRange(0, 17);
-					return path[n].path;
-				}).style("fill", "rgb(131, 138, 148)");
-		}
-
-
-	}
-	//drawIcon();
-
 	function spreadIcon(dataObj){
 		removeIcon();
 		var width = screenWidth,
@@ -538,12 +506,10 @@ $(function(){
 	var $S = $("#search-02"),
 		$S_W = $("#search-01"),
 		$S_D = $("#search-03"),
-		Op_lt =  $S_W.find("option");
-	
-	var $S_V = $("#search-05"),
+		$S_V = $("#search-05"),
 		$S_W_V = $("#search-04"),
+		Op_lt =  $S_W.find("option"),
 		Op_lt_v =  $S_W_V.find("option");
-
 	Op_lt.sort(function(a, b){
 		if (a.text > b.text) return 1;
 		else if (a.text < b.text) return -1;
@@ -558,11 +524,12 @@ $(function(){
 	$S_W.prepend("<option value='선택'> 선택 </option>");
 	$S_W.find("option").eq(0).attr("selected", "selected");
 
-
 	var g_Srch = {};
 	g_Srch.selectGeoWide;
 	g_Srch.selectBase;
 	g_Srch.selectDong;
+	g_Srch.selectGeoVote;
+	g_Srch.selectVote;
 
 	g_Srch.appendOpt = function(geo){
 		$S.find("option").remove();
@@ -633,11 +600,9 @@ $(function(){
 		}
 		$(".geo-exp").html("지역");
 		$("#SELECT_CITY_NAME").html(userSelectG["geoWide"]+" "+userSelectG["geo"]+" "+userSelectG["geoD"]);
-
 		$("#SELECT_HOUSE_NUMBER").html(userSelectG["house"]+" 가구");
 		$("#SELECT_UNDERHOUSE_NUMBER").html(userSelectG["under_house"]+" 가구");
 		$("#SELECT_UNDERHOUSE_RATIO").html(userSelectG["under_house_ratio"]+"%");
-
 		g_Srch.showResult(userSelectG);
 	};
 
@@ -708,7 +673,6 @@ $(function(){
 		$S_D.addClass("search-btn-block");
 		$("#search-03 option").remove();
 		$S_D.append("<option value='선택'> 선택 </option>");
-		
 		$S_W.find("option").eq(0).attr("selected", "selected");
 		$S_W_V.find("option").eq(0).attr("selected", "selected");
 	}
@@ -735,7 +699,6 @@ $(function(){
 		}
 	});
 
-	
 	Op_lt_v.sort(function(a, b){
 		if (a.text > b.text) return 1;
 		else if (a.text < b.text) return -1;
@@ -745,13 +708,10 @@ $(function(){
 			else return 0;
 		}
 	});
-
 	$S_W_V.html(Op_lt_v);
 	$S_W_V.prepend("<option value='선택'> 선택 </option>");
 	$S_W_V.find("option").eq(0).attr("selected", "selected");
 
-	g_Srch.selectGeoVote;
-	g_Srch.selectVote;
 
 	g_Srch.appendOptVote = function(geo){
 		$S_V.find("option").remove();
@@ -816,186 +776,9 @@ $(function(){
 		console.log(g_Srch.selectGeoVote, g_Srch.selectVote);
 		g_Srch.fillResultVote(g_Srch.selectGeoVote, g_Srch.selectVote);
 	});
-
-
 	/******** 검색영역 검색기  ********/
 
-	
-
-	/********** 가구원수 stacked bar 챠트 ***********/
-	
-	var household_number = [
-	   {
-			"houseType":"반지하가구",
-			"1명":188442,
-			"2명":82762,
-			"3명":49642,
-			"4명":32050,
-			"5명":8707,
-			"6명":1679,
-			"7명 이상":614
-		 },
-		 {
-			"houseType":"옥상가구",
-			"1명":31832,
-			"2명":10112,
-			"3명":5964,
-			"4명":3978,
-			"5명":1330,
-			"6명":457,
-			"7명 이상":159
-		 }
-	];
-
-	function makeStarckedBar(data){
-		var margin = {top: 20,right: 20,bottom: 40,left: 60},
-			width = ((screenWidth<600)? screenWidth: 600) - margin.left - margin.right,
-			height = 315 - margin.top - margin.bottom,
-			that = this,
-			data = data;
-
-		var x = d3.scale.ordinal().rangeRoundBands([0, width], .3);
-
-		var y = d3.scale.linear().rangeRound([height, 0]);
-
-		var color = d3.scale.category20();
-
-		var xAxis = d3.svg.axis().scale(x).orient("bottom");
-
-		var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".0%"));
-
-		var svg = d3.select("#STACKED_BAR").select("svg")
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom)
-		.append("g")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-			.attr("class","stacked-bar-holder")
-
-		color.domain(d3.keys(data[0]).filter(function (key) {
-			return key !== "houseType";
-		}));
-
-
-		data.forEach(function (d) {
-			var y0 = 0;
-			d.number = color.domain().map(function (name) {
-				console.log();
-				return {
-					name: name,
-					y0: y0,
-					y1: y0 += +d[name],
-					amount: d[name]
-				};
-			});
-			d.number.forEach(function (d) {
-				d.y0 /= y0;
-				d.y1 /= y0;
-			});
-			//console.log(data);
-		});
-
-		data.sort(function (a, b) {
-			return b.number[0].y1 - a.number[0].y1;
-		});
-
-		x.domain(data.map(function (d) {
-			return d.houseType;
-		}));
-
-		var xAxis = svg.append("g").attr("class", "x axis")
-			.attr("transform", "translate(0," + height + ")")
-			.call(xAxis)
-			.attr("class", "axis xaxis");
-		var yAxis = svg.append("g").attr("class", "y axis")
-			.call(yAxis)
-			.attr("class", "axis yaxis");
-
-		d3.selectAll(".yaxis g.tick")
-			.filter(function(d){ return d==0.5;})
-			.select("text")
-			.attr("class", "strong");
-
-		var houseTypeNumber = svg.selectAll(".houseType")
-			.data(data).enter()
-			.append("g")
-			.attr("class", "houseType")
-			.attr("transform", function (d) {
-				return "translate(" + x(d.houseType) + ",0)";
-			});
-
-		var eachStackedItem = houseTypeNumber.selectAll("rect")
-			.data(function (d) {
-				return d.number;
-			}).enter()
-			.append("rect")
-			.attr("width", x.rangeBand())
-			.attr("y", function (d) {
-				return y(d.y1);
-			}).attr("height", function (d) {
-				return y(d.y0) - y(d.y1);
-			}).style("fill", function (d) {
-				if(d.name=="1명"){
-					return "#ddd";
-				}else if(d.name=="2명"){
-					return "#b51e00";
-				}else if(d.name=="3명"){
-					return "#fa420b";
-				}else if(d.name=="4명"){
-					return "#ff6c40";
-				}else if(d.name=="5명"){
-					return "#ff8c43";
-				}else if(d.name=="6명"){
-					return "#ffc490";
-				}else if(d.name=="7명 이상"){
-					return "#ffdfc2";
-				}
-				//return color(d.name);
-			});
-		var halfLine = svg.append("line")
-			.attr("class", "half-line")
-			.attr("x1", 0)
-			.attr("y1", 0)
-			.attr("x2", width)
-			.attr("y2", 0)
-			.attr("stroke-width", "0.5")
-			.attr("stroke", "#111")
-			.attr("transform", "translate(0,"+ (height/2) +")");
-
-		var label = houseTypeNumber.selectAll("text")
-			.data(function (d) {
-				return d.number;
-			}).enter()
-			.append("text")
-			.attr("class","stacked-label")
-			.filter(function(d,i){
-				return (i <4);
-			})
-			.text(function(d){
-				return d.name
-			}).attr("transform", function(d){ 
-				return "translate("+(x.rangeBand()/2)+","+(y(d.y1)+15)+")";
-			});
-
-	
-
-
-	/*
-		eachStackedItem.on('mouseover', function (d) {
-				var total_amt;
-				total_amt = d.amount;
-				d3.select(".chart-tip").style('opacity', '1').html('Amount: <strong>$' + that.numberWithCommas(total_amt.toFixed(2)) + '</strong>');
-			}).on('mouseout', function () {
-				d3.select(".chart-tip").style('opacity', '0');
-			});*/
-	
-	}
-	makeStarckedBar(household_number);
-
-	/********** 가구원수 stacked bar 챠트 ***********/
-
-
 	/***** 서울시 지도 ******/
-
 	var map_geo_label;
 	function makeMapOverlay(){
 		var width = 1000,
@@ -1072,13 +855,8 @@ $(function(){
 					}			
 				}
 			}
-		
-			/*
-			var colorFn = d3.scaleSequential(d3.interpolateOrRd)
-							.domain([2.2, 11.3]);*/
 			
 			var colorFn = d3.scale.category10();
-
 			var color_under_house = d3.scale.linear().domain([2.2, 11.3])
 					  .range(["rgba(255,130,38,0.05)", "rgba(255,130,38,0.5)"]);
 			function color_under_house_ratio(v){
@@ -1102,7 +880,6 @@ $(function(){
 			}
 			var color_old = d3.scale.linear().domain([8.53, 29.28])
 						  .range(["rgba(255,62,38,0.01)", "rgba(255,62,38,0.5)"]);
-
 			function color_old_ratio(v){
 				if(v<=18.5){
 					if(v<=12){
@@ -1125,7 +902,6 @@ $(function(){
 
 			var color_single_parents = d3.scale.linear().domain([0.39, 1.72])
 						  .range(["rgba(255,38,64,0.05)", "rgba(255,38,64,0.4)"]);
-			
 			var opacity_low_income =  d3.scale.linear().domain([2.32, 8.85]).range(["0.1", "1.0"]);
 			var opacity_single_parents =  d3.scale.linear().domain([0.39, 1.72]).range(["0.1", "0.7"]);
 
@@ -1136,7 +912,6 @@ $(function(){
 				.attr("d", path)
 				.style("fill", function(d){
 					var value = d.properties["under_house_ratio"];
-					//return color_under_house(value);
 					return color_under_house_ratio(value);
 				})
 
@@ -1157,7 +932,6 @@ $(function(){
 					}else if(value>=5.3){
 						return "1";
 					}
-					//return opacity_low_income(value);
 				}).style("stroke-width","2");
 
 			 map_single_parent_house_ratio.selectAll("path")
@@ -1165,13 +939,6 @@ $(function(){
 				.enter().append("path")
 				.attr("class", function(d) { console.log(); return "geo geo-single-parent c-" + d.properties.SIG_CD })
 				.attr("d", path)
-			/*	.style("fill", function(d){
-					var value = d.properties["single_parent_house_ratio"];
-					return color_single_parents(value);
-				}).style("stroke-opacity", function(d){
-					var value = d.properties["single_parent_house_ratio"];
-					return color_single_parents(value);
-				})*/
 				.style("fill", "url(#diagonalHatch)")
 				.style("fill-opacity", function(d){
 					var value = d.properties["single_parent_house_ratio"];
@@ -1184,7 +951,6 @@ $(function(){
 					}else if(value>=0.9){
 						return "1";
 					}
-					//return opacity_low_income(value);
 				}).style("stroke-width","2").style("stroke","#cf3a00")
 
 			 map_old_ratio.selectAll("path")
@@ -1194,7 +960,6 @@ $(function(){
 				.attr("d", path)
 				.style("fill", function(d){
 					var value = d.properties["old_ratio"];
-					//return color_old(value);
 					return color_old_ratio(value);
 				})
 
@@ -1212,7 +977,6 @@ $(function(){
 						.style("stroke-width", 2)
 						.style("stroke-dasharray", 0)
 						.style("stroke-dashoffset", 0)
-					//console.log(d.properties.SIG_KOR_NM, d.properties["under_house_ratio"]);
 					$map_tooltip.css("display","block");
 					$map_tooltip.find(".tooltip-con .city-name").html(d.properties.SIG_KOR_NM);
 					$map_tooltip.find(".tooltip-con .under-household-ratio .value").html(d.properties["under_house_ratio"]+"%");
@@ -1233,14 +997,13 @@ $(function(){
 			map_geo_label.selectAll("text")
 				.data(features)
 				.enter().append("text")
-				.attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })  // centroid 무게중심. path.centroid()는 path의 무게중심을 찾아주는 메소드 
+				.attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
 				.attr("dy", ".35em")
 				.attr("class", "geo-label")
 				.text(function(d) { return d.properties.SIG_KOR_NM})
 		});
 
 	}
-	makeMapOverlay();
 
 	function setMapDefault(){
 		$("#UNDER_HOUSE_RATIO").hide();
@@ -1248,7 +1011,6 @@ $(function(){
 		$("#SINGLE_PARENT_RATIO").hide();
 		$("#OLD_RATIO").hide();
 	}
-	setMapDefault();
 
 	$(".seoul-map .btn-holder ul").find("li").on("click", function() {
 		var button_index = $(this).index();
@@ -1278,7 +1040,6 @@ $(function(){
 			}
 		}
 	});
-
 	/***** 서울시 지도 ******/
 
 
@@ -1413,7 +1174,7 @@ $(function(){
 			.attr("transform", function(d, i) { 
 				return "translate("+ (poleWidthRent/2)+","+(height-(Number(d["rent_apart"]) * multipleKey)-5) + ")";
 			})
-			.text(function(d) { return d["rent_apart"]+"호";});
+			.text(function(d) { return numberWithCommas(d["rent_apart"])+"호";});
 
 		var $tooltip = $(".seoul-rent-apart-chart .tooltip");
 		$tooltip.css({"opacity":"0"})
@@ -1427,7 +1188,7 @@ $(function(){
 					.style("stroke-width", "1px")
 				$tooltip.css({"opacity":"1"})
 				$tooltip.find(".city-name").html(d["geo"]);
-				$tooltip.find(".rent-apart .value").html(d["rent_apart"]);
+				$tooltip.find(".rent-apart .value").html( numberWithCommas(d["rent_apart"]));
 				if(isMobile==true){
 				
 				}else{
@@ -1452,6 +1213,20 @@ $(function(){
 					.style("fill",null);
 
 			});
+
+			$(".story-body:not(#SEOUL_RENT_APART_POLE)").on("touchstart",function(){
+				d3.selectAll("#SEOUL_RENT_APART_POLE  .pole")
+					.style("fill-opacity", null)
+					.style("stroke", null)
+					.style("stroke-width",  null)
+				$tooltip.css({"opacity":"0"});
+
+				d3.selectAll(".graph-Xaxis")
+					.style("fill-opacity",null)
+					.style("fill",null);
+
+			});
+
 		
 		}else{
 			pole_rent_apart.on("mouseenter", function(d) {
@@ -1462,7 +1237,7 @@ $(function(){
 					.style("stroke-width", "1px")
 				$tooltip.css({"opacity":"1"})
 				$tooltip.find(".city-name").html(d["geo"]);
-				$tooltip.find(".rent-apart .value").html(d["rent_apart"]);
+				$tooltip.find(".rent-apart .value").html( numberWithCommas(d["rent_apart"]));
 				if(isMobile==true){
 				
 				}else{
@@ -1500,23 +1275,27 @@ $(function(){
 				.style("fill-opacity",null)
 				.style("fill",null);
 		});
-		
-
 	};	
-	makePoleChartRent();
-	if(isMobile==false){
-		swiftingPoleChart("only_centre");
-	}
-
 	/****** 구별 임대주택 막대 그래프 ******/
+
+	function drawAllGraphAndChart(){
+		makePoleChart();
+		makeMapOverlay();
+		setMapDefault();
+		makePoleChartRent();
+		if(!isMobile){
+			swiftingPoleChart("only_centre");
+		}
+	};
 
 	var textBoxLeftMove = ((screenWidth - $(".text-box").width())/2-50); 
 	if(textBoxLeftMove >=450){textBoxLeftMove = 450; }
 	$(".text-box").css("left", textBoxLeftMove+"px");
+
 	/******** 모바일 전용 조정 ********/
 	if(isMobile==true){
 		$(".text-box").css("left", "0px");
-		$(".page-title").find("img").attr("src", imgURL+"page-title-m.png");
+		$(".page-title").find("img").attr("src", imgURL+"page-title-m-2.png");
 		$(".all-city-household-chart .pole-legend").insertAfter("#POLE_CHART_SWIFT");
 		$("#POLE_CHART_SWIFT").hide();
 		$(".wage_avr").attr("src",  imgURL+"graph_wage_avr_m.png");
@@ -1524,12 +1303,10 @@ $(function(){
 		var mapScaleKey = Number((screenWidth/1000).toFixed(4))+0.13;
 		var mapTransValue = (screenWidth*4/15).toFixed(4);
 		$(".seoul-map .map-holder").css({"transform":"scale("+mapScaleKey+") translate("+(mapTransValue*-1)+"px, 0px)", "transform-origin":"left center"});
-
 		$(".all-city-household-chart .graph-des").html("막대그래프를 클릭하시면 <b>지자체별 상세정보</b>를 보실 수 있습니다.");
 		$(".seoul-rent-apart-chart .graph-des").html("막대그래프를 클릭하시면 <b>구별 상세정보</b>를 보실 수 있습니다.");
-		
 	}
-
+	/******** 모바일 전용 조정 ********/
 
 	/******** Gallery Slider ********/
 	var Slider = {},
@@ -1584,22 +1361,23 @@ $(function(){
 	/******** Gallery Slider ********/
 
 
-	resetAllOpt();
-	$(".loading-page").fadeOut(200, function(){
+	/******** init page ********/
+	function init(){
+		resetAllOpt();
+		drawAllGraphAndChart();
 		$introItem = $(".intro-fadeTo");
 		for(o=0; o<$introItem.length;o++){
 			$introItem.eq(o).delay(o*700).animate({"opacity":"1"}, 1500);
 		};
-
 		if(isMobile==false){ $(".fixed-navi").animate({"right":"10px"},1000); }
-		
+	}
+
+	$(".loading-page").fadeOut(200, function(){
+		init();
 	});
+	/******** init page ********/
 
-	$(".close-ie-block").on("click", function(){
-		$(".ie-block-9").hide();
-	})
-
-
+	/******** Scroll event listener ********/
 	var nowScroll;
 	var mapPos = "before";
 	$(".map-fixed-slider .fixed-el").css({"padding-top": ((screenHeight-$(".map-holder").height())/2) +"px"});
@@ -1612,7 +1390,6 @@ $(function(){
 		if( nowScroll >= $(".map-fixed-slider").offset().top && nowScroll < endPoint ){
 			if(mapPos !== "on"){
 				mapPos = "on";
-			//	console.log("맵영역");
 				$(".fixed-el").addClass("fixed-el-fixed");
 				$(".fixed-el").removeClass("fixed-el-bottom");
 			}
@@ -1620,7 +1397,6 @@ $(function(){
 		}else if( nowScroll < $(".map-fixed-slider").offset().top ){
 			if(mapPos !== "before"){
 				mapPos = "before";
-			//	console.log("맵영역이전");
 				$(".fixed-el").removeClass("fixed-el-fixed");
 				$(".fixed-el").removeClass("fixed-el-bottom");
 				$(".map--layer").hide();
@@ -1629,12 +1405,11 @@ $(function(){
 		}else if( nowScroll >= endPoint){
 			if(mapPos !== "after"){
 				mapPos = "after";
-			//	console.log("맵영역이후");
 				$(".fixed-el").removeClass("fixed-el-fixed");
 				$(".fixed-el").addClass("fixed-el-bottom");
 			}
 		}
-		checkMapStage(nowScroll);
+		mScEv.checkMapStage(nowScroll);
 
 		var fullScroll = $(document).height()-$(window).height()-( $(".footer-area").height()+$(".digital-list").height() +$(".common-footer").height());			
 		var ScrollPer = (nowScroll/fullScroll)*100;
@@ -1645,18 +1420,17 @@ $(function(){
 		}
 	});
 
-	// check map stage
-	var mapStage;
-	function adjustStage(g){
-		if( mapStage == g){
-		}else if( mapStage !==g ){
-			mapStage = g;
-			drawMapByStage(mapStage);
-		//	console.log(mapStage);
+	var mScEv = {};
+	mScEv.mapStage = null;
+	mScEv.adjustStage = function(g){
+		if( mScEv.mapStage == g){
+		}else if( mScEv.mapStage !==g ){
+			mScEv.mapStage = g;
+			mScEv.drawMapByStage(mScEv.mapStage);
 		}
 	};
 	
-	function drawMapByStage(n){
+	mScEv.drawMapByStage = function(n){
 		switch(n){
 			case 0:
 				$(".map--layer").fadeOut();
@@ -1713,22 +1487,22 @@ $(function(){
 		}	
 	}
 
-	function checkMapStage(n){
+	mScEv.checkMapStage = function(n){
 		var $StagePoint = $(".map-stage");
 		var n = n+screenHeight*0.7;
 		if( n < $StagePoint.eq(0).offset().top){ 
-			adjustStage(0);
+			mScEv.adjustStage(0);
 		}else if( n >= $StagePoint.eq($StagePoint.length-1).offset().top ){
-			adjustStage($StagePoint.length);
+			mScEv.adjustStage($StagePoint.length);
 		}else if( n >= $StagePoint.eq(0).offset().top && n < $StagePoint.eq($StagePoint.length-1).offset().top){
 			for(s=0;s<$StagePoint.length-1;s++){
 				if( n >= $StagePoint.eq(s).offset().top && n <$StagePoint.eq(s+1).offset().top){
-					adjustStage(s+1);
+					mScEv.adjustStage(s+1);
 				}
 			}
 		}
 	}
-	// check map stage
+	/******** Scroll event listener ********/
 
 
 });
